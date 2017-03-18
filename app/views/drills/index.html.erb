@@ -6,7 +6,8 @@
 </ul>
 
 <div>
-  <%= link_to 'new', new_group_drill_path(@drills), class: 'btn btn-default' %>
+  <h1>    <%= @group_id %> </h1>
+  <%= link_to 'new', new_group_drill_path(@group_id), class: 'btn btn-default' %>
   <% @drills.each do |d| %>
     <div class='drills-container'>
       <%= link_to d.title, drill_path(d) %>

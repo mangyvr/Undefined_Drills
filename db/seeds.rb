@@ -6,6 +6,9 @@ end
   Drill.create(title: Faker::Pokemon.name, description: Faker::Lorem.paragraph(5), group_id: 1, user_id: 1)
 end
 
+5.times do
+  Drill.create(title: Faker::Pokemon.name, description: Faker::Lorem.paragraph(5), group_id: 2, user_id: 1)
+end
 
 5.times do
   Group.create(title: Faker::Hacker.noun)

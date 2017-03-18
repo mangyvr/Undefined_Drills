@@ -1,11 +1,15 @@
 class DrillsController < ApplicationController
-  before_action :find_drill, only: [:show, :edit, :destroy, :update]
+  before_action :find_drill, only: [:show, :edit, :update, :destroy]
 
   def index
-    @drills = Drill.order(created_at: :desc)
+    # Show drills for this group only
+    # render json:params
+    @drills = Drill.order(created_at: :desc).where(group_id: params[:group_id])
+    @group_id = params[:group_id]
   end
 
   def new
+    @group = Group.find (params[:group_id])
     @drill = Drill.new
   end
 
@@ -30,11 +34,16 @@ class DrillsController < ApplicationController
   end
 
   def update
+  if @drill.update drill_params
+    redirect_to drill_path(@drill), notice: 'Drill Updated'
+  else
+    render :edit
+  end
   end
 
   def destroy
     @drill.destroy
-    redirect_to drills_index_path, notice: 'Drill Deleted'
+    redirect_to group_drills_path(@drill.group_id), notice: 'Drill Deleted'
   end
 
   private
