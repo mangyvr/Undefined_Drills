@@ -37,11 +37,6 @@ gem 'simple_form'
 gem 'bootstrap-sass', '~> 3.3.6'
 
 
-# Our Gems
-gem 'cancancan'
-gem 'simple_form'
-gem 'bootstrap-sass', '~> 3.3.6'
-
 gem 'awesome_print'
 gem 'interactive_editor'
 gem 'hirb'
@@ -57,7 +52,6 @@ group :development, :test do
   gem 'rspec-rails'
 
   gem 'factory_girl_rails'
-  gem 'faker'
 
   gem 'rails-controller-testing'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
