@@ -1,3 +1,51 @@
 // Place all the styles related to the drills controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.drills-animation {
+  top: 200px;
+  animation: x 5s forwards;
+}
+
+.drills-container {
+  max-width: 100%;
+  border: 1px solid grey;
+  max-height: 100%;
+  display: flex;
+  justify-content: space-around;
+  flex-flow: wrap;
+}
+
+.drills-items {
+  margin: 20px 0 10px 20px;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+  height: 200px;
+  width: 400px;
+  border-radius: 10px;
+}
+
+.title {
+  text-align: center;
+  padding-top: 5px;
+}
+
+.btn {
+  margin: 40px;
+  padding: 10px 20px 10px 20px;
+}
+
+.drills-container a {
+  text-decoration: none;
+}
+
+@keyframes x {
+    0% {
+        opacity: 0
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(540px)
+    }
+}
