@@ -1,9 +1,7 @@
 class GroupsController < ApplicationController
   before_action :get_group_id, except: [:index, :new, :create]
 
-
   def index
-
     @groups = Group.order(created_at: :desc)
     # @user_groups = Group.where???
     # render json: @groups
