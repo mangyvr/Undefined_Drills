@@ -1,23 +1,16 @@
 class GroupsController < ApplicationController
   before_action :get_group_id, except: [:index, :new, :create]
   before_action :get_bookmarks, only: [:index]
-<<<<<<< HEAD
-
-
-  def index
-    @groups = Group.order(created_at: :desc)
-=======
 
   def index
     @groups = Group.order(created_at: :desc)
     # @user_groups = Group.where???
     # render json: @groups
->>>>>>> 5daca840a5a4f5ae2d05deedaaa2836c2c548610
   end
 
   def show
     @drills = Drill.where(group: @group)
-    render json: @group
+    # render json: @group
   end
 
   def new
