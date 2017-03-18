@@ -7,7 +7,6 @@ class GroupsController < ApplicationController
     @groups = Group.all
     # @user_groups = Group.where???
     render json: @groups
-
   end
 
   def show

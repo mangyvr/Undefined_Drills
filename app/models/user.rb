@@ -1,5 +1,16 @@
 class User < ApplicationRecord
 
+  # has_secure_password
+  # validates :email, presence: true, uniqueness: true,
+  #         format:  /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
+  # validates :password_confirmation, presence: true
+  has_many :drills, dependent: :destroy
+  has_many :answers, dependent: :destroy
+  has_many :completed_drills, through: :drills, source: :user
+
+
+
+
   has_secure_password
   before_validation :downcase_email
 
@@ -57,4 +68,20 @@ class User < ApplicationRecord
   def downcase_email
     self.email.downcase! if email.present?
   end
+
+  # For password reset
+   def self.new_token
+     SecureRandom.urlsafe_base64
+   end
+
+   # Generates password reset link with unencrypted token before it is digest-ed
+   def gen_reset_link(url, token)
+     "#{url}/reset_password/#{token}/edit?email=#{self.email}"
+   end
+
+   # Use bcrypt to convert unhashed token into digest
+   def self.hash_token(token)
+     BCrypt::Password.create(token)
+   end  
+
 end
