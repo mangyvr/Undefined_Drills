@@ -5,6 +5,11 @@ Rails.application.routes.draw do
   # Reset password must be independent of users -- no associated user yet
   resources :reset_password, only: [:new, :create, :edit, :update]
 
+  get "/auth/twitter", as: :sign_in_with_twitter
+  get "/auth/twitter/callback" => "callback#twitter"
+  get "/auth/facebook", as: :sign_in_facebook
+  get "/auth/facebook/callback" => "callback#facebook"
+
   resources :sessions, only: [:new, :create] do
     delete :destroy, on: :collection
   end
@@ -15,4 +20,5 @@ Rails.application.routes.draw do
       resources :answers, shallow: true
     end
   end
+
 end
