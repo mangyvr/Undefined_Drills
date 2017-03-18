@@ -15,7 +15,7 @@ class ResetPasswordController < ApplicationController
       @user.reset_sent_at = Time.zone.now
 
       if @user.save
-        redirect_to posts_path, notice: "Password reset email sent."
+        redirect_to root_path, notice: "Password reset email sent."
       else
         render :new, notice: "Reset failed."
       end
@@ -40,18 +40,18 @@ class ResetPasswordController < ApplicationController
         # unless BCrypt::Password.new(@user.reset_digest).is_password?(remember_token)
 
         if BCrypt::Password.new(@user.password_reset_token) != params[:id]
-          redirect_to posts_path, notice: "Link is invalid."
+          redirect_to root_path, notice: "Link is invalid."
         elsif (@user.reset_sent_at + 3.days) < Time.now
           # Token has expired -- destroy it
           @user.update_attribute("password_reset_token", '')
-          redirect_to posts_path, notice: "Link is expired."
+          redirect_to root_path, notice: "Link is expired."
         else
           if @user.update permitted_params
           # if @user.update()
             @user.update_attribute("password_reset_token", '')
-            redirect_to posts_path, notice: "Password changed."
+            redirect_to root_path, notice: "Password changed."
           else
-            redirect_to posts_path, notice: "Password changed failed."
+            redirect_to root_path, notice: "Password changed failed."
           end
         end
 
