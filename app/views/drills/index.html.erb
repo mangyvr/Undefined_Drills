@@ -1,4 +1,4 @@
-<h1>Drills</h1>
+<h1 class='drills-animation'>Drills</h1>
 
 <ul class="nav nav-tabs">
   <li role="presentation"><a href="#">My Drills</a></li>
@@ -6,13 +6,17 @@
 </ul>
 
 <div>
+  <div class='drills-container'>
   <%= link_to 'new', new_group_drill_path(@drills), class: 'btn btn-default' %>
   <% @drills.each do |d| %>
-    <div class='drills-container'>
-      <%= link_to d.title, drill_path(d) %>
+    <div class='drills-items'>
+      <h3 class='title'>
+        <%= link_to d.title, drill_path(d) %>
+      </h3>
+      <div class='btn btn-default'>
+        <%= link_to 'Add to my Drills', drill_path(d) %>
+      </div>
     </div>
   <% end %>
-
-
-
+  </div>
 </div>
