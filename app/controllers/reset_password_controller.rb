@@ -9,12 +9,15 @@ class ResetPasswordController < ApplicationController
       token = User.new_token
 
       # For now display token and url on terminal
-      p @user.gen_reset_link(request.base_url, token)
+      # p @user.gen_reset_link(request.base_url, token)
+
 
       @user.password_reset_token = User.hash_token(token)
       @user.reset_sent_at = Time.zone.now
 
       if @user.save
+        ResetPasswordMailer.send_reset_password_link(@user, @user.gen_reset_link(request.base_url, token)).deliver_now
+
         redirect_to root_path, notice: "Password reset email sent."
       else
         render :new, notice: "Reset failed."
