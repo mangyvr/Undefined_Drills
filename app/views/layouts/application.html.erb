@@ -12,13 +12,6 @@
   </head>
 
   <body>
-    <%= yield %>
-
-    <%# temporary stylesheet  ⬇️ %>
-    <link rel="stylesheet" href="https://bootswatch.com/superhero/bootstrap.min.css">
-  </head>
-
-  <body>
     <%= render 'layouts/navbar' %>
     <% if notice %>
       <div class='alert alert-success'><%= notice %></div>
