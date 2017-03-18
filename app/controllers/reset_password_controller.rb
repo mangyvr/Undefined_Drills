@@ -19,10 +19,10 @@ class ResetPasswordController < ApplicationController
 
         redirect_to root_path, notice: "Password reset email sent."
       else
-        render :new, notice: "Reset failed."
+        render :new, alert: "Reset failed."
       end
     else
-      render :new, notice: "Invalid email."
+      render :new, alert: "Invalid email."
     end
   end
 

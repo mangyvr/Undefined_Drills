@@ -82,6 +82,11 @@ class User < ApplicationRecord
    # Use bcrypt to convert unhashed token into digest
    def self.hash_token(token)
      BCrypt::Password.create(token)
-   end  
+   end
+
+   # Generate email validation link
+   def gen_email_validation_link(url, token, user)
+     "#{url}/users/#{user.id}/validate_email/#{token}/?email=#{self.email}"
+   end
 
 end

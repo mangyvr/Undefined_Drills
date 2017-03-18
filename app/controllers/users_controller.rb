@@ -11,7 +11,8 @@ class UsersController < ApplicationController
     @user = User.new user_params
     if @user.save
       session[:user_id] = @user.id
-      redirect_to root_path, notice: 'Account created successfully!'
+      # redirect_to root_path, notice: 'Account created successfully!'
+      redirect_to user_validate_email_index(@user)
     else
       render :new
     end
@@ -95,5 +96,5 @@ class UsersController < ApplicationController
   def self.hash_token(token)
     BCrypt::Password.create(token)
   end
-  
+
 end
