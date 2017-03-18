@@ -10,7 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170318184911) do
+
+
+ActiveRecord::Schema.define(version: 20170318194131) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,26 +45,51 @@ ActiveRecord::Schema.define(version: 20170318184911) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "user_drills", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "drill_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean  "completed"
+    t.integer  "attempts"
+    t.index ["drill_id"], name: "index_user_drills_on_drill_id", using: :btree
+    t.index ["user_id"], name: "index_user_drills_on_user_id", using: :btree
+  end
+
+  create_table "user_groups", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "group_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_user_groups_on_group_id", using: :btree
+    t.index ["user_id"], name: "index_user_groups_on_user_id", using: :btree
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "first_name"
     t.string   "last_name"
     t.string   "email"
-    t.boolean  "is_admin",        default: false
+    t.boolean  "is_admin",             default: false
     t.string   "password_digest"
-    t.boolean  "is_validated",    default: false
+    t.boolean  "is_validated",         default: false
     t.integer  "score"
-    t.string   "token_field"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.string   "password_reset_token"
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
     t.string   "uid"
     t.string   "provider"
     t.string   "oauth_token"
     t.string   "oauth_secret"
     t.text     "oauth_raw_data"
+    t.datetime "reset_sent_at"
     t.index ["uid", "provider", "email"], name: "index_users_on_uid_and_provider_and_email", using: :btree
   end
 
   add_foreign_key "answers", "drills"
   add_foreign_key "drills", "groups"
   add_foreign_key "drills", "users"
+  add_foreign_key "user_drills", "drills"
+  add_foreign_key "user_drills", "users"
+  add_foreign_key "user_groups", "groups"
+  add_foreign_key "user_groups", "users"
 end
