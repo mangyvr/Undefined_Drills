@@ -10,5 +10,9 @@
     <div class='drills-container'>
       <%= link_to d.title, drill_path(d) %>
     </div>
+<h1 style="text-align:center">All Drills</h1>
+<div>
+  <% @drills.each do |d|  %>
+        <div class="col-xs-12 col-sm-8 col-sm-offset-2"><%= link_to d.title, drill_path(d) %> </div>
   <% end %>
 </div>
