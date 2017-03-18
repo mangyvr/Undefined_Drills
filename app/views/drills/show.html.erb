@@ -1,6 +1,19 @@
-<h1><%= @drill.group.title %> Drills</h1>
-<h2>Drill: <%= @drill.title %></h2>
-<p><%= @drill.description %></p>
+
+<h1 style="text-align: center">Drill Show</h1>
+<div class="col-sm-12">
+    <h3>
+        <%= @drill.title %>
+        <%= @drill.description %>
+    </h3>
+    <hr>
+    <p>Level <%= @drill.level %></p>
+    <hr>
+    <p>Level <%= @drill.points %></p>
+
+    <%= link_to 'Edit', edit_drill_path(@drill), class: "btn btn-sm btn-default" %>
+    <%= link_to 'Delete', drill_path(@drill), method: :delete,
+    data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger"  %></div>
+
 <hr>
 <%= form_tag drill_user_answers_path(@drill), method: 'post' do %>
   <div>
@@ -11,6 +24,7 @@
     <%= submit_tag("Submit Answer") %>
   </div>
 <% end %>
+
 <hr>
 <h2>Correct Answers</h2>
 <% @drill.answers.each do |answer| %>

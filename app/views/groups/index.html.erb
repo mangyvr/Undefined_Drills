@@ -1,1 +1,44 @@
-<h1>Groups</h1>
+
+<h1 align="middle">Groups</h1>
+<h2 align="middle"><%= link_to "Create a New Group", new_group_path %></h2>
+<br>
+<%counter = 3 %>
+<%index = 1 %>
+<div class="container-fluid">
+  <% @groups.each do |x| %>
+    <% y=rand(1..10) %>
+      <% case counter - index %>
+        <% when 2 %>
+        <div class="row">
+          <div class="col-sm-12 col-md-4">
+            <img src="<%= Faker::LoremPixel.image("500x600", false, 'nature', y)%>" class="img-responsive">
+            <h3 align="middle"><%= link_to x.title, group_path(x) %></h3>
+           <br>
+           <br>
+        </div>
+        <% index += 1 %>
+      <% when 1 %>
+          <div class="col-sm-12 col-md-4">
+            <img src="<%= Faker::LoremPixel.image("500x600", false, 'nature', y)%>" class="img-responsive">
+            <h3 align="middle"><%= link_to x.title, group_path(x) %></h3>
+           <br>
+           <br>
+        </div>
+      <% index += 1%>
+      <% when 0 %>
+          <div class="col-sm-12 col-md-4">
+            <img src="<%= Faker::LoremPixel.image("500x600", false, 'nature', y)%>" class="img-responsive">
+            <h3 align="middle"><%= link_to x.title, group_path(x) %></h3>
+           <br>
+           <br>
+        </div>
+      </div>
+      <% counter += 2 %>
+      <% end %>
+    <% end %>
+</div>
+<h1> Shit I've bookmarked...</h1>
+<% @usergroups.each do |y| %>
+  <p><%= y %> </p>
+<% end %>
+
