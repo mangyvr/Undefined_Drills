@@ -1,17 +1,5 @@
 class PopulateAnswersTable < ActiveRecord::Migration[5.0]
   def change
-    Answer.all.each do |answer|
-      answer.destroy
-    end
-    Drill.all.each do |drill|
-      drill.destroy
-    end
-    Group.all.each do |group|
-      group.destroy
-    end
-    User.all.each do |user|
-      user.destroy
-    end
 
     10.times do
       User.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name,
