@@ -1,7 +1,14 @@
 <h1>Drills</h1>
-<% @drills.each do |drill| %>
-<div class="group-drill">
-  <h3><%= link_to drill.title, drill_path(drill) %></h3>
-  <hr>
+
+<ul class="nav nav-tabs">
+  <li role="presentation"><a href="#">My Drills</a></li>
+  <li role="presentation"><a href="#">All Drills</a></li>
+</ul>
+
+<div>
+  <% @drills.each do |d| %>
+    <div class='drills-container'>
+      <%= link_to d.title, drill_path(d) %>
+    </div>
+    <% end %>
 </div>
-<% end %>
