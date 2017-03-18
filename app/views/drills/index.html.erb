@@ -6,9 +6,16 @@
 </ul>
 
 <div>
+  <div class='drills-container'>
   <% @drills.each do |d| %>
-    <div class='drills-container'>
-      <%= link_to d.title, drill_path(d) %>
+    <div class='drills-items'>
+      <h3 class='title'>
+        <%= link_to d.title, drill_path(d) %>
+      </h3>
+      <div class='add'>
+        <%= link_to 'Add to my Drill', drill_path(d) %>
+      </div>
     </div>
-    <% end %>
+  <% end %>
+  </div>
 </div>
