@@ -23,8 +23,7 @@ Rails.application.routes.draw do
   root to: "home#index"
   resources :groups, shallow: true do
     resources :drills, shallow: true do
-      resources :answers
-      resources :user_answers, only: [:create]
+      resources :answers, shallow: true
     end
   end
 
