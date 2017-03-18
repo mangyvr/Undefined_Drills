@@ -1,6 +1,6 @@
 class DrillsController < ApplicationController
   def index
-    @drills = Drill.where(group: params[:group_id]).order(created_at: :desc)
+    @drills = Drill.order(created_at: :desc)
   end
 
   def new
@@ -20,8 +20,6 @@ class DrillsController < ApplicationController
   end
 
   def show
-    @drill = Drill.find params[:id]
-    @user_answer ||= ""
   end
 
   def edit
@@ -38,6 +36,6 @@ class DrillsController < ApplicationController
   private
 
   def drill_params
-    params.require(:drill).permit([:title, :description])
+    params.require(:appointment).permit([:title, :description])
   end
 end
