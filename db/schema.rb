@@ -10,7 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170318184911) do
+
+ActiveRecord::Schema.define(version: 20170318221729) do
+
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,7 +34,6 @@ ActiveRecord::Schema.define(version: 20170318184911) do
     t.datetime "updated_at",  null: false
     t.integer  "group_id"
     t.integer  "user_id"
-    t.integer  "completed"
     t.index ["group_id"], name: "index_drills_on_group_id", using: :btree
     t.index ["user_id"], name: "index_drills_on_user_id", using: :btree
   end
@@ -41,6 +42,17 @@ ActiveRecord::Schema.define(version: 20170318184911) do
     t.string   "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "user_drills", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "drill_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean  "completed"
+    t.integer  "attempts"
+    t.index ["drill_id"], name: "index_user_drills_on_drill_id", using: :btree
+    t.index ["user_id"], name: "index_user_drills_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -66,4 +78,6 @@ ActiveRecord::Schema.define(version: 20170318184911) do
   add_foreign_key "answers", "drills"
   add_foreign_key "drills", "groups"
   add_foreign_key "drills", "users"
+  add_foreign_key "user_drills", "drills"
+  add_foreign_key "user_drills", "users"
 end
