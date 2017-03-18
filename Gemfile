@@ -39,6 +39,9 @@ gem 'interactive_editor'
 gem 'hirb'
 gem 'faker'
 gem 'font-awesome-rails'
+gem 'omniauth-twitter'
+gem 'omniauth-facebook'
+gem "twitter"
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
