@@ -6,7 +6,7 @@ class GroupsController < ApplicationController
 
     @groups = Group.order(created_at: :desc)
     # @user_groups = Group.where???
-    render json: @groups
+    # render json: @groups
   end
 
   def show
