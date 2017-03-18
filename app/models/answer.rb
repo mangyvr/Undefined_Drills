@@ -1,4 +1,4 @@
 class Answer < ApplicationRecord
-  belongs_to :drill, dependent: :destroy
+  belongs_to :drill
 
 end
