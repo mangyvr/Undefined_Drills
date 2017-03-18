@@ -5,6 +5,8 @@ Rails.application.routes.draw do
     resources :reset_password, only: [:new, :create, :edit, :update]
   end
 
-  resources :sessions, only: [:new, :create]
+  resources :sessions, only: [:new, :create] do
+    delete :destroy, on: :collection
+  end
 
 end
