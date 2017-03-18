@@ -29,18 +29,18 @@ gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
-
-
 gem 'cancancan'
-
 gem 'simple_form'
 gem 'bootstrap-sass', '~> 3.3.6'
+
 
 
 gem 'awesome_print'
 gem 'interactive_editor'
 gem 'hirb'
 gem 'faker'
+
+
 
 gem 'font-awesome-rails'
 
@@ -50,7 +50,6 @@ gem 'font-awesome-rails'
 
 group :development, :test do
   gem 'rspec-rails'
-
   gem 'factory_girl_rails'
 
   gem 'rails-controller-testing'
