@@ -3,11 +3,19 @@ class GroupsController < ApplicationController
 
 
   def index
+
     @groups = Group.order(created_at: :desc)
+    # @user_groups = Group.where???
+    render json: @groups
   end
 
   def show
     @drills = Drill.where(group: @group)
+    render json: @group
+  end
+
+  def new
+    render plain: "For Admin Use Only"
   end
 
   def new
