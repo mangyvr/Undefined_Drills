@@ -11,7 +11,6 @@ class ResetPasswordController < ApplicationController
       # For now display token and url on terminal
       # p @user.gen_reset_link(request.base_url, token)
 
-
       @user.password_reset_token = User.hash_token(token)
       @user.reset_sent_at = Time.zone.now
 
