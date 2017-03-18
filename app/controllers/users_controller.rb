@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   # before_action :authorize
-  before_action :find_user, only: [:edit, :update, :edit_password]
+  before_action :find_user, only: [:edit, :update, :edit_password, :destroy]
 
   def new
     @user = User.new
@@ -49,7 +49,6 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user = current_user
     @user.destroy
     session[:user_id] = nil
     redirect_to root_path, notice: 'Account deleted!'

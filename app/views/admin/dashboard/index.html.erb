@@ -28,14 +28,20 @@
           <th>First Name</th>
           <th>Last Name</th>
           <th>Email</th>
+          <th>is_admin?</th>
+          <th>is_validated?</th>
+          <th>Delete User</th>
         </tr>
       </thead>
       <tbody>
         <% @users.each do |user| %>
           <tr>
-            <td><%= user.first_name %></td>
+            <td><%= link_to user.first_name %></td>
             <td><%= user.last_name %></td>
             <td><%= user.email %></td>
+            <td><%= link_to 'Activate admin', user_path(user, user: {is_admin: :true}), method: :patch %></td>
+            <td>sdfs</td>
+            <td><%= link_to "Delete", user_path(user), method: :delete, class: 'btn btn-primary' %></td>
           </tr>
         <% end %>
       </tbody>
@@ -43,3 +49,29 @@
 
   </div>
 </div>
+
+<!--
+ step 1: create a users index to dispay all users
+ Step 2: create a link for each user to render an show id page for each user
+ Step 3: Be able to validate each user & and make user admin user
+
+ class User < ApplicationRecord {
+                  :id => :integer,
+          :first_name => :string,
+           :last_name => :string,
+               :email => :string,
+            :is_admin => :boolean,
+     :password_digest => :string,
+        :is_validated => :boolean,
+               :score => :integer,
+         :token_field => :string,
+          :created_at => :datetime,
+          :updated_at => :datetime,
+                 :uid => :string,
+            :provider => :string,
+         :oauth_token => :string,
+        :oauth_secret => :string,
+      :oauth_raw_data => :text
+ }
+
+-->
