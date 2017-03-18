@@ -2,6 +2,10 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.drills-animation {
+  top: 200px;
+  animation: x 5s forwards;
+}
 
 .drills-container {
   max-width: 100%;
@@ -19,6 +23,7 @@
   border: 1px solid black;
   height: 200px;
   width: 400px;
+  border-radius: 10px;
 }
 
 .title {
@@ -26,9 +31,21 @@
   padding-top: 5px;
 }
 
-.add {
-  display: flex;
-  border: 1px solid grey;
-  max-width: 100px;
-  padding-top: 50px;
+.btn {
+  margin: 40px;
+  padding: 10px 20px 10px 20px;
+}
+
+.drills-container a {
+  text-decoration: none;
+}
+
+@keyframes x {
+    0% {
+        opacity: 0
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(540px)
+    }
 }
