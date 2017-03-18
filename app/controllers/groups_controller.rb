@@ -7,6 +7,7 @@ class GroupsController < ApplicationController
     @groups = Group.all
     # @user_groups = Group.where???
     render json: @groups
+
   end
 
   def show
@@ -16,6 +17,9 @@ class GroupsController < ApplicationController
 
   def new
     render plain: "For Admin Use Only"
+  end
+
+  def new
     @group = Group.new
   end
 
