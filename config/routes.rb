@@ -10,6 +10,16 @@ Rails.application.routes.draw do
   get "/auth/facebook", as: :sign_in_facebook
   get "/auth/facebook/callback" => "callback#facebook"
 
+<<<<<<< HEAD
+=======
+  patch '/users/:id/edit_password' => 'users#edit_password', as: :edit_password
+
+
+  resources :users, only: [:new, :create, :update, :edit, :destroy] do
+    resources :reset_password, only: [:new, :create, :edit, :update]
+  end
+
+>>>>>>> 9b6c71ec063c42a38d5cc0f46096dd2ad7fb337c
   resources :sessions, only: [:new, :create] do
     delete :destroy, on: :collection
   end
