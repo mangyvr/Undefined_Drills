@@ -1,0 +1,11 @@
+<h1>Admin Dashboard</h1>
+  <br>
+
+  <p>Drill Count: <%= @drill_count %></p>
+  <p>Answer Count: <%= @answer_count %></p>
+  <p>User Count: <%= @user_count %></p>
+
+  <% @users.each do |user| %>
+    <%= link_to user.first_name, admin_dashboard_path(user) %>
+      <hr>
+  <% end %>
