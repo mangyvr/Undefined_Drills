@@ -1,6 +1,6 @@
 class ValidateEmailController < ApplicationController
-  def create
-    @user = User.find_by params[:user_id]
+  def new
+    @user = User.find_by_id params[:user_id]
 
     if @user
       token = User.new_token
@@ -10,6 +10,7 @@ class ValidateEmailController < ApplicationController
 
       if @user.save
         # ResetPasswordMailer.send_reset_password_link(@user, @user.gen_reset_link(request.base_url, token)).deliver_now
+        p @user.gen_email_validation_link(request.base_url, token, @user)
         redirect_to root_path, notice: "Validation email sent."
       else
         redirect_to root_path, alert: "Validation email failed."
@@ -24,13 +25,12 @@ class ValidateEmailController < ApplicationController
 
   def update
     # permitted_params = params.require(:reset_password).permit(:password, :password_confirmation, :email)
-
-    @user = User.find_by params[:user_id]
+    @user = User.find_by_id params[:user_id]
 
     if @user
-      if BCrypt::Password.new(@user.password_reset_token) != params[:id]
+      if BCrypt::Password.new(@user.email_validation_token) != params[:id]
         redirect_to root_path, alert: "Link is invalid."
-      elsif (@user.reset_sent_at + 3.days) < Time.now
+      elsif (@user.email_validation_sent_at + 3.days) < Time.now
         # Token has expired -- destroy it
         @user.update_attribute("password_reset_token", '')
         redirect_to root_path, alert: "Link is expired."
