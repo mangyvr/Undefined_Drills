@@ -1,11 +1,45 @@
 <h1>Admin Dashboard</h1>
   <br>
 
-  <p>Drill Count: <%= @drill_count %></p>
-  <p>Answer Count: <%= @answer_count %></p>
-  <p>User Count: <%= @user_count %></p>
+<div class="row">
+  <div class="col-md-8">
 
-  <% @users.each do |user| %>
-    <%= link_to user.first_name, admin_dashboard_path(user) %>
-      <hr>
-  <% end %>
+    <table class="table table-condensed">
+      <thead>
+        <tr>
+          <th>Drill Count</th>
+          <th>Answer Count</th>
+          <th>User Count</th>
+        </tr>
+      </thead>
+      <tbody>
+          <tr>
+            <td><%= @drill_count %></td>
+            <td><%= @answer_count %></td>
+            <td><%= @user_count %></td>
+          </tr>
+      </tbody>
+    </table>
+
+
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td><%= user.first_name %></td>
+            <td><%= user.last_name %></td>
+            <td><%= user.email %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+  </div>
+</div>
