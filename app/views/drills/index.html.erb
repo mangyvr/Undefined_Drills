@@ -7,6 +7,7 @@
 
 <div>
   <div class='drills-container'>
+  <%= link_to 'new', new_group_drill_path(@drills), class: 'btn btn-default' %>
   <% @drills.each do |d| %>
     <div class='drills-items'>
       <h3 class='title'>

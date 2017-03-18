@@ -1,0 +1,57 @@
+<h1 align="middle">Group: <%= @group.title %></h1>
+<% if user_signed_in? && can?(:bookmark, @group) %>
+ <% if @post.liked_by?(current_user) %>
+   <%= link_to "Un-Like", like_path(@post.like_for(current_user)), method: :delete %>
+ <% else %>
+   <%= link_to "Like", post_likes_path(@post), method: :post %>
+ <% end %>
+<% end %>
+<%counter = 3 %>
+<%index = 1 %>
+<div class="container-fluid">
+  <% if @drills.length == 0 %>
+    <h3 align="middle">No drills associated with this group yet...</h3>
+    <% else %>
+  <% @drills.each do |x| %>
+    <% y=rand(1..10) %>
+      <% case counter - index %>
+        <% when 2 %>
+        <div class="row">
+          <div class="col-sm-12 col-md-4">
+            <img src="<%= Faker::LoremPixel.image("500x600", false, 'nature', y)%>" class="img-responsive">
+            <h3 align="middle"><%= link_to x.title, group_drills_path(x.group_id) %></h3>
+           <br>
+           <br>
+        </div>
+        <% index += 1 %>
+      <% when 1 %>
+          <div class="col-sm-12 col-md-4">
+            <img src="<%= Faker::LoremPixel.image("500x600", false, 'nature', y)%>" class="img-responsive">
+            <h3 align="middle"><%= link_to x.title, group_drills_path(x.group_id) %></h3>
+           <br>
+           <br>
+        </div>
+      <% index += 1%>
+      <% when 0 %>
+          <div class="col-sm-12 col-md-4">
+            <img src="<%= Faker::LoremPixel.image("500x600", false, 'nature', y)%>" class="img-responsive">
+            <h3 align="middle"><%= link_to x.title, group_drills_path(x.group_id) %></h3>
+           <br>
+           <br>
+        </div>
+      </div>
+      <% counter += 2 %>
+      <% end %>
+    <% end %>
+  <% end %>
+</div>
+<%#if can?(:manage, @group)%>
+<div class="row">
+  <div class="col-sm-12 col-md-12" align="left">
+      <p><%= link_to 'Delete',group_path(@group),
+                            method: :delete,
+                            data: { confirm: 'Deleting this group will also delete all drills and answers associated. Are you sure?'} %>
+      <%= link_to 'Edit', edit_group_path(@group) %> </p>
+  </div>
+</div>
+<%#end %>
