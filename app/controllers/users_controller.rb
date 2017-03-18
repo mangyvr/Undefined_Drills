@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
 
-  before_action :find_user
-  before_action :authorize
+  # before_action :authorize
 
   def new
     @user = User.new
@@ -18,9 +17,6 @@ class UsersController < ApplicationController
 
   private
 
-  def find_user
-    @user = User.find params[:id]
-  end
 
   def user_params
     params.require(:user).permit([:first_name,
@@ -35,10 +31,10 @@ class UsersController < ApplicationController
                                  :oauth_raw_data])
   end
 
-  def authorize
-    if cannot?(:manage, @user)
-      redirect_to root_path, alert: 'Not Authorized!'
-    end
-  end
+  # def authorize
+  #   if cannot?(:manage, @user)
+  #     redirect_to root_path, alert: 'Not Authorized!'
+  #   end
+  # end
 
 end
