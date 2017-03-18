@@ -42,11 +42,11 @@ class ResetPasswordController < ApplicationController
         # unless BCrypt::Password.new(@user.reset_digest).is_password?(remember_token)
 
         if BCrypt::Password.new(@user.password_reset_token) != params[:id]
-          redirect_to root_path, notice: "Link is invalid."
+          redirect_to root_path, alert: "Link is invalid."
         elsif (@user.reset_sent_at + 3.days) < Time.now
           # Token has expired -- destroy it
           @user.update_attribute("password_reset_token", '')
-          redirect_to root_path, notice: "Link is expired."
+          redirect_to root_path, alert: "Link is expired."
         else
           if @user.update permitted_params
           # if @user.update()
