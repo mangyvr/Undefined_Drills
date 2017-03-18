@@ -22,8 +22,6 @@
         </ul>
 
       <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to 'Username', root_path %></li>
-        <li><%= link_to 'Profile', root_path %></li>
 
         <% if user_sign_in? %>
           <li><%= link_to "#{current_user.full_name}", edit_user_path(current_user) %></li>
