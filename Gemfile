@@ -44,6 +44,7 @@ gem 'hirb'
 gem 'faker'
 gem 'font-awesome-rails'
 gem 'omniauth-twitter'
+gem 'omniauth-facebook'
 gem "twitter"
 
 

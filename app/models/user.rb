@@ -54,4 +54,7 @@ class User < ApplicationRecord
               uid: oauth_data['uid']).first
   end
 
+  def downcase_email
+    self.email.downcase! if email.present?
+  end
 end
