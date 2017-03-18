@@ -1,11 +1,11 @@
 class Drill < ApplicationRecord
+
   belongs_to :group
   belongs_to :user
   has_many :answers, dependent: :destroy
   has_many :completers
 
 end
-
 
 # # use this in users_controller, lists all completed drills
 # # -----------
