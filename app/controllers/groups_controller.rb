@@ -2,7 +2,6 @@ class GroupsController < ApplicationController
   before_action :get_group_id, except: [:index, :new, :create]
   # before_action :get_bookmarks, only: [:index]
 
-
   def index
     @groups = Group.order(created_at: :desc)
     # @user_groups = Group.where???
