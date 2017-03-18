@@ -42,12 +42,9 @@ gem 'awesome_print'
 gem 'interactive_editor'
 gem 'hirb'
 gem 'faker'
-
-
-=======
->>>>>>> 0f6ff275ebe728495452bc5c450eaf995ad2b44f
-
 gem 'font-awesome-rails'
+gem 'omniauth-twitter'
+gem "twitter"
 
 
 # Use Capistrano for deployment
