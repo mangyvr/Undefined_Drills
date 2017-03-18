@@ -14,4 +14,7 @@ Rails.application.routes.draw do
       resources :answers, shallow: true
     end
   end
+
+  get "/auth/twitter", as: :sign_in_with_twitter
+  get "/callbacks/:provider" => "callbacks#twitter"
 end
