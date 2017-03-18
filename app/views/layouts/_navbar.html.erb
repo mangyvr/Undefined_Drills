@@ -17,7 +17,7 @@
 
       <ul class="nav navbar-nav">
         <li class="active"><a href="/">Home</a> <span class="sr-only">(current)</span></a></li>
-        <li><%= link_to 'Drillz', root_path %></li>
+        <li><%= link_to 'Drillz(Groups)', groups_path %></li>
         <li><%= link_to 'Leaderboard', root_path %></li>
         </ul>
 
@@ -27,10 +27,10 @@
         <li><%= link_to 'Logout', root_path %></li>
         <%# if user_signed_in? %>
           <li><%# link_to current_user.display_name, "/profile" %></li>
-          <li><%# link_to "Cerrar Sesión", destroy_user_session_path, method: 'DELETE' %></li>
+          <li><%# link_to "Logout", destroy_user_session_path, method: 'DELETE' %></li>
         <%# else %>
-          <li><%# link_to "Ingresar", new_user_session_path %></li>
-          <li><%# link_to "Registrarse", new_user_registration_path %> </li>
+          <li><%# link_to "Login", new_user_session_path %></li>
+          <li><%# link_to "Signup", new_user_registration_path %> </li>
         <%# end %>
       </ul>
     </div><!-- /.navbar-collapse -->
