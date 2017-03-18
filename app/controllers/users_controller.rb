@@ -81,4 +81,19 @@ class UsersController < ApplicationController
   #   end
   # end
 
+  # For password reset
+  def self.new_token
+    SecureRandom.urlsafe_base64
+  end
+
+  # Generates password reset link with unencrypted token before it is digest-ed
+  def gen_reset_link(url, token)
+    "#{url}/reset_password/#{token}/edit?email=#{self.email}"
+  end
+
+  # Use bcrypt to convert unhashed token into digest
+  def self.hash_token(token)
+    BCrypt::Password.create(token)
+  end
+  
 end
