@@ -1,10 +1,8 @@
 class Drill < ApplicationRecord
   belongs_to :group
   belongs_to :user
-  has_many :answers
+  has_many :answers, dependent: :destroy
   has_many :completers
-
-  validates
 
 end
 

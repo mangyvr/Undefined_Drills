@@ -1,5 +1,5 @@
 class Group < ApplicationRecord
-  has_many :drills
+  has_many :drills, dependent: :destroy
 
 
 end
