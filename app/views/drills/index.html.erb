@@ -1,0 +1,18 @@
+<h1>Drills</h1>
+
+<ul class="nav nav-tabs">
+  <li role="presentation"><a href="#">My Drills</a></li>
+  <li role="presentation"><a href="#">All Drills</a></li>
+</ul>
+
+<div>
+  <%= link_to 'new', new_group_drill_path(@drills), class: 'btn btn-default' %>
+  <% @drills.each do |d| %>
+    <div class='drills-container'>
+      <%= link_to d.title, drill_path(d) %>
+    </div>
+  <% end %>
+
+
+
+</div>
