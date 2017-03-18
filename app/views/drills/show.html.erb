@@ -1,3 +1,4 @@
+
 <h1 style="text-align: center">Drill Show</h1>
 <div class="col-sm-12">
     <h3>
@@ -12,3 +13,15 @@
     <%= link_to 'Edit', edit_drill_path(@drill), class: "btn btn-sm btn-default" %>
     <%= link_to 'Delete', drill_path(@drill), method: :delete,
     data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger"  %></div>
+
+<hr>
+<%= form_tag drill_user_answers_path(@drill), method: 'post' do %>
+  <div>
+    <%= label_tag :user_answer, "Your answer:" %>
+    <%= text_area_tag :user_answer %>
+  </div>
+  <div>
+    <%= submit_tag("Submit Answer") %>
+  </div>
+<% end %>
+
