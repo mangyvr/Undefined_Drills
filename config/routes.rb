@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   get "/auth/facebook", as: :sign_in_facebook
   get "/auth/facebook/callback" => "callback#facebook"
 
+  namespace :admin do
+    resources :dashboard, only: [:index]
+  end
 
   resources :users, only: [:new, :create] do
     resources :reset_password, only: [:new, :create, :edit, :update]
