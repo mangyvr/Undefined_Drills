@@ -29,18 +29,23 @@ gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
-
 gem 'cancancan'
-
 gem 'simple_form'
 gem 'bootstrap-sass', '~> 3.3.6'
 
+
+# Our Gems
+gem 'cancancan'
+gem 'simple_form'
+gem 'bootstrap-sass', '~> 3.3.6'
 gem 'awesome_print'
 gem 'interactive_editor'
 gem 'hirb'
 gem 'faker'
-
-
+gem 'font-awesome-rails'
+gem 'omniauth-twitter'
+gem 'omniauth-facebook'
+gem "twitter"
 
 
 # Use Capistrano for deployment
@@ -48,7 +53,6 @@ gem 'faker'
 
 group :development, :test do
   gem 'rspec-rails'
-
   gem 'factory_girl_rails'
   gem 'faker'
   gem 'rails-controller-testing'
