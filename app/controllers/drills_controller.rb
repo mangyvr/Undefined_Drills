@@ -2,10 +2,12 @@ class DrillsController < ApplicationController
   before_action :find_drill, only: [:show, :edit, :update, :destroy]
 
   def index
+
     # Show drills for this group only
     # render json:params
     @drills = Drill.order(created_at: :desc).where(group_id: params[:group_id])
     @group_id = params[:group_id]
+
   end
 
   def new
@@ -26,8 +28,13 @@ class DrillsController < ApplicationController
   end
 
   def show
+
+    @drill = Drill.find params[:id]
+    @user_answer ||= ""
+
     # params.require(:drill).permit([:id])
     # render json:params
+
   end
 
   def edit
