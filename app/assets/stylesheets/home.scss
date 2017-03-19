@@ -20,10 +20,10 @@ html,body{
 
 #cover-caption {
     width: 100%;
-    background-color: $color4;
+    background-color: transparentize($color4, 0.2);
 }
 
-h1 {
+.cover h1 {
   color:white;
 }
 
