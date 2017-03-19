@@ -26,7 +26,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new user_params
     if @user.save
-      session[:user_id] = @user.id
+      # session[:user_id] = @user.id # user cannot be signed in automatically without validation/approval
       # redirect_to root_path, notice: 'Account created successfully!'
       redirect_to new_user_validate_email_path(@user)
     else
@@ -72,7 +72,6 @@ class UsersController < ApplicationController
   end
 
   private
-
 
   def user_params
     params.require(:user).permit([:first_name,
