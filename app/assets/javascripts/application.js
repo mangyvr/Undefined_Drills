@@ -28,13 +28,18 @@ $(document).ready(function() {
   });
 
   $('.allDrills').on('click', function() {
-    $('.drills-container').show();
+    $('.big-well').show();
+    console.log('Showing');
     $('.userDrills').hide();
+    console.log('Hiding');
   });
 
   $('.myDrills').on('click', function() {
-    $('.drills-container').hide();
+    // $('.drills-container').hide();
+    $('.big-well').hide();
+    console.log('Hiding');
     $('.userDrills').show();
+    console.log('Showing');
   });
 
   var url = window.location;
