@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 20170319170631) do
 
   create_table "answers", force: :cascade do |t|
     t.text     "body"
+    t.boolean  "approved"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "drill_id"
@@ -47,9 +48,7 @@ ActiveRecord::Schema.define(version: 20170319170631) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.integer  "group_id"
-    t.integer  "user_id"
     t.index ["group_id"], name: "index_drills_on_group_id", using: :btree
-    t.index ["user_id"], name: "index_drills_on_user_id", using: :btree
   end
 
   create_table "groups", force: :cascade do |t|
@@ -104,7 +103,6 @@ ActiveRecord::Schema.define(version: 20170319170631) do
   add_foreign_key "answers", "drills"
   add_foreign_key "answers", "users"
   add_foreign_key "drills", "groups"
-  add_foreign_key "drills", "users"
   add_foreign_key "user_drills", "drills"
   add_foreign_key "user_drills", "users"
   add_foreign_key "user_groups", "groups"
