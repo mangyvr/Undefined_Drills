@@ -11,7 +11,11 @@
 </div>
 
 <div class="container-fluid" align="middle">
-<p>Joined: <%= ((Time.current - @user.created_at)/3600/24).round(2) %> hours ago</p>
+<%if (Time.current - @user.created_at) < 172801 %>
+<p>Joined: <%= ((Time.current - @user.created_at)/3600).to_i %> hours ago</p>
+<% else %>
+<p>Joined: <%= ((Time.current - @user.created_at)/3600/24).to_i %> days ago</p>
+<% end %>
 </div>
 
 <div class="container-fluid" align="middle">
@@ -24,6 +28,7 @@
 
 <div class="container-fluid" align="middle">
 <p>How you stack up:  </p>
+<%= @total/@totalusers %>
 </div>
 
 <div class="container-fluid" align="middle">
