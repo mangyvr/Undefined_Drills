@@ -5,9 +5,9 @@ class User < ApplicationRecord
   #         format:  /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
   # validates :password_confirmation, presence: true
   has_many :user_drills, dependent: :destroy
-  has_many :attempted_drills, through: :user_drills, source: :drill
+  has_many :attempteddrills, through: :user_drills, source: :drill
   has_many :user_groups, dependent: :destroy
-  has_many :bookmarked_groups, through: :user_groups, source: :group
+  has_many :bookmarkedgroups, through: :user_groups, source: :group
 
 
   has_secure_password
