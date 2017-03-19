@@ -23,5 +23,7 @@ module UndefinedDrills
     # -- all .rb files in that directory are automatically loaded.
     config.active_job.queue_adapter = :delayed_job
     config.autoload_paths << "#{Rails.root}/spec/"
+    config.assets.paths << "#{Rails.root}/app/assets/videos"
+
   end
 end
