@@ -93,6 +93,7 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy
+    session[:user_id] = nil
     #session[:user_id] = nil unless URI(request.referer).path == '/admin/dashboard'
     redirect_to root_path, notice: 'Account deleted!'
   end
