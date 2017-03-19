@@ -10,11 +10,7 @@ class GroupsController < ApplicationController
 
   def show
     @drills = Drill.where(group: @group)
-    render json: @group
-  end
-
-  def new
-    render plain: "For Admin Use Only"
+    # render json: @group
   end
 
   def new

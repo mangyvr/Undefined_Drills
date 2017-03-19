@@ -4,11 +4,10 @@ class User < ApplicationRecord
   # validates :email, presence: true, uniqueness: true,
   #         format:  /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
   # validates :password_confirmation, presence: true
-  has_many :drills, dependent: :destroy
-  has_many :answers, dependent: :destroy
-  has_many :completed_drills, through: :drills, source: :user
-
-
+  has_many :user_drills, dependent: :destroy
+  has_many :attempted_drills, through: :user_drills, source: :drill
+  has_many :user_groups, dependent: :destroy
+  has_many :bookmarked_groups, through: :user_groups, source: :group
 
 
   has_secure_password
@@ -82,6 +81,6 @@ class User < ApplicationRecord
    # Use bcrypt to convert unhashed token into digest
    def self.hash_token(token)
      BCrypt::Password.create(token)
-   end  
+   end
 
 end
