@@ -7,8 +7,10 @@ class DrillsController < ApplicationController
     # render json:params
     @drills = Drill.order(created_at: :desc).where(group_id: params[:group_id])
     @group_id = params[:group_id]
-    @attempted = UserDrill
-
+    attempted = UserDrill.where(user: current_user, completed: false).pluck(:drill_id)
+    completed = UserDrill.where(user: current_user, completed: true).pluck(:drill_id)
+    @attempted_drills = Drill.find attempted
+    @completed_drills = Drill.find completed
   end
 
   def new
