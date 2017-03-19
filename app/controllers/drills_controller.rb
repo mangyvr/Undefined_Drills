@@ -17,8 +17,9 @@ class DrillsController < ApplicationController
   end
 
   def create
+    # render json:params
     @drill  = Drill.new(drill_params)
-    @drill.user = current_user
+    @drill.group_id = params[:group_id]
     if @drill.save
       flash[:notice] = 'Drill created successfully'
       redirect_to drill_path(@drill)
@@ -57,7 +58,7 @@ class DrillsController < ApplicationController
   private
 
   def drill_params
-    params.require(:drill).permit([:title, :description])
+    params.require(:drill).permit([:title, :description, :group_id])
   end
 
   def find_drill
