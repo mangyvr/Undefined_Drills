@@ -1,16 +1,20 @@
 10.times do
-  User.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password_digest: 'a')
+  User.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'a', score: 0)
 end
 
 5.times do
-  Drill.create(title: Faker::Pokemon.name, description: Faker::Lorem.paragraph(5), group_id: 1, user_id: 1)
+  Group.create(title: Faker::Pokemon.name)
 end
 
+groups = Group.all
 
-5.times do
-  Group.create(title: Faker::Hacker.noun)
+
+20.times do
+  Drill.create(title: Faker::Hacker.say_something_smart, description: Faker::Hipster.sentence, level: rand(2), points: rand(500), group: groups.sample)
 end
 
-5.times do
-  Answer.create(body: Faker::Hipster.paragraph, drill_id: 1)
+drills = Drill.all
+
+60.times do
+  Answer.create(body: Faker::Pokemon.name, approved: true, drill: drills.sample)
 end
