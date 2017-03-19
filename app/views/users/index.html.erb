@@ -3,19 +3,19 @@
 <%  counter = 1 %>
 <!-- <div class="well well-lg"> -->
 
+<div class=""><% max = User.maximum('score').to_f %></div>
 <% @users.each do |x| %>
   <% if x.score == nil %>
   <% next %>
   <% end %>
   <div class="well well-sm">
-  <h4><%= counter %>: <%= x.first_name%>: <%= x.score %></h4>
-  <div class="progress">
-    <div class="progress-bar" role="progressbar" aria-valuenow="<%= x.score %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= x.score %>%;">
-      <%= x.score %>
+    <h4><%= counter %>: <%= x.first_name%>: <%= x.score %></h4>
+    <div class="progress">
+      <div class="progress-bar" role="progressbar" aria-valuenow="<%= x.score %>" aria-valuemin="0" aria-valuemax="<%= max %>" style="width:<%=  (x.score / max * 100).round %>%;">
+        <%= x.score %>
+      </div>
     </div>
   </div>
-</div>
   <% counter = counter + 1  %>
 <% end %>
-</div>
 </div>
