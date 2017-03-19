@@ -37,7 +37,7 @@ class ValidateEmailController < ApplicationController
           @user.update_attribute("password_reset_token", '')
 
           User.where({is_admin: true}).each do |admin|
-            EmailValidationMailer.send_email_validation_to_admin(admin, @user)).deliver_later
+            EmailValidationMailer.send_email_validation_to_admin(admin, @user).deliver_later
           end
 
           redirect_to root_path, notice: "Email validated."
