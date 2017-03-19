@@ -27,8 +27,20 @@
 </div>
 
 <div class="container-fluid" align="middle">
-<p>How you stack up:  </p>
-<%= @total/@totalusers %>
+<p>How you stack up:</p>
+<p>The average player has <%= (@total/@totalusers) %> points.</p>
+<p>Your total is <%= @user.score %></p>.
+<p>Your are <%=  %></p>
+
+
+
+
+
+
+
+<%= (@total/@totalusers) %>
+<%= @myscore %>
+<%= @totalusers %>
 </div>
 
 <div class="container-fluid" align="middle">
