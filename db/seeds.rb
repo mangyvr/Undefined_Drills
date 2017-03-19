@@ -10,7 +10,7 @@ groups = Group.all
 
 
 20.times do
-  Drill.create(title: Faker::Hacker.say_something_smart, description: Faker::Hipster.sentence, level: rand(2), points: rand(500), group: groups.sample)
+  Drill.create(title: Faker::Hacker.say_something_smart, description: Faker::Hipster.sentence, level: (rand(3)+1).ceil, points: rand(500).ceil, group: groups.sample)
 end
 
 drills = Drill.all

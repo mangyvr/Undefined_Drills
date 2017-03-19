@@ -1,6 +1,8 @@
 <h1 align="middle">Groups</h1>
-<div align="middle"><%= link_to "Create a New Group", new_group_path, class:"btn btn-primary" %></div>
-<br>
+<% if can?(:manage, @groups) %>
+  <div align="middle"><%= link_to "Create a New Group", new_group_path, class:"btn btn-primary" %></div>
+  <br>
+  <% end %>
 <%counter = 3 %>
 <%index = 1 %>
 <div class="container-fluid well well-lg">

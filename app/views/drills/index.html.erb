@@ -1,6 +1,8 @@
 <h1 class='drills-animation' align="center">Drills</h1>
+<% if can?(:manage, @drills) %>
 <div align='center'><%= link_to 'new', new_group_drill_path(@group_id), class: 'btn btn-primary'%>
   </div>
+  <% end %>
 </%>
 
 <ul class="nav nav-tabs">

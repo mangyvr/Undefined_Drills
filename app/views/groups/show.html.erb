@@ -41,11 +41,13 @@
 </div>
 <%#if can?(:manage, @group)%>
 <div class="row">
+  <% if can?(:manage, @group) %>
   <div class="col-sm-12 col-md-12" align="left">
       <p><%= link_to 'Delete',group_path(@group),
                             method: :delete,
                             data: { confirm: 'Deleting this group will also delete all drills and answers associated. Are you sure?'} %>
       <%= link_to 'Edit', edit_group_path(@group) %> </p>
   </div>
+  <% end %>
 </div>
 <%#end %>
