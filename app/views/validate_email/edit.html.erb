@@ -1,0 +1,12 @@
+<h2 class="text-center">Validate Email</h2>
+
+<div class="row">
+<%# form_tag("/reset_password", method: :post) do %>
+<%= simple_form_for(:validate_email, url: user_validate_email_path(params[:user_id], params[:id]), html: {method: :patch} ) do |f| %>
+<%# f.hidden_field :email, value: params[:email] %>
+  <%= f.input :user_id, as: :hidden, input_html: {value: params[:user_id]} %>
+  <div class="text-center">
+    <%= f.button :submit, 'Click to Validate Email', class: "btn btn-default btn-primary submit_btn" %>
+  </div>
+<% end %>
+</div>

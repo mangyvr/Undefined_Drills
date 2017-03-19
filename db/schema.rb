@@ -10,9 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 20170318223137) do
-
+ActiveRecord::Schema.define(version: 20170319002633) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +22,21 @@ ActiveRecord::Schema.define(version: 20170318223137) do
     t.datetime "updated_at", null: false
     t.integer  "drill_id"
     t.index ["drill_id"], name: "index_answers_on_drill_id", using: :btree
+  end
+
+  create_table "delayed_jobs", force: :cascade do |t|
+    t.integer  "priority",   default: 0, null: false
+    t.integer  "attempts",   default: 0, null: false
+    t.text     "handler",                null: false
+    t.text     "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string   "locked_by"
+    t.string   "queue"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["priority", "run_at"], name: "delayed_jobs_priority", using: :btree
   end
 
   create_table "drills", force: :cascade do |t|
@@ -67,19 +80,22 @@ ActiveRecord::Schema.define(version: 20170318223137) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "email"
-    t.boolean  "is_admin",             default: false
+    t.boolean  "is_admin",                 default: false
     t.string   "password_digest"
-    t.boolean  "is_validated",         default: false
+    t.boolean  "is_validated",             default: false
     t.integer  "score"
     t.string   "password_reset_token"
-    t.datetime "created_at",                           null: false
-    t.datetime "updated_at",                           null: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
     t.string   "uid"
     t.string   "provider"
     t.string   "oauth_token"
     t.string   "oauth_secret"
     t.text     "oauth_raw_data"
     t.datetime "reset_sent_at"
+    t.boolean  "valid_email",              default: false
+    t.string   "email_validation_token"
+    t.datetime "email_validation_sent_at"
     t.index ["uid", "provider", "email"], name: "index_users_on_uid_and_provider_and_email", using: :btree
   end
 
