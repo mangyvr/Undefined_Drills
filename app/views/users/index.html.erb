@@ -1,0 +1,8 @@
+<div class="container-fluid" align="middle">
+<h1>Leaderboard</h1>
+<%  counter = 1 %>
+<% @users.each do |x| %>
+<p><%= counter %>: <%= x.first_name%>: <%= x.score %></p>
+<% counter = counter + 1  %>
+<% end %>
+</div>

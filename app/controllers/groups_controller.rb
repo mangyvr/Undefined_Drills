@@ -10,11 +10,7 @@ class GroupsController < ApplicationController
 
   def show
     @drills = Drill.where(group: @group)
-    render json: @group
-  end
-
-  def new
-    render plain: "For Admin Use Only"
+    # render json: @group
   end
 
   def new
@@ -63,6 +59,9 @@ class GroupsController < ApplicationController
 
   private
 
+  def get_bookmarks
+    # @usergroups = UserGroups.find_by_user_id session[:user_id]
+  end
 
   def get_group_id
     @group = Group.find params[:id]
