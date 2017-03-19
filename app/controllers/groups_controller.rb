@@ -1,6 +1,6 @@
 class GroupsController < ApplicationController
   before_action :get_group_id, except: [:index, :new, :create]
-  before_action :get_bookmarks, only: [:index]
+  # before_action :get_bookmarks, only: [:index]
 
   def index
     @groups = Group.order(created_at: :desc)
@@ -63,9 +63,6 @@ class GroupsController < ApplicationController
 
   private
 
-  def get_bookmarks
-    @usergroups = UserGroups.find_by_user_id session[:user_id]
-  end
 
   def get_group_id
     @group = Group.find params[:id]

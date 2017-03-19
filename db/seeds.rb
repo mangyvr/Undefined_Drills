@@ -8,6 +8,7 @@ end
 
 groups = Group.all
 
+
 20.times do
   Drill.create(title: Faker::Hacker.say_something_smart, description: Faker::Hipster.sentence, level: rand(2), points: rand(500), group: groups.sample)
 end
