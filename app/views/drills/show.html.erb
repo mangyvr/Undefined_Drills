@@ -1,29 +1,35 @@
 
-<h1 style="text-align: center">Drill Show</h1>
+<h1 style="text-align: center">Drill</h1>
 <div class="col-sm-12">
-    <h3>
+    <h3 align="center">
         <%= @drill.title %>
-        <%= @drill.description %>
     </h3>
+    <h4 align="center">
+        <%= @drill.description %>
+    </h4>
     <hr>
-    <p>Level <%= @drill.level %></p>
-    <hr>
-    <p>Level <%= @drill.points %></p>
+    <div class="col-xs-6" align="right"><h4>Drill Level <%= @drill.level %></h4></div>
+    <div class="col-xs-6"><h4>Drill Points <%= @drill.points %></h4></div>
+    <div align="center">
     <% if can?(:manage, @drill) %>
       <%= link_to 'Edit', edit_drill_path(@drill), class: "btn btn-sm btn-default" %>
       <%= link_to 'Delete', drill_path(@drill), method: :delete,
       data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger"  %>
     <% end %>
-  </div>
+    <br>
+    </div>
 
 <hr>
+
 <%= form_tag drill_user_answers_path(@drill), method: 'post' do %>
-  <div>
-    <%= label_tag :user_answer, "Your answer:" %>
-    <%= text_area_tag :user_answer, @answer.body %>
+  <div class="form-group" align="center">
+    <div class="input-group">
+    <%= label_tag :user_answer, "Your answer:", class:"input-group-addon" %>
+    <%= text_area_tag :user_answer, @answer.body, class:"form-control" %>
+    </div>
   </div>
-  <div>
-    <%= submit_tag("Submit Answer") %>
+  <div align="center">
+    <%= submit_tag "Submit Answer", class:"btn btn-primary" %>
   </div>
   <% end %>
   <% if @answer.body != "" && alert %>

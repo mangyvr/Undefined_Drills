@@ -3,6 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @import 'variables';
 
+
 .group {
   background: #fff;
   box-shadow: 0 1px 4px rgba(0,0,0,.04);
@@ -42,7 +43,6 @@
       }
     }
   }
-}
 
 /* buttons */
 
@@ -59,3 +59,28 @@
     text-decoration: none;
   }
 }
+
+/* .well {
+  background-color: $color4;
+}
+
+a {
+  color: $color5
+}
+
+
+.othercolor a{
+  color: $color6
+} */
+
+
+/* a:hover {
+  text-decoration: none;
+  color: $color3
+
+}
+*/
+
+.presstyle {
+  color: $color6;
+} 
