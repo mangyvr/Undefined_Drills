@@ -17,7 +17,11 @@
 @import 'variables';
 
 html {
-  margin-top: 50px
+  margin-top: 50px;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
 }
 
 .btn {
@@ -26,4 +30,8 @@ html {
 .btn:hover {
   border-radius:10px;
   border-color: #18bc9c;
+}
+
+a:hover {
+  text-decoration: none;
 }
