@@ -12,11 +12,12 @@
 
 <div class="container-fluid well well-lg">
   <% @groups.each do |x| %>
+  <% randnum = Random.rand(1..100) %>
   <div class="row">
     <div class="col-sm-12 col-md-4">
       <div class="group">
         <div class="image_wrapper">
-          <img src="https://unsplash.it/400/400/?random" alt="">
+          <img src="https://unsplash.it/400/400/?image=<%=randnum%>" alt="">
         </div>
         <h3 align="middle"><%= link_to x.title, group_drills_path(x) %></h3>
       </div>
@@ -24,7 +25,7 @@
     <div class="col-sm-12 col-md-4">
       <div class="group">
         <div class="image_wrapper">
-          <img src="https://unsplash.it/400/400/?random" alt="">
+          <img src="https://unsplash.it/400/400/?image=<%=randnum+1%>" alt="">
         </div>
         <h3 align="middle"><%= link_to x.title, group_drills_path(x) %></h3>
       </div>
@@ -33,7 +34,7 @@
     <div class="col-sm-12 col-md-4">
       <div class="group">
         <div class="image_wrapper">
-          <img src="https://unsplash.it/400/400/?random" alt="">
+          <img src="https://unsplash.it/400/400/?image=<%=randnum+2%>" alt="">
         </div>
         <h3 align="middle"><%= link_to x.title, group_drills_path(x) %></h3>
       </div>
