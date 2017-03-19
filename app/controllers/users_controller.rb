@@ -11,7 +11,8 @@ class UsersController < ApplicationController
     @user = User.new user_params
     if @user.save
       session[:user_id] = @user.id
-      redirect_to root_path, notice: 'Account created successfully!'
+      # redirect_to root_path, notice: 'Account created successfully!'
+      redirect_to new_user_validate_email_path(@user)
     else
       render :new
     end

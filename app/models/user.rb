@@ -4,10 +4,11 @@ class User < ApplicationRecord
   # validates :email, presence: true, uniqueness: true,
   #         format:  /\A([\w+\-].?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
   # validates :password_confirmation, presence: true
-  #has_many :drills
-  #has_many :answers, dependent: :destroy
-  #has_many :completed_drills, through: :drills, source: :user
 
+  has_many :user_drills, dependent: :destroy
+  has_many :attempted_drills, through: :user_drills, source: :drill
+  has_many :user_groups, dependent: :destroy
+  has_many :bookmarked_groups, through: :user_groups, source: :group
 
 
 
@@ -83,5 +84,13 @@ class User < ApplicationRecord
    def self.hash_token(token)
      BCrypt::Password.create(token)
    end
+<<<<<<< HEAD
+=======
+
+   # Generate email validation link
+   def gen_email_validation_link(url, token, user)
+     "#{url}/users/#{user.id}/validate_email/#{token}/edit?email=#{self.email}"
+   end
+>>>>>>> e102920a941999cc855a2787024565fd3420084e
 
 end
