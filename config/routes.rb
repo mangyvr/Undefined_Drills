@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   resources :users do
     get :stats, on: :member
   end
+  resources :users do
+    get :bookmarks, on: :member
+  end
 
   # Reset password must be independent of users -- no associated user yet
   resources :reset_password, only: [:new, :create, :edit, :update]

@@ -21,6 +21,7 @@ class CallbackController < ApplicationController
     end
 
     session[:user_id] = user.id
+    user.update({is_validated: true, valid_email: true})
     redirect_to root_path, notice: 'Thanks for signing in with Facebook!'
   end
 end
