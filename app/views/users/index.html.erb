@@ -1,0 +1,20 @@
+<div class="container-fluid" align="middle">
+<h1>Leaderboard</h1>
+<%  counter = 1 %>
+<!-- <div class="well well-lg"> -->
+<% @users.each do |x| %>
+<div class="well well-sm">
+  <% if x.score == nil %>
+  <% next %>
+  <% end %>
+  <h4><%= counter %>: <%= x.first_name%>: <%= x.score %></h4>
+  <div class="progress">
+    <div class="progress-bar" role="progressbar" aria-valuenow="<%= x.score %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= x.score %>%;">
+      <%= x.score %>
+    </div>
+  </div>
+  <% counter = counter + 1  %>
+  </div>
+<% end %>
+<!-- </div> -->
+</div>

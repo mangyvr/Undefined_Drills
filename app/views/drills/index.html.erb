@@ -1,24 +1,21 @@
-<h1 class='drills-animation'>Drills</h1>
+<h1 class='drills-animation' align="center">Drills</h1>
+<div align='center'><%= link_to 'new', new_group_drill_path(@group_id), class: 'btn btn-primary'%>
+  </div>
+</%>
 
 <ul class="nav nav-tabs">
   <li role="presentation"><a href="#" class='myDrills'>My Drills</a></li>
   <li role="presentation"><a href="#" class='allDrills'>All Drills</a></li>
 </ul>
-
 <div>
-
-
-
-
-  <div class='drills-container'>
-   <%= link_to 'new', new_group_drill_path(@group_id), class: 'btn btn-default' %>
-
+  <div class='well well-lg container'>
 
   <% @drills.each do |d| %>
-    <div class='drills-items'>
-      <h3 class='title'>
+    <div class='col-xs-4 well well-lg drill-container'>
+      <h4>
         <%= link_to d.title, drill_path(d) %>
-      </h3>
+      </h4>
+      <hr>
       <div class='btn btn-default'>
         <%= link_to 'Add to my Drills', drill_path(d) %>
       </div>

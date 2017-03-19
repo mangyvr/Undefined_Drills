@@ -1,6 +1,7 @@
 class Drill < ApplicationRecord
 
   belongs_to :group
+
   has_many :answers, dependent: :destroy
   has_many :user_drills
   has_many :attempters, through: :user_drills, source: :user

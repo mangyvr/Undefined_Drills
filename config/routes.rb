@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  resources :users, only: [:new, :create]
+  resources :users do
+    get :stats, on: :member
+  end
 
   # Reset password must be independent of users -- no associated user yet
   resources :reset_password, only: [:new, :create, :edit, :update]
@@ -9,6 +11,13 @@ Rails.application.routes.draw do
   get "/auth/twitter/callback" => "callback#twitter"
   get "/auth/facebook", as: :sign_in_facebook
   get "/auth/facebook/callback" => "callback#facebook"
+
+
+  namespace :admin do
+    patch "dashboard/activate_user/:id" => "dashboard#activate_user", as: :activate_user
+    patch "dashboard/validate_user/:id" => "dashboard#validate_user", as: :validate_user
+    resources :dashboard, only: [:index]
+  end
 
   patch '/users/:id/edit_password' => 'users#edit_password', as: :edit_password
 

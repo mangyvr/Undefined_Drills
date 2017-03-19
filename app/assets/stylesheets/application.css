@@ -14,3 +14,15 @@
  *= require_tree .
  *= require_self
  */
+
+html {
+  margin-top: 50px
+}
+
+.btn {
+  transition: all 1s ease;
+}
+.btn:hover {
+  border-radius:10px;
+
+}
