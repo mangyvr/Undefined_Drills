@@ -9,10 +9,12 @@
     <p>Level <%= @drill.level %></p>
     <hr>
     <p>Level <%= @drill.points %></p>
-
-    <%= link_to 'Edit', edit_drill_path(@drill), class: "btn btn-sm btn-default" %>
-    <%= link_to 'Delete', drill_path(@drill), method: :delete,
-    data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger"  %></div>
+    <% if can?(:manage, @drill) %>
+      <%= link_to 'Edit', edit_drill_path(@drill), class: "btn btn-sm btn-default" %>
+      <%= link_to 'Delete', drill_path(@drill), method: :delete,
+      data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger"  %>
+      <% end %>
+  </div>
 
 <hr>
 <%= form_tag drill_user_answers_path(@drill), method: 'post' do %>
@@ -26,7 +28,7 @@
 <% end %>
 
 <hr>
-<h2>Correct Answers</h2>
+<h2>Correct Answers - Remove this from final version!!!!</h2>
 <% @drill.answers.each do |answer| %>
   <p><%= answer.body %></p>
 <% end %>

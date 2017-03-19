@@ -1,7 +1,10 @@
 class UsersController < ApplicationController
 
   # before_action :authorize
-  before_action :find_user, only: [:edit, :update, :edit_password, :destroy]
+
+  before_action :find_user, only: [:edit, :update, :edit_password, :stats, :destroy]
+
+  load_and_authorize_resource
 
   def index
     @users = User.order(score: :desc)
@@ -9,6 +12,14 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+  end
+
+  def stats
+    bookmark = UserGroup.where(user_id: current_user).pluck(:group_id)
+    @groups = Group.find bookmark
+    @total = User.sum(:score)
+    @totalusers = User.sum(:id)
+
   end
 
   def create

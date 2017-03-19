@@ -6,13 +6,25 @@ class Ability
     #
     user ||= User.new # guest user (not logged in)
 
+
     if user.is_admin?
       can :manage, :all
+    else
+      cannot :manage, User
+      can :manage, User, id: user.id
+      cannot :manage, Group
+      cannot :manage, Drill
+      cannot :manage, Answer
     end
 
-    can :manage, Group do |p|
-      p.user == user
-    end
+
+
+
+
+
+
+
+
 
     # The first argument to `can` is the action you are giving the user
     # permission to do.
