@@ -1,6 +1,6 @@
 <h1 class='drills-animation' align="center">Drills</h1>
 <% if can?(:manage, @drills) %>
-<div align='center'><%= link_to 'new', new_group_drill_path(@group_id), class: 'btn btn-primary'%>
+<div align='center'><%= link_to 'New', new_group_drill_path(@group_id), class: 'btn btn-primary'%>
   </div>
   <% end %>
 </%>
@@ -9,22 +9,21 @@
   <li role="presentation"><a href="#" class='myDrills'>My Drills</a></li>
   <li role="presentation"><a href="#" class='allDrills'>All Drills</a></li>
 </ul>
-<div>
-  <div class='well well-lg container'>
 
+  <div class='well well-sm container big-well'>
   <% @drills.each do |d| %>
-    <div class='col-xs-4 well well-lg drill-container'>
+  <div class="col-xs-4 well well-lg well-container">
+    <div class='drill-container'>
       <h4>
         <%= link_to d.title, drill_path(d) %>
       </h4>
       <hr>
-      <div class='btn btn-default'>
-        <%= link_to 'Add to my Drills', drill_path(d) %>
-      </div>
+        <%= link_to 'Add to my Drills', drill_path(d), class:"btn btn-primary" %>
     </div>
+  </div>
   <% end %>
   </div>
-</div>
+
 
 <div class='userDrills'>
 
