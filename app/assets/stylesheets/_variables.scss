@@ -24,3 +24,20 @@ $well-border: $color4;
 // $link-hover-color: ;
 // $navbar-default-color: ;
 // $navbar-default-link-active-bg:
+
+// Mixins
+@mixin transition($x) {
+  -webkit-transition: $x;
+  -moz-transition: $x;
+  -o-transition: $x;
+  -ms-transition: $x;
+  transition: $x;
+}
+@mixin border-radius($x) {
+  -webkit-border-radius: $x;
+  -khtml-border-radius: $x;
+  -moz-border-radius: $x;
+  -ms-border-radius: $x;
+  -o-border-radius: $x;
+  border-radius: $x;
+}

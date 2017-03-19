@@ -20,17 +20,20 @@ html {
   margin-top: 50px;
 }
 
-body {
-  font-family: 'Roboto', sans-serif;
-}
-
 .btn {
   transition: all 1s ease;
 }
 .btn:hover {
-  border-radius:10px;
+  border-radius: 4px;
   border-color: #18bc9c;
 }
+
+h1, h2, h3, h4, h5 {
+  font-family: 'Barrio', cursive;
+}
+
+p, a {
+  font-family: 'Roboto', sans-serif;
 
 a:hover {
   text-decoration: none;
