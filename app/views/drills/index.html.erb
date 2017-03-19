@@ -22,15 +22,14 @@
 </ul>
 
 <div>
-  <div class='well well-lg container'>
+  <div class='well well-lg container well-container'>
   <% if @drills.length == 0 %>
     <h3 align="middle">No drills associated with this group yet...</h3>
   <% else %>
 
-  <div class='well well-sm container big-well'>
   <% @drills.each do |d| %>
-  <div class="col-xs-4 well well-lg well-container">
-    <div class='drills-container'>
+  <div class="col-xs-4 well well-lg drills-outer-container">
+    <div class='drills-inner-container'>
       <h4>
         <%= link_to d.title, drill_path(d) %>
       </h4>
