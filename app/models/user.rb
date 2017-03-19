@@ -83,4 +83,9 @@ class User < ApplicationRecord
      BCrypt::Password.create(token)
    end
 
+   # Generate email validation link
+   def gen_email_validation_link(url, token, user)
+     "#{url}/users/#{user.id}/validate_email/#{token}/edit?email=#{self.email}"
+   end
+
 end
