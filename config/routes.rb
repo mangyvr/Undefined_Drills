@@ -12,6 +12,13 @@ Rails.application.routes.draw do
   get "/auth/facebook", as: :sign_in_facebook
   get "/auth/facebook/callback" => "callback#facebook"
 
+
+  namespace :admin do
+    patch "dashboard/activate_user/:id" => "dashboard#activate_user", as: :activate_user
+    patch "dashboard/validate_user/:id" => "dashboard#validate_user", as: :validate_user
+    resources :dashboard, only: [:index]
+  end
+
   patch '/users/:id/edit_password' => 'users#edit_password', as: :edit_password
 
   resources :users, only: [:new, :create, :update, :edit, :destroy] do

@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
 
   # before_action :authorize
-  before_action :find_user, only: [:edit, :update, :edit_password, :stats]
+
+  before_action :find_user, only: [:edit, :update, :edit_password, :stats, :destroy]
 
   def index
     @users = User.order(score: :desc)
@@ -60,9 +61,8 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    @user = current_user
     @user.destroy
-    session[:user_id] = nil
+    #session[:user_id] = nil unless URI(request.referer).path == '/admin/dashboard'
     redirect_to root_path, notice: 'Account deleted!'
   end
 
@@ -75,6 +75,8 @@ class UsersController < ApplicationController
                                  :email,
                                  :password,
                                  :password_confirmation,
+                                 :is_admin,
+                                 :is_validated,
                                  :provider,
                                  :uid,
                                  :oauth_token,

@@ -48,9 +48,10 @@ gem 'bootstrap-social-rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+gem 'rspec-rails'
 
 group :development, :test do
-  gem 'rspec-rails'
+  # gem 'rspec-rails'
   gem 'factory_girl_rails'
 
   gem 'rails-controller-testing'
