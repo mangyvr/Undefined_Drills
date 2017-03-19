@@ -1,4 +1,7 @@
 class ResetPasswordController < ApplicationController
+
+  before_action :authorize, only: [:new, :create, :edit, :update]
+
   def new
   end
 
@@ -60,6 +63,13 @@ class ResetPasswordController < ApplicationController
       end
     else
       redirect_to root_path, alert: "Invalid link."
+    end
+  end
+
+  private
+  def authorize
+    if cannot?(:manage, @user)
+      redirect_to root_path, alert: 'Not Authorized! Please Sign In'
     end
   end
 
