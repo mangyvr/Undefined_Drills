@@ -7,7 +7,7 @@ class User < ApplicationRecord
   has_many :user_drills, dependent: :destroy
   has_many :attempted_drills, through: :user_drills, source: :drill
   has_many :user_groups, dependent: :destroy
-  has_many :bookmarked_groups, through: :user_groups, source: :groups
+  has_many :bookmarked_groups, through: :user_groups, source: :group
 
 
   has_secure_password
