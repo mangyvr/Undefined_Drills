@@ -18,7 +18,8 @@ class UsersController < ApplicationController
     bookmark = UserGroup.where(user_id: current_user).pluck(:group_id)
     @groups = Group.find bookmark
     @total = User.sum(:score)
-    @totalusers = User.sum(:id)
+    records = User.all
+    @totalusers = records.size
 
   end
 
