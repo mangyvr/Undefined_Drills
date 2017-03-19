@@ -128,7 +128,7 @@ html,body{
 }
 
 .floating_alert {
-    position: absolute;
+    position: fixed;
     top: 60px;
     left: 30px;
     z-index: 5000;
