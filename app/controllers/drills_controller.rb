@@ -4,7 +4,7 @@ class DrillsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-
+    @group = Group.find (params[:group_id])
     # Show drills for this group only
     # render json:params
     @drills = Drill.order(created_at: :desc).where(group_id: params[:group_id])
