@@ -13,8 +13,10 @@ Rails.application.routes.draw do
   patch '/users/:id/edit_password' => 'users#edit_password', as: :edit_password
 
   resources :users, only: [:new, :create, :update, :edit, :destroy] do
-    resources :reset_password, only: [:new, :create, :edit, :update]
+    resources :validate_email, only: [:new, :edit, :update]
   end
+
+  resources :reset_password, only: [:new, :create, :edit, :update]
 
   resources :sessions, only: [:new, :create] do
     delete :destroy, on: :collection
