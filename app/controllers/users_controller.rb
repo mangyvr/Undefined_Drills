@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
 
-  # before_action :authorize
-
+  before_action :authorize, only: [:index, :edit, :stats]
   before_action :find_user, only: [:edit, :update, :edit_password, :stats, :destroy]
 
   load_and_authorize_resource
@@ -93,11 +92,6 @@ class UsersController < ApplicationController
     @user = User.find params[:id]
   end
 
-  # def authorize
-  #   if cannot?(:manage, @user)
-  #     redirect_to root_path, alert: 'Not Authorized!'
-  #   end
-  # end
 
   # For password reset
   def self.new_token

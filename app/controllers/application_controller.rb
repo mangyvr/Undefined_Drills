@@ -15,4 +15,16 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_user
 
+  def find_user
+    @user = User.find params[:id]
+  end
+  helper_method :find_user_authorize
+
+  def authorize
+    if cannot?(:manage, @user)
+      redirect_to root_path, alert: 'Not Authorized!'
+    end
+  end
+  helper_method :authorize
+
 end
