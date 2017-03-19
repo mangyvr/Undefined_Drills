@@ -1,5 +1,6 @@
 class Admin::DashboardController < Admin::BaseController
   before_action :find_user, only: [:activate_user, :validate_user]
+  before_action :authenticate_user!
 
   def index
     @drill_count = Drill.count
@@ -22,10 +23,11 @@ class Admin::DashboardController < Admin::BaseController
     end
   end
 
-    private
+  private
 
-    def find_user
-      @user = User.find params[:id]
-    end
+  def find_user
+    @user = User.find params[:id]
+  end
+
 
 end

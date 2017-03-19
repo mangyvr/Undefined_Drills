@@ -1,6 +1,8 @@
 class DrillsController < ApplicationController
   before_action :find_drill, only: [:show, :edit, :update, :destroy]
 
+  before_action :authenticate_user!
+
   def index
 
     # Show drills for this group only
@@ -62,5 +64,8 @@ class DrillsController < ApplicationController
   def find_drill
     @drill = Drill.find params[:id]
   end
+
+
+
 
 end

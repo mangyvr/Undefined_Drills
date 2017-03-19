@@ -1,4 +1,6 @@
 class ValidateEmailController < ApplicationController
+
+
   def new
     @user = User.find_by_id params[:user_id]
 
@@ -49,4 +51,5 @@ class ValidateEmailController < ApplicationController
       redirect_to root_path, alert: "Invalid user."
     end
   end
+
 end

@@ -2,6 +2,8 @@ class GroupsController < ApplicationController
   before_action :get_group_id, except: [:index, :new, :create]
   before_action :get_bookmarks, only: [:index]
 
+  before_action :authenticate_user!
+
   # before_action :get_bookmarks, only: [:index]
 
 
@@ -73,5 +75,7 @@ class GroupsController < ApplicationController
   def get_group_id
     @group = Group.find params[:id]
   end
+
+
 
 end
