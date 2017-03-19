@@ -1,0 +1,11 @@
+<%= simple_form_for(:reset_password, url: reset_password_index_path) do |f| %>
+  <div class="col-md-6 col-md-offset-3 col-xs-8 col-xs-offset-2">
+    <div class="form-group">
+      <%= f.input :email, class:"form-control", placeholder: "Your email address" %>
+    </div>
+    <div class="text-center">
+      <%= f.button :submit, 'Send Password Reset Email', class: "btn btn-default btn-primary submit_btn" %>
+    </div>
+  </div>
+<% end %>
+</div>

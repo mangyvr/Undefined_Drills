@@ -1,0 +1,21 @@
+<h1>Edit Profile</h1>
+<%= simple_form_for @user do |f| %>
+  <%= f.input :first_name %>
+  <%= f.input :last_name %>
+  <%= f.input :email %>
+  <%= f.submit 'Update Profile', class: 'btn btn-primary' %>
+<% end %>
+
+
+
+<h1>Update Password</h1>
+
+<%= simple_form_for @user, :url => edit_password_path(@user) do |f| %>
+  <%= f.input :current_password %>
+  <%= f.input :new_password %>
+  <%= f.input :new_password_confirmation %>
+  <%= f.submit 'Update Password', class: 'btn btn-primary' %>
+<% end %>
+
+<h1>Delete Account</h1>
+<%= link_to "Remove", user_path(@user), method: :delete, class: 'btn btn-primary' %>
