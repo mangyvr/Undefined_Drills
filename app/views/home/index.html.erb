@@ -3,15 +3,28 @@
 </div>
 
 
-<%= video_tag ("carousel.mp4"), autoplay: :autoplay, loop: :loop, mute: :mute, class: "video" %>
+<%#= video_tag ("carousel.mp4"), autoplay: :autoplay, loop: :loop, mute: :mute, class: "video" %>
 
-
-<section id="cover">
-    <div id="cover-caption">
-       <div>
-        <h1>Undefined<i class="fa fa-circle-o-notch main_logo" aria-hidden="true"></i>Drills</h1>
-        <a href="/groups"><div class="btn btn-primary btn-outline">Engage</div></a>
+<section id="video-section">
+  <div id="video-container">
+    <%= video_tag ("carousel.mp4"), autoplay: :autoplay, loop: :loop, mute: :mute, class: "video" %>
+   <div class="header content">
+    <h1>Welcome to Undefined Drills</h1>
+      <p class="intro">Develop your skills</p>
+        <div>
+           <div>
+            <h1>Undefined<i class="fa fa-circle-o-notch main_logo" aria-hidden="true"></i>Drills</h1>
+            <a href="/groups"><div class="btn btn-primary btn-outline">Engage</div></a>
+            </div>
         </div>
-    </div>
+      </div>
+    </div> <!-- video-container -->
 </section>
-<div class='container'>
+
+
+<!-- <section id="cover">
+  <%= video_tag ("carousel.mp4"), autoplay: :autoplay, loop: :loop, mute: :mute, class: "video" %>
+
+
+</section>
+<div class='container'> -->

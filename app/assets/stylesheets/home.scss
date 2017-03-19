@@ -44,10 +44,29 @@ html,body{
 .video {
  position: fixed;
  top: 50%; left: 50%;
- z-index: 1;
  min-width: 100%;
  min-height: 100%;
  width: auto;
  height: auto;
  transform: translate(-50%, -50%);
+
+}
+#video-container .content {
+  padding-top: 15%;
+  position: fixed;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: 0;
+  color: #fff;
+  text-align: center;
+  background: rgba(0,0,0,0.5);
+  -webkit-transition: opacity 2s ease;
+  transition: opacity 2s ease;
+}
+
+.header h1 {
+    margin: 0;
+    padding: 13px;
 }
