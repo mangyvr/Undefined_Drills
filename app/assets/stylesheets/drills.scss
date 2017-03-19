@@ -17,7 +17,7 @@
 // }
 
 @import 'variables';
-.drill-container {
+.drills-container {
   text-align: center;
   color: white;
   background-color: transparentize($color5, 0.1);
@@ -56,10 +56,6 @@ h4 {
 .btn {
   // margin: 40px;
   // padding: 10px 20px 10px 20px;
-}
-
-.drills-container a {
-  text-decoration: none;
 }
 
 .userDrills {
