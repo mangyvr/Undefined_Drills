@@ -9,8 +9,8 @@ class ValidateEmailController < ApplicationController
       @user.email_validation_sent_at = Time.zone.now
 
       if @user.save
-        # ResetPasswordMailer.send_reset_password_link(@user, @user.gen_reset_link(request.base_url, token)).deliver_now
-        p @user.gen_email_validation_link(request.base_url, token, @user)
+        EmailValidationMailer.send_email_validation_to_user(@user, @user.gen_reset_link(request.base_url, token)).deliver_now
+        # p @user.gen_email_validation_link(request.base_url, token, @user)
         redirect_to root_path, notice: "Validation email sent."
       else
         redirect_to root_path, alert: "Validation email failed."

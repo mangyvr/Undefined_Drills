@@ -1,12 +1,11 @@
 class GroupsController < ApplicationController
   before_action :get_group_id, except: [:index, :new, :create]
-
+  # before_action :get_bookmarks, only: [:index]
 
   def index
-
     @groups = Group.order(created_at: :desc)
     # @user_groups = Group.where???
-    render json: @groups
+    # render json: @groups
   end
 
   def show
@@ -37,7 +36,7 @@ class GroupsController < ApplicationController
   end
 
   def edit
-    
+
   end
 
   def update
@@ -63,6 +62,7 @@ class GroupsController < ApplicationController
 
 
   private
+
 
   def get_group_id
     @group = Group.find params[:id]

@@ -1,3 +1,22 @@
-$main-color: red;
-$brand-primary: #ffbe16;
+$color1: #F0F0F0;
+$color2: #7689A9;
+$color3: #18bc9c;
+$color4: #383838;
+
+$input-color: black;
 $border-radius-base: 0;
+$brand-primary: $color4;
+$gray-base: $color2;
+$body-bg: $color1;
+$text-color: #051938;
+$navbar-default-bg: $color4;
+$navbar-default-link-color: white;
+$navbar-default-link-hover-color: $color3;
+$navbar-default-link-active-color: $color3;
+$navbar-default-border: darken($navbar-default-bg, 6.5%);
+$navbar-default-link-hover-bg: darken($navbar-default-bg, 6.5%);
+$navbar-default-brand-hover-color: $color3;
+// $link-color: ;
+// $link-hover-color: ;
+// $navbar-default-color: ;
+// $navbar-default-link-active-bg:
