@@ -32,13 +32,9 @@ class DrillsController < ApplicationController
   end
 
   def show
-
     @drill = Drill.find params[:id]
-    @user_answer ||= ""
-
-    # params.require(:drill).permit([:id])
-    # render json:params
-
+    user_answer = params[:body] || ""
+    @answer = Answer.new(user: current_user, drill: @drill, body: user_answer, approved: false)
   end
 
   def edit

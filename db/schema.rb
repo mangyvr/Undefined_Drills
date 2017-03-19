@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170319002633) do
+ActiveRecord::Schema.define(version: 20170319170631) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20170319002633) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "drill_id"
+    t.integer  "user_id"
     t.index ["drill_id"], name: "index_answers_on_drill_id", using: :btree
   end
 
@@ -100,6 +101,7 @@ ActiveRecord::Schema.define(version: 20170319002633) do
   end
 
   add_foreign_key "answers", "drills"
+  add_foreign_key "answers", "users"
   add_foreign_key "drills", "groups"
   add_foreign_key "user_drills", "drills"
   add_foreign_key "user_drills", "users"
