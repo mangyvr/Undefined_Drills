@@ -24,7 +24,7 @@ html,body{
 }
 
 .cover h1 {
-  color:white;
+  color: white;
 }
 
 .btn-outline {
@@ -42,6 +42,7 @@ html,body{
 
 /* video background */
 .video {
+  background: linear-gradient(to right, rgb(37,221,245) 0%, rgb(166,255,203) 100%);
  position: fixed;
  top: 50%; left: 50%;
  min-width: 100%;
@@ -49,7 +50,6 @@ html,body{
  width: auto;
  height: auto;
  transform: translate(-50%, -50%);
-
 }
 #video-container .content {
   padding-top: 15%;
@@ -74,6 +74,7 @@ html,body{
 #p-intro {
   letter-spacing: 4px;
   font-size: 22px;
+  padding: 0 0 8px 0;
 }
 #h1-intro {
   font-size: 56px;
@@ -82,11 +83,12 @@ html,body{
 #h2-intro {
   letter-spacing: 4px;
   font-size: 46px;
+  color: $color3;
 }
 
 /* Will's button */
 
-.btn-custom, .btn-lg {
+.btn-custom {
   color: #fff;
   padding: 8px 27px;
   border: 1px solid #fff;
