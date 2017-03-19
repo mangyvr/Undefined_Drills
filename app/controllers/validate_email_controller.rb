@@ -1,4 +1,7 @@
 class ValidateEmailController < ApplicationController
+
+  before_action :authorize, only: [:new, :edit, :update]
+
   def new
     @user = User.find_by_id params[:user_id]
 
@@ -44,6 +47,13 @@ class ValidateEmailController < ApplicationController
       end
     else
       redirect_to root_path, notice: "Invalid link."
+    end
+  end
+
+  private
+  def authorize
+    if cannot?(:manage, @user)
+      redirect_to root_path, alert: 'Not Authorized! Please Sign In'
     end
   end
 end

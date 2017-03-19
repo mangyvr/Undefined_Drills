@@ -1,6 +1,8 @@
 class DrillsController < ApplicationController
   before_action :find_drill, only: [:show, :edit, :update, :destroy]
 
+  before_action :authorize, only: [:index, :new, :create, :show, :edit, :update, :destroy]
+
   def index
 
     # Show drills for this group only
@@ -66,5 +68,12 @@ class DrillsController < ApplicationController
   def find_drill
     @drill = Drill.find params[:id]
   end
+
+  def authorize
+    if cannot?(:manage, @user)
+      redirect_to root_path, alert: 'Not Authorized! Please Sign In'
+    end
+  end
+
 
 end

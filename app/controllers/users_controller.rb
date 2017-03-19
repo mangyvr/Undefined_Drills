@@ -88,6 +88,12 @@ class UsersController < ApplicationController
                                  :oauth_raw_data])
   end
 
+  def authorize
+    if cannot?(:manage, @user)
+      redirect_to root_path, alert: 'Not Authorized! Please Sign In'
+    end
+  end
+
   def find_user
     @user = User.find params[:id]
   end

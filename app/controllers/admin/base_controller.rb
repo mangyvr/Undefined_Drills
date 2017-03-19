@@ -1,5 +1,5 @@
 class Admin::BaseController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authorize_user
   before_action :authorize
 
   layout 'admin'
@@ -12,6 +12,12 @@ class Admin::BaseController < ApplicationController
     # will send back code `401`. For more codes you can check this page:
     # http://billpatrianakos.me/blog/2013/10/13/list-of-rails-status-code-symbols/
     head :unauthorized unless current_user.is_admin?
+  end
+
+  def authorize_user
+    if cannot?(:manage, @user)
+      redirect_to root_path, alert: 'Not Authorized! Please Sign In'
+    end
   end
 
 end
