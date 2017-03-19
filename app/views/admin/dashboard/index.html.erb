@@ -39,8 +39,9 @@
             <td><%= user.first_name %></td>
             <td><%= user.last_name %></td>
             <td><%= user.email %></td>
-            <td><%= link_to 'Activate admin', user_path(user, params: {authenticity_token: form_authenticity_token, user: {is_admin: true}}), method: :put, class: 'btn btn-success' %></td>
-            <td><%= link_to 'Validate admin', user_path(user, user: {is_validated: true}), method: :put, class: 'btn btn-success' %></td>
+            <!-- Create button that links to  -->
+            <td><%= button_to 'Activate admin', admin_activate_user_path(user.id), method: :patch ,class: 'btn btn-success' %></td>
+            <td><%= button_to 'Validate admin', admin_validate_user_path(user.id), method: :patch, class: 'btn btn-success' %></td>
             <td><%= link_to "Delete", user_path(user), method: :delete, class: 'btn btn-danger' %></td>
           </tr>
         <% end %>

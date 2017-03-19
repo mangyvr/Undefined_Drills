@@ -1,4 +1,5 @@
 class Admin::DashboardController < Admin::BaseController
+  before_action :find_user, only: [:activate_user, :validate_user]
 
   def index
     @drill_count = Drill.count
@@ -7,15 +8,24 @@ class Admin::DashboardController < Admin::BaseController
     @users = User.all
   end
 
-  # def show
-  #   @user = User.find(params[:id])
-  # end
+  def validate_user
+    if @user.update(is_admin: true)
+      flash[:alert] = 'User Validated!'
+      redirect_to admin_dashboard_index_path
+    end
+  end
 
-  # def destroy
-  #   @user = current_user
-  #   @user.destroy
-  #   session[:user_id] = nil
-  #   redirect_to root_path, notice: 'Account deleted!'
-  # end
+  def activate_user
+    if @user.update(is_admin: true)
+      flash[:alert] = 'User Activated!'
+      redirect_to admin_dashboard_index_path
+    end
+  end
+
+    private
+
+    def find_user
+      @user = User.find params[:id]
+    end
 
 end

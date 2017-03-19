@@ -12,6 +12,8 @@ Rails.application.routes.draw do
 
 
   namespace :admin do
+    patch "dashboard/activate_user/:id" => "dashboard#activate_user", as: :activate_user
+    patch "dashboard/validate_user/:id" => "dashboard#validate_user", as: :validate_user
     resources :dashboard, only: [:index]
   end
 
