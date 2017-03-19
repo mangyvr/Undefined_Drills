@@ -33,11 +33,6 @@
 <p>Your are <%=  %></p>
 
 
-
-
-
-
-
 <%= (@total/@totalusers) %>
 <%= @myscore %>
 <%= @totalusers %>
@@ -46,3 +41,6 @@
 <div class="container-fluid" align="middle">
 <p>Your last played drill: </p>
 </div>
+
+<hr>
+<div class="container-fluid" align="middle"><%= link_to 'Edit Your Profile', edit_user_path(current_user), class: 'btn btn-primary' %></div>
