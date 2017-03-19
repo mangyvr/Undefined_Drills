@@ -1,46 +1,28 @@
+<%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
 
 <div class="container-fluid" align="middle">
-<p>Your bookmarked groups:</p>
-<%  @groups.each do |x|%>
-  <p> <%= link_to "#{x.title}", group_path(x) %> </p>
-  <% end %>
-</div>
-
-<div class="container-fluid" align="middle">
-<p>Your most played group: </p>
-</div>
-
-<div class="container-fluid" align="middle">
+<h1>Quick Stats</h1>
+<p>Your total score: <%= @user.score %></p>
 <%if (Time.current - @user.created_at) < 172801 %>
-<p>Joined: <%= ((Time.current - @user.created_at)/3600).to_i %> hours ago</p>
+<p>Joined: <%= ((Time.current - @user.created_at)/3600).round(2) %> hours ago</p>
 <% else %>
 <p>Joined: <%= ((Time.current - @user.created_at)/3600/24).to_i %> days ago</p>
+<% end %>
+<p>Average attempts per question: <%= (@attempts/@completions).round(2) %></p>
+<p>Total Badges......other stuff</p>
+</div>
+
+<div class="container-fluid" align="middle">
+<h1>Recently Completed Drills</h1>
+ <% @drills.take(5).each do |z| %>
+<p><%= link_to "#{z.title}", drill_path(z) %></p>
 <% end %>
 </div>
 
 <div class="container-fluid" align="middle">
-<p>Your most played drill: </p>
+<h1>Overall Completion</h1>
+<%= pie_chart({"Completed" => @completions, "Remaining" => (@totalgroups * @totaldrills)}) %>
+<h1>How You Stack Up</h1>
+<%= column_chart({"Your Total" => @user.score,
+  "Global Average" => (@scoretotal/@totalusers)}) %>
 </div>
-
-<div class="container-fluid" align="middle">
-<p>Your overall completion: </p>
-</div>
-
-<div class="container-fluid" align="middle">
-<p>How you stack up:</p>
-<p>The average player has <%= (@total/@totalusers) %> points.</p>
-<p>Your total is <%= @user.score %></p>.
-<p>Your are <%=  %></p>
-
-
-<%= (@total/@totalusers) %>
-<%= @myscore %>
-<%= @totalusers %>
-</div>
-
-<div class="container-fluid" align="middle">
-<p>Your last played drill: </p>
-</div>
-
-<hr>
-<div class="container-fluid" align="middle"><%= link_to 'Edit Your Profile', edit_user_path(current_user), class: 'btn btn-primary' %></div>

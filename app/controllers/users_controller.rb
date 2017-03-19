@@ -17,13 +17,28 @@ class UsersController < ApplicationController
   end
 
   def stats
+    # aggregate average score
+    @scoretotal = User.sum(:score)
+    userrecords = User.all
+    @totalusers = userrecords.size
+    # average attempts per questions
+    @attempts = UserDrill.select(:user_id).sum(:attempts).to_f
+    @completions = UserDrill.select(:user_id).where(completed: true).size.to_f
+    # query total groups
+    grouprecords = Group.all
+    @totalgroups = grouprecords.size
+    #query total drills
+    drillrecords = Drill.all
+    @totaldrills = drillrecords.size
+    #get last 5 completed drills
+    drillz = UserDrill.where(completed: true).where(user_id: @user.id)
+    @drills = Drill.where(:id => drillz).all
+  end
 
+  def bookmarks
+    # list bookmarks
     bookmark = UserGroup.where(user_id: current_user).pluck(:group_id)
     @groups = Group.find bookmark
-    @total = User.sum(:score)
-    records = User.all
-    @totalusers = records.size
-
   end
 
   def create
