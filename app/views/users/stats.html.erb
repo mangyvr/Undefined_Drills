@@ -1,0 +1,31 @@
+
+<div class="container-fluid" align="middle">
+<p>Your bookmarked groups:</p>
+<%  @groups.each do |x|%>
+  <p> <%= link_to "#{x.title}", group_path(x) %> </p>
+  <% end %>
+</div>
+
+<div class="container-fluid" align="middle">
+<p>Your most played group: </p>
+</div>
+
+<div class="container-fluid" align="middle">
+<p>Joined: <%= ((Time.current - @user.created_at)/3600/24).round(2) %> hours ago</p>
+</div>
+
+<div class="container-fluid" align="middle">
+<p>Your most played drill: </p>
+</div>
+
+<div class="container-fluid" align="middle">
+<p>Your overall completion: </p>
+</div>
+
+<div class="container-fluid" align="middle">
+<p>How you stack up:  </p>
+</div>
+
+<div class="container-fluid" align="middle">
+<p>Your last played drill: </p>
+</div>

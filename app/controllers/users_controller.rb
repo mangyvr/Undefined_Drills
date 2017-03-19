@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
   # before_action :authorize
-  before_action :find_user, only: [:edit, :update, :edit_password]
+  before_action :find_user, only: [:edit, :update, :edit_password, :stats]
 
   def index
     @users = User.order(score: :desc)
@@ -9,6 +9,12 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+  end
+
+  def stats
+    bookmark = UserGroup.where(user_id: current_user).pluck(:group_id)
+    @groups = Group.find bookmark
+
   end
 
   def create
