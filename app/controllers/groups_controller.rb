@@ -1,10 +1,9 @@
 class GroupsController < ApplicationController
   before_action :get_group_id, except: [:index, :new, :create]
-<<<<<<< HEAD
   before_action :get_bookmarks, only: [:index]
-=======
+
   # before_action :get_bookmarks, only: [:index]
->>>>>>> 3b731b35a099a832121dac59734dbb276ad9f33d
+
 
   def index
     @groups = Group.order(created_at: :desc)
@@ -15,13 +14,10 @@ class GroupsController < ApplicationController
   def show
     @drills = Drill.where(group: @group)
     # render json: @group
-<<<<<<< HEAD
   end
 
   def new
     render plain: "For Admin Use Only"
-=======
->>>>>>> 3b731b35a099a832121dac59734dbb276ad9f33d
   end
 
   def new
