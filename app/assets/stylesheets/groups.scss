@@ -17,11 +17,21 @@ img:hover {
 
 a {
   color: $color5
-
 }
+
+
+.othercolor a{
+  color: $color6
+}
+
 
 a:hover {
   text-decoration: none;
   color: $color3
 
+}
+
+
+.presstyle {
+  color: $color6;
 }
