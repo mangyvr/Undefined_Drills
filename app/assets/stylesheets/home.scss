@@ -70,3 +70,38 @@ html,body{
     margin: 0;
     padding: 13px;
 }
+/* intro paragraph */
+#p-intro {
+  letter-spacing: 4px;
+  font-size: 22px;
+}
+#h1-intro {
+  font-size: 56px;
+  letter-spacing: 4px;
+}
+#h2-intro {
+  letter-spacing: 4px;
+  font-size: 46px;
+}
+
+/* Will's buttons */
+
+.btn-custom, .btn-lg {
+  color: #fff;
+  padding: 8px 27px;
+  border: 1px solid #fff;
+  background-color: transparent;
+  box-shadow: 0 0 4px rgba(0,0,0,.14),0 4px 8px rgba(0,0,0,.28);
+  @include border-radius(3px);
+  @include transition(all 0.4s ease-in-out);
+ &:hover {
+    color: #fff;
+    border: 1px solid #fff;
+    background-color: $color3;
+    @include border-radius(3px);
+ &:active {
+    background-color: $color3;
+    color: #fff;
+   }
+  }
+}
