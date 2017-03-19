@@ -43,4 +43,13 @@ $(document).ready(function() {
   $('ul.nav a').filter(function() {
        return this.href == url;
   }).parent().addClass('active');
+
+  $('.btn-engage').on('mouseenter', function() {
+    $('.titler').removeClass('intro-title');
+    $('.titler').addClass('intro-title-hover');
+  });
+  $('.btn-engage').on('mouseleave', function() {
+    $('.titler').removeClass('intro-title-hover');
+    $('.titler').addClass('intro-title');
+  });
 });
