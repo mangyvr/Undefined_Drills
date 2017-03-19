@@ -42,6 +42,9 @@ gem 'font-awesome-rails'
 gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 gem "twitter"
+gem 'delayed_job_active_record'
+
+gem 'bootstrap-social-rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

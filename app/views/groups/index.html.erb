@@ -1,4 +1,3 @@
-
 <h1 align="middle">Groups</h1>
 <h2 align="middle"><%= link_to "Create a New Group", new_group_path %></h2>
 <br>
@@ -12,7 +11,7 @@
         <div class="row">
           <div class="col-sm-12 col-md-4">
             <img src="<%= Faker::LoremPixel.image("500x600", false, 'nature', y)%>" class="img-responsive">
-            <h3 align="middle"><%= link_to x.title, group_path(x) %></h3>
+            <h3 align="middle"><%= link_to x.title, group_drills_path(x) %></h3>
            <br>
            <br>
         </div>
@@ -20,7 +19,7 @@
       <% when 1 %>
           <div class="col-sm-12 col-md-4">
             <img src="<%= Faker::LoremPixel.image("500x600", false, 'nature', y)%>" class="img-responsive">
-            <h3 align="middle"><%= link_to x.title, group_path(x) %></h3>
+            <h3 align="middle"><%= link_to x.title, group_drills_path(x) %></h3>
            <br>
            <br>
         </div>
@@ -28,7 +27,7 @@
       <% when 0 %>
           <div class="col-sm-12 col-md-4">
             <img src="<%= Faker::LoremPixel.image("500x600", false, 'nature', y)%>" class="img-responsive">
-            <h3 align="middle"><%= link_to x.title, group_path(x) %></h3>
+            <h3 align="middle"><%= link_to x.title, group_drills_path(x) %></h3>
            <br>
            <br>
         </div>

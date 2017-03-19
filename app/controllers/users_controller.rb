@@ -3,6 +3,10 @@ class UsersController < ApplicationController
   # before_action :authorize
   before_action :find_user, only: [:edit, :update, :edit_password]
 
+  def index
+    @users = User.order(score: :desc)
+  end
+
   def new
     @user = User.new
   end
@@ -11,7 +15,8 @@ class UsersController < ApplicationController
     @user = User.new user_params
     if @user.save
       session[:user_id] = @user.id
-      redirect_to root_path, notice: 'Account created successfully!'
+      # redirect_to root_path, notice: 'Account created successfully!'
+      redirect_to new_user_validate_email_path(@user)
     else
       render :new
     end
@@ -95,5 +100,5 @@ class UsersController < ApplicationController
   def self.hash_token(token)
     BCrypt::Password.create(token)
   end
-  
+
 end

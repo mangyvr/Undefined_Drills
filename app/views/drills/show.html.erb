@@ -25,3 +25,8 @@
   </div>
 <% end %>
 
+<hr>
+<h2>Correct Answers</h2>
+<% @drill.answers.each do |answer| %>
+  <p><%= answer.body %></p>
+<% end %>
