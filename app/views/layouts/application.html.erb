@@ -12,8 +12,7 @@
   <body>
     <%= render 'layouts/navbar' %>
     <% if notice %>
-      <div
-      
+      <div class='alert alert-success'><%= notice %></div>
     <% elsif alert %>
       <div class='alert alert-danger'><%= alert %></div>
     <% end %>
