@@ -1,6 +1,6 @@
 class AnswersController < ApplicationController
 
-  before_action :get_answer_id
+  before_action :get_answer_id, except: [:new, :create, :index]
 
 
   def index
@@ -16,7 +16,14 @@ class AnswersController < ApplicationController
   end
 
   def create
-    render plain: "Answer creation is for admin only"
+    p json: params
+    @drill = Drill.find params[:drill_id]
+    answer_params = params.require(:answer).permit(:body)
+    answer_params[:approved] = current_user.is_admin? ? true : false
+    answer_params[:user] = current_user
+    answer_params[:drill] = @drill
+    @answer = Answer.create(answer_params)
+    redirect_to drill_path(@drill, body: @answer.body), @answer.approved ? {notice: "The answer has been successfully created"} : {notice: "Your answer has been submitted for review!"}
   end
 
   def edit
