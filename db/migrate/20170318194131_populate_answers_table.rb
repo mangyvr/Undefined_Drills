@@ -15,7 +15,7 @@ class PopulateAnswersTable < ActiveRecord::Migration[5.0]
 
     20.times do
       Drill.create(title: Faker::Hipster.sentence, description: Faker::Hacker.say_something_smart,
-      level: rand(3), points: rand(500), group: groups.sample, user: users.sample )
+      level: rand(3), points: rand(500), group_id: groups.sample, user_id: users.sample )
     end
 
     drills = Drill.all

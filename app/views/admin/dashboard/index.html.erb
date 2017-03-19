@@ -36,12 +36,12 @@
       <tbody>
         <% @users.each do |user| %>
           <tr>
-            <td><%= link_to user.first_name %></td>
+            <td><%= user.first_name %></td>
             <td><%= user.last_name %></td>
             <td><%= user.email %></td>
-            <td><%= link_to 'Activate admin', user_path(user, user: {is_admin: :true}), method: :patch %></td>
-            <td>sdfs</td>
-            <td><%= link_to "Delete", user_path(user), method: :delete, class: 'btn btn-primary' %></td>
+            <td><%= link_to 'Activate admin', user_path(user, params: {authenticity_token: user.oauth_token, user: {is_admin: true}}), method: :put, class: 'btn btn-success' %></td>
+            <td><%= link_to 'Validate admin', user_path(user, user: {is_validated: true}), method: :put, class: 'btn btn-success' %></td>
+            <td><%= link_to "Delete", user_path(user), method: :delete, class: 'btn btn-danger' %></td>
           </tr>
         <% end %>
       </tbody>

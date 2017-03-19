@@ -50,7 +50,7 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy
-    session[:user_id] = nil
+    #session[:user_id] = nil unless URI(request.referer).path == '/admin/dashboard'
     redirect_to root_path, notice: 'Account deleted!'
   end
 
@@ -63,6 +63,8 @@ class UsersController < ApplicationController
                                  :email,
                                  :password,
                                  :password_confirmation,
+                                 :is_admin,
+                                 :is_validated,
                                  :provider,
                                  :uid,
                                  :oauth_token,
@@ -94,5 +96,5 @@ class UsersController < ApplicationController
   def self.hash_token(token)
     BCrypt::Password.create(token)
   end
-  
+
 end
