@@ -45,21 +45,6 @@
   }
 }
 
-/* Will buttons */
-.btn-custom-group {
-  background: none;
-  color: $color3;
-  border: 1px solid $color3;
-  padding: 8px 17px;
-  @include border-radius(3px);
-  @include transition(all 0.4s ease-in);
-  &:hover {
-    background: $color3;
-    color: #fff;
-    text-decoration: none;
-  }
-}
-
 // .well {
 //   background-color: $color4;
 // }
