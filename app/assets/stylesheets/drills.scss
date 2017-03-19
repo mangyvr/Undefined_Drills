@@ -20,6 +20,41 @@
   height: 30vh;
 }
 
+
+.title {
+  text-align: center;
+  padding-top: 5px;
+}
+
+.btn {
+  margin: 40px;
+  padding: 10px 20px 10px 20px;
+}
+
+.drills-container a {
+  text-decoration: none;
+}
+
+.userDrills {
+  display: none;
+}
+
+.userDrills {
+    max-width: 100%;
+    border: 1px solid black;
+    height: 500px;
+}
+
+@keyframes x {
+    0% {
+        opacity: 0
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(540px)
+    }
+}
+
 //
 // .drills-container a {
 //   text-decoration: none;
@@ -34,3 +69,4 @@
 //         transform: translateX(540px)
 //     }
 // }
+

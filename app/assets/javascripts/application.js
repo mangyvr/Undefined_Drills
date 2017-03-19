@@ -27,10 +27,19 @@ $(document).ready(function() {
     // $(".main_logo").addClass("leave");
   });
 
-    var url = window.location;
-    $('ul.nav a[href="'+ url +'"]').parent().addClass('active');
-    $('ul.nav a').filter(function() {
-         return this.href == url;
-    }).parent().addClass('active');
+  $('.allDrills').on('click', function() {
+    $('.drills-container').show();
+    $('.userDrills').hide();
+  });
 
+  $('.myDrills').on('click', function() {
+    $('.drills-container').hide();
+    $('.userDrills').show();
+  });
+
+  var url = window.location;
+  $('ul.nav a[href="'+ url +'"]').parent().addClass('active');
+  $('ul.nav a').filter(function() {
+       return this.href == url;
+  }).parent().addClass('active');
 });
