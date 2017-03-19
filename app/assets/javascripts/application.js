@@ -26,4 +26,14 @@ $(document).ready(function() {
     $(".main_logo").css("color", "gray");
     // $(".main_logo").addClass("leave");
   });
+
+  $('.allDrills').on('click', function() {
+    $('.drills-container').show();
+    $('.userDrills').hide();
+  });
+
+  $('.myDrills').on('click', function() {
+    $('.drills-container').hide();
+    $('.userDrills').show();
+  });
 });

@@ -40,6 +40,16 @@
   text-decoration: none;
 }
 
+.userDrills {
+  display: none;
+}
+
+.userDrills {
+    max-width: 100%;
+    border: 1px solid black;
+    height: 500px;
+}
+
 @keyframes x {
     0% {
         opacity: 0
