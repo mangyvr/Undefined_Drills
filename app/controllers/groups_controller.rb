@@ -2,8 +2,8 @@ class GroupsController < ApplicationController
   before_action :get_group_id, except: [:index, :new, :create]
   before_action :get_bookmarks, only: [:index]
 
-  # before_action :find_user, only: [:index, :show, :new, :edit, :create, :update, :destroy]
-  before_action :authorize, only: [:index, :show, :new, :edit, :create, :update, :destroy]
+  before_action :authenticate_user!
+
   # before_action :get_bookmarks, only: [:index]
 
 
@@ -76,11 +76,6 @@ class GroupsController < ApplicationController
     @group = Group.find params[:id]
   end
 
-  def authorize
-    if cannot?(:manage, @user)
-      redirect_to root_path, alert: 'Not Authorized! Please Sign In'
-    end
-  end
 
 
 end

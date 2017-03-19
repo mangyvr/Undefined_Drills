@@ -1,6 +1,6 @@
 class Admin::DashboardController < Admin::BaseController
   before_action :find_user, only: [:activate_user, :validate_user]
-  before_action :authorize, only: [:index]
+  before_action :authenticate_user!
 
   def index
     @drill_count = Drill.count
@@ -29,10 +29,5 @@ class Admin::DashboardController < Admin::BaseController
     @user = User.find params[:id]
   end
 
-  def authorize
-    if cannot?(:manage, @user)
-      redirect_to root_path, alert: 'Not Authorized! Please Sign In'
-    end
-  end
 
 end

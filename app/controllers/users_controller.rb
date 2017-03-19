@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_action :authorize, only: [:index, :edit, :stats]
+  before_action :authenticate_user!, except: :new
   before_action :find_user, only: [:edit, :update, :edit_password, :stats, :destroy]
 
   load_and_authorize_resource
@@ -88,11 +88,6 @@ class UsersController < ApplicationController
                                  :oauth_raw_data])
   end
 
-  def authorize
-    if cannot?(:manage, @user)
-      redirect_to root_path, alert: 'Not Authorized! Please Sign In'
-    end
-  end
 
   def find_user
     @user = User.find params[:id]

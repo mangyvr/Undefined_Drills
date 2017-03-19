@@ -1,7 +1,7 @@
 class DrillsController < ApplicationController
   before_action :find_drill, only: [:show, :edit, :update, :destroy]
 
-  before_action :authorize, only: [:index, :new, :create, :show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   def index
 
@@ -69,11 +69,7 @@ class DrillsController < ApplicationController
     @drill = Drill.find params[:id]
   end
 
-  def authorize
-    if cannot?(:manage, @user)
-      redirect_to root_path, alert: 'Not Authorized! Please Sign In'
-    end
-  end
+
 
 
 end
