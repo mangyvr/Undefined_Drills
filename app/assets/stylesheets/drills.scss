@@ -16,23 +16,46 @@
 //   flex-flow: wrap;
 // }
 
-.drill-container {
+@import 'variables';
+.drills-container {
+  text-align: center;
+  color: white;
+  background-color: transparentize($color5, 0.1);
+  padding: 1vw;
   height: 30vh;
 }
-
-
-.title {
-  text-align: center;
-  padding-top: 5px;
+.well {
+  border-color: $color3;
 }
+
+.well-container {
+  height: 30vh;
+  padding:10px;
+  border-color: $color4;
+  background-color: $color4;
+
+}
+
+h4 {
+  color: white;
+}
+
+
+
+.big-well {
+  background-color: $color4;
+}
+
+
+
+// .title {
+//   text-align: center;
+//   padding-top: 5px;
+// }
 
 .btn {
-  margin: 40px;
-  padding: 10px 20px 10px 20px;
-}
-
-.drills-container a {
-  text-decoration: none;
+  // margin: 40px;
+  // padding: 10px 20px 10px 20px;
 }
 
 .userDrills {
@@ -45,15 +68,7 @@
     height: 500px;
 }
 
-@keyframes x {
-    0% {
-        opacity: 0
-    }
-    100% {
-        opacity: 1;
-        transform: translateX(540px)
-    }
-}
+
 
 //
 // .drills-container a {
@@ -69,4 +84,3 @@
 //         transform: translateX(540px)
 //     }
 // }
-
