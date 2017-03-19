@@ -6,6 +6,13 @@ class Drill < ApplicationRecord
   has_many :user_drills
   has_many :attempters, through: :user_drills, source: :user
 
+  # VALIDATIONS
+  validates :title, presence: true, uniqueness: true
+  validates :description, presence: true
+  validates :level, presence: true, inclusion: {in: [1,2,3]}
+  validates :points, presence: true
+  validates :group_id, presence: true
+
 end
 
 # # use this in users_controller, lists all completed drills
