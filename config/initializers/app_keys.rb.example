@@ -1,0 +1,6 @@
+ENV['TWITTER_CONSUMER_KEY'] = "..."
+ENV['TWITTER_CONSUMER_SECRET'] = "..."
+ENV["FACEBOOK_CONSUMER_SECRET"] = '...'
+ENV["FACEBOOK_CONSUMER_SECRET"] = '...'
+ENV["email_user_name"] = ''
+ENV["email_password"] = ''

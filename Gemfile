@@ -39,17 +39,25 @@ gem 'interactive_editor'
 gem 'hirb'
 gem 'faker'
 gem 'font-awesome-rails'
+gem 'omniauth-twitter'
+gem 'omniauth-facebook'
+gem "twitter"
+gem 'delayed_job_active_record'
+
+gem 'bootstrap-social-rails'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+gem 'rspec-rails'
 
 group :development, :test do
-  gem 'rspec-rails'
-
+  # gem 'rspec-rails'
   gem 'factory_girl_rails'
+
   gem 'rails-controller-testing'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+  gem 'rails-erd'
 end
 
 group :development do
