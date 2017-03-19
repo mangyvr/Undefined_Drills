@@ -1,6 +1,5 @@
 class ValidateEmailController < ApplicationController
 
-  before_action :authenticate_user!
 
   def new
     @user = User.find_by_id params[:user_id]
