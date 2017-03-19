@@ -8,20 +8,17 @@
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
-    <link href="https://fonts.googleapis.com/css?family=Raleway|Roboto" rel="stylesheet">
-  </head>
-
+    <link href="https://fonts.googleapis.com/css?family=Cabin|Lato|Roboto" rel="stylesheet">  </head>
   <body>
     <%= render 'layouts/navbar' %>
     <% if notice %>
-      <div class='alert alert-success'><%= notice %></div>
+      <div
+      
     <% elsif alert %>
       <div class='alert alert-danger'><%= alert %></div>
     <% end %>
-
     <div class='container'>
       <%= yield %>
     </div>
-
   </body>
 </html>

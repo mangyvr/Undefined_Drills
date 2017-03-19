@@ -35,7 +35,10 @@
   <% if @answer.body != "" && alert %>
     <%= form_for [@drill, @answer] do |a| %>
       <%= a.hidden_field :body, value: @answer.body %>
-      <%= a.submit "Disagree with our evaluation? Submit your answer for review" %>
+      <br>
+      <div align="center">
+      <%= a.submit "Disagree with our evaluation? Submit your answer for review", class:"btn btn-secondary"%>
+      </div>
     <% end %>
   <% end %>
 

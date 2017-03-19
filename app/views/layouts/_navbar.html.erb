@@ -8,7 +8,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Undefined <i class="fa fa-universal-access main_logo" aria-hidden="true"></i> Drills</a>
+      <a class="navbar-brand" href="#">Undefined <i class="fa fa-compass main_logo" aria-hidden="true"></i> Drills</a>
 
     </div>
 
@@ -21,7 +21,7 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <% if user_sign_in? %>
-          <li><%= link_to "#{current_user.full_name}", edit_user_path(current_user) %></li>
+          <li><%= link_to "#{current_user.full_name}", stats_user_path(current_user) %></li>
           <% if current_user.is_admin == true %>
             <li><%= link_to "Admin Dashboard", admin_dashboard_index_path %></li>
           <% end %>

@@ -14,7 +14,7 @@
 
 <div class="container-fluid" align="middle">
 <h1>Recently Completed Drills</h1>
- <% @drills.take(5).each do |z| %></h1>
+ <% @drills.take(5).each do |z| %>
 <p><%= link_to "#{z.title}", drill_path(z) %></p>
 <% end %>
 </div>

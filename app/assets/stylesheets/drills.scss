@@ -17,23 +17,29 @@
 // }
 
 @import 'variables';
-.drills-container {
-  text-align: center;
-  color: white;
-  background-color: transparentize($color5, 0.1);
-  padding: 1vw;
-  height: 30vh;
-}
+
 .well {
   border-color: $color3;
 }
 
-.well-container {
+.drills-outer-container {
+  text-align: center;
+  color: white;
+  background-color: $color4;
+  border-color: $color4;
+  padding: 1vw;
   height: 30vh;
+}
+
+.drills-inner-container{
+  background-color: white;
+  padding:10px
+}
+
+.well-container {
   padding:10px;
   border-color: $color4;
   background-color: $color4;
-
 }
 
 h4 {
@@ -42,7 +48,7 @@ h4 {
 
 
 
-.big-well {
+.big-well, .well-dark {
   background-color: $color4;
 }
 
