@@ -23,7 +23,7 @@
  .btn {
   transition: all .5s ease;
  }
- .btn:hover {
+ .btn-custom:hover, .btn-primary:hover {
   border-radius: 30px;
   border-color: #18bc9c ;
  }
