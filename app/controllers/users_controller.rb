@@ -3,6 +3,10 @@ class UsersController < ApplicationController
   # before_action :authorize
   before_action :find_user, only: [:edit, :update, :edit_password]
 
+  def index
+    @users = User.order(score: :desc)
+  end
+
   def new
     @user = User.new
   end
