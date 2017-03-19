@@ -29,12 +29,12 @@ $(document).ready(function() {
   });
 
   $('.allDrills').on('click', function() {
-    $('.drills-container').show();
+    $('.big-well').show();
     $('.userDrills').hide();
   });
 
   $('.myDrills').on('click', function() {
-    $('.drills-container').hide();
+    $('.big-well').hide();
     $('.userDrills').show();
   });
 
