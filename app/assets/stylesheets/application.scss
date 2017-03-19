@@ -14,16 +14,25 @@
  *= require_tree .
  *= require_self
  */
-@import 'variables';
+ @import 'variables';
 
-html {
+ html {
   margin-top: 50px
-}
+ }
 
-.btn {
+ .btn {
   transition: all 1s ease;
-}
-.btn:hover {
-  border-radius:10px;
-  border-color: #18bc9c;
-}
+ }
+ .btn:hover {
+  border-radius: 4px;
+  border-color: #18bc9c ;
+ }
+
+ h1, h2, h3, h4, h5 {
+   color: $color6;
+  font-family: 'Raleway', sans-serif;
+ }
+
+ p, a {
+  font-family: 'Roboto', sans-serif;
+ }

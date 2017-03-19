@@ -41,7 +41,7 @@
             <td><%= user.email %></td>
             <!-- Create button that links to  -->
             <td><%= button_to 'Activate admin', admin_activate_user_path(user.id), method: :patch ,class: 'btn btn-success' %></td>
-            <td><%= button_to 'Validate admin', admin_validate_user_path(user.id), method: :patch, class: 'btn btn-success' %></td>
+            <td><%= button_to 'Validate user', admin_validate_user_path(user.id), method: :patch, class: 'btn btn-success' %></td>
             <td><%= link_to "Delete", user_path(user), method: :delete, class: 'btn btn-danger' %></td>
           </tr>
         <% end %>

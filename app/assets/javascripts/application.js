@@ -13,6 +13,7 @@
 //= require jquery
 //= require bootstrap-sprockets
 //= require jquery_ujs
+//= require bootstrap-sprockets
 //= require_tree .
 
 $(document).ready(function() {
@@ -28,12 +29,12 @@ $(document).ready(function() {
   });
 
   $('.allDrills').on('click', function() {
-    $('.drills-container').show();
+    $('.big-well').show();
     $('.userDrills').hide();
   });
 
   $('.myDrills').on('click', function() {
-    $('.drills-container').hide();
+    $('.big-well').hide();
     $('.userDrills').show();
   });
 

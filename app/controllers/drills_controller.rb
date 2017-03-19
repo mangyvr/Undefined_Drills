@@ -1,6 +1,8 @@
 class DrillsController < ApplicationController
   before_action :find_drill, only: [:show, :edit, :update, :destroy]
 
+  before_action :authenticate_user!
+
   def index
     @group = Group.find (params[:group_id])
     # Show drills for this group only
@@ -32,13 +34,9 @@ class DrillsController < ApplicationController
   end
 
   def show
-
     @drill = Drill.find params[:id]
-    @user_answer ||= ""
-
-    # params.require(:drill).permit([:id])
-    # render json:params
-
+    user_answer = params[:body] || ""
+    @answer = Answer.new(user: current_user, drill: @drill, body: user_answer, approved: false)
   end
 
   def edit
@@ -66,5 +64,8 @@ class DrillsController < ApplicationController
   def find_drill
     @drill = Drill.find params[:id]
   end
+
+
+
 
 end

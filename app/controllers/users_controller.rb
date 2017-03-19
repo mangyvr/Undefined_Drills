@@ -1,13 +1,15 @@
 class UsersController < ApplicationController
 
-  # before_action :authorize
-
+  before_action :authenticate_user!, except: [:new, :create]
   before_action :find_user, only: [:edit, :update, :edit_password, :stats, :destroy]
+  before_action :authorize, only: [:index, :stats, :edit, :update, :edit_password]
 
   load_and_authorize_resource
 
   def index
     @users = User.order(score: :desc)
+    p current_user
+    @user = current_user
   end
 
   def new
@@ -26,9 +28,17 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new user_params
+
+    # Generate email validation token now and store in session
+    # to prevent malicious generation of email_validations from URI
+    token = User.new_token
+    @user.email_validation_token = User.hash_token(token)
+
+    p token
+
     if @user.save
-      session[:user_id] = @user.id
-      # redirect_to root_path, notice: 'Account created successfully!'
+      session[:email_valid_token] = token
+      p 'Session token is: ' + session[:email_valid_token]
       redirect_to new_user_validate_email_path(@user)
     else
       render :new
@@ -74,7 +84,6 @@ class UsersController < ApplicationController
 
   private
 
-
   def user_params
     params.require(:user).permit([:first_name,
                                  :last_name,
@@ -90,15 +99,16 @@ class UsersController < ApplicationController
                                  :oauth_raw_data])
   end
 
+
   def find_user
     @user = User.find params[:id]
   end
 
-  # def authorize
-  #   if cannot?(:manage, @user)
-  #     redirect_to root_path, alert: 'Not Authorized!'
-  #   end
-  # end
+  def authorize
+    if current_user.is_validated == false || current_user.valid_email == false
+      redirect_to root_path, alert: 'Not authorized!'
+    end
+  end
 
   # For password reset
   def self.new_token
