@@ -2,29 +2,24 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.drills-animation {
-  top: 200px;
-  animation: x 5s forwards;
+// .drills-animation {
+//   top: 200px;
+//   animation: x 5s forwards;
+// }
+
+// .drills-container {
+//   max-width: 100%;
+//   border: 1px solid grey;
+//   max-height: 100%;
+//   display: flex;
+//   justify-content: space-around;
+//   flex-flow: wrap;
+// }
+
+.drill-container {
+  height: 30vh;
 }
 
-.drills-container {
-  max-width: 100%;
-  border: 1px solid grey;
-  max-height: 100%;
-  display: flex;
-  justify-content: space-around;
-  flex-flow: wrap;
-}
-
-.drills-items {
-  margin: 20px 0 10px 20px;
-  display: flex;
-  flex-direction: column;
-  border: 1px solid black;
-  height: 200px;
-  width: 400px;
-  border-radius: 10px;
-}
 
 .title {
   text-align: center;
@@ -40,6 +35,16 @@
   text-decoration: none;
 }
 
+.userDrills {
+  display: none;
+}
+
+.userDrills {
+    max-width: 100%;
+    border: 1px solid black;
+    height: 500px;
+}
+
 @keyframes x {
     0% {
         opacity: 0
@@ -49,3 +54,19 @@
         transform: translateX(540px)
     }
 }
+
+//
+// .drills-container a {
+//   text-decoration: none;
+// }
+//
+// @keyframes x {
+//     0% {
+//         opacity: 0
+//     }
+//     100% {
+//         opacity: 1;
+//         transform: translateX(540px)
+//     }
+// }
+

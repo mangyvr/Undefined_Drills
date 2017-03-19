@@ -4,6 +4,8 @@ class UsersController < ApplicationController
 
   before_action :find_user, only: [:edit, :update, :edit_password, :stats, :destroy]
 
+  load_and_authorize_resource
+
   def index
     @users = User.order(score: :desc)
   end
