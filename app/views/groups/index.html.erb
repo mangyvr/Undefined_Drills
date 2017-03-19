@@ -1,40 +1,45 @@
-<h1 align="middle">Groups</h1>
-<% #if can?(:manage, @groups) %>
-  <div align="middle"><%= link_to "Create a New Group", new_group_path, class:"btn btn-primary" %></div>
+
+<div class="row">
+  <br><br>
+  <h1 align="middle">Groups</h1>
+</div>
+ <br>
+<% if can?(:manage, @groups) %>
+  <div align="middle"><%= link_to "Create a New Group", new_group_path, class:"btn-custom-group" %></div>
   <br>
-  <% #end %>
-<%counter = 3 %>
-<%index = 1 %>
+  <% end %>
+<br>
+
 <div class="container-fluid well well-lg">
   <% @groups.each do |x| %>
-    <% y=rand(1..10) %>
-      <% case counter - index %>
-        <% when 2 %>
-        <div class="row">
-          <div class="col-sm-12 col-md-4">
-            <img src="http://unsplash.it/401" class="img-responsive">
+  <div class="row">
+    <div class="col-sm-12 col-md-4">
+      <div class="group">
+        <div class="image_wrapper">
+          <img src="https://unsplash.it/200/200/?random" alt="">
             <h3 align="middle"><%= link_to x.title, group_drills_path(x) %></h3>
-           <br>
-           <br>
-        </div>
-        <% index += 1 %>
-      <% when 1 %>
-          <div class="col-sm-12 col-md-4">
-            <img src="http://unsplash.it/400" class="img-responsive">
-            <h3 align="middle"><%= link_to x.title, group_drills_path(x) %></h3>
-           <br>
-           <br>
-        </div>
-      <% index += 1%>
-      <% when 0 %>
-          <div class="col-sm-12 col-md-4">
-            <img src="http://unsplash.it/402" class="img-responsive">
-            <h3 align="middle"><%= link_to x.title, group_drills_path(x) %></h3>
-           <br>
-           <br>
         </div>
       </div>
-      <% counter += 2 %>
+    </div>
+    <div class="col-sm-12 col-md-4">
+      <div class="group">
+        <div class="image_wrapper">
+          <img src="https://unsplash.it/200/200/?random" alt="">
+          <h3 align="middle"><%= link_to x.title, group_drills_path(x) %></h3>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-12 col-md-4">
+      <div class="group">
+        <div class="image_wrapper">
+          <img src="https://unsplash.it/200/200/?random" alt="">
+          <h3 align="middle"><%= link_to x.title, group_drills_path(x) %></h3>
+        </div>
+      </div>
+     </div>
+   </div>
+
       <% end %>
-    <% end %>
+    <%#end %>
 </div>
