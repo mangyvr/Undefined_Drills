@@ -7,6 +7,7 @@ class DrillsController < ApplicationController
     # render json:params
     @drills = Drill.order(created_at: :desc).where(group_id: params[:group_id])
     @group_id = params[:group_id]
+    @attempted = UserDrill
 
   end
 
