@@ -2,7 +2,7 @@ class DrillsController < ApplicationController
   before_action :find_drill, only: [:show, :edit, :update, :destroy]
 
   def index
-
+    @group = Group.find (params[:group_id])
     # Show drills for this group only
     # render json:params
     @drills = Drill.order(created_at: :desc).where(group_id: params[:group_id])

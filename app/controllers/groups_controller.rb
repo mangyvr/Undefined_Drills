@@ -47,7 +47,7 @@ class GroupsController < ApplicationController
     # ***Uncomment once admin is defined***
     group_params = params.require(:group).permit(:title)
     if @group.update(group_params)
-      redirect_to groups_path(@group), notice: "Group Updated Successfully"
+      redirect_to group_drills_path(@group), notice: "Group Updated Successfully"
     else
       render group_edit_path(@group), notice: "Group NOT Updated Successfully"
     end
