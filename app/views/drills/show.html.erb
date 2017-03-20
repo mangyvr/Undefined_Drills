@@ -32,9 +32,9 @@
   </div>
 <div class="col-xs-4 pull-right">
     <div align="center">
-      <%# if @drill.id > 1 %>
+      <% if @random_drill %>
       <%= link_to 'Random Drill in Group <i class="fa fa-random" aria-hidden="true"></i>'.html_safe, drill_path(@random_drill), class: 'btn btn-primary'%>
-      <%# end %>
+      <% end %>
       <%= submit_tag "Submit Answer", class:"btn btn-primary" %>
       <%# if @drill.id < Drill.last.id %>
         <%# link_to 'Next Drill <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>'.html_safe, drill_path("#{@drill.id + 1}"), class: 'btn btn-primary' %>
