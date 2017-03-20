@@ -27,22 +27,19 @@
       <%= text_area_tag :user_answer, @answer.body, class:"form-control" %>
       </div>
     </div>
-
+  </div>
+<div class="col-xs-4 pull-right">
     <div align="center">
       <% if @drill.id > 1 %>
-        <%= link_to 'Previous Drill', drill_path("#{@drill.id - 1}"), class: 'btn btn-primary'%>
+        <%= link_to 'Previous Drill <i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i>'.html_safe, drill_path("#{@drill.id - 1}"), class: 'btn btn-primary'%>
       <% end %>
-
       <%= submit_tag "Submit Answer", class:"btn btn-primary" %>
-
       <% if @drill.id < Drill.last.id %>
-        <%= link_to 'Next Drill', drill_path("#{@drill.id + 1}"), class: 'btn btn-primary' %>
+        <%= link_to 'Next Drill <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>'.html_safe, drill_path("#{@drill.id + 1}"), class: 'btn btn-primary' %>
       <% end %>
-
     </div>
-
     <% end %>
-</div>
+    </div>
 <br>
 
 
@@ -56,8 +53,6 @@
       <strong id="hint" style="visibility:hidden;color:red;" >Hint: <%= @drill.answers[0].hint %></strong>
     </div>
   </div>
-
-
 
 
   <% if @answer.body != "" && alert %>
