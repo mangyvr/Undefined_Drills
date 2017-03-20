@@ -13,6 +13,7 @@ class User < ApplicationRecord
 
   has_secure_password
   before_validation :downcase_email
+  before_create :set_initial_score
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
 
@@ -84,6 +85,9 @@ class User < ApplicationRecord
      BCrypt::Password.create(token)
    end
 
+   def set_initial_score
+     self.score = 0
+   end
 
    # Generate email validation link
    def gen_email_validation_link(url, token, user)
