@@ -55,3 +55,11 @@ h4 {
     text-decoration: none;
   }
 }
+
+
+.score {
+  position: fixed;
+  bottom: 90px;
+  right: 90px;
+  z-index: 5000;
+}
