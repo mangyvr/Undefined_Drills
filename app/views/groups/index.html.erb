@@ -23,12 +23,11 @@
         <div class="image_wrapper">
           <img src="https://unsplash.it/400/400/?image=<%=randnum%>" alt="">
         </div>
-        <h3 align="middle"><%= link_to x.title, group_drills_path(x) %></h3>
           <%if x.bookmarked_by?(current_user, x) %>
-                <h3 align="middle">
-                <p>Bookmarked!</p>
-                </h3>
-                <% end %>
+          <h3 align="middle" style='background-color: #18bc9c;'><%= link_to x.title, group_drills_path(x) %></h3>
+          <% else %>
+          <h3 align="middle"><%= link_to x.title, group_drills_path(x) %></h3>
+          <% end %>
       </div>
     </div>
 <% index += 1 %>
@@ -38,12 +37,11 @@
         <div class="image_wrapper">
           <img src="https://unsplash.it/400/400/?image=<%=randnum+1%>" alt="">
         </div>
-        <h3 align="middle"><%= link_to x.title, group_drills_path(x) %></h3>
         <%if x.bookmarked_by?(current_user, x) %>
-              <h3 align="middle">
-              <p>Bookmarked!</p>
-              </h3>
-              <% end %>
+          <h3 align="middle" style='background-color: #18bc9c;'><%= link_to x.title, group_drills_path(x) %></h3>
+        <% else %>
+          <h3 align="middle"><%= link_to x.title, group_drills_path(x) %></h3>
+        <% end %>
       </div>
     </div>
 <% index += 1%>
@@ -53,12 +51,11 @@
         <div class="image_wrapper">
           <img src="https://unsplash.it/400/400/?image=<%=randnum+2%>" alt="">
         </div>
-        <h3 align="middle"><%= link_to x.title, group_drills_path(x) %></h3>
         <%if x.bookmarked_by?(current_user, x) %>
-              <h3 align="middle">
-              <p>Bookmarked!</p>
-              </h3>
-              <% end %>
+          <h3 align="middle" style='background-color: #18bc9c;'><%= link_to x.title, group_drills_path(x) %></h3>
+        <% else %>
+          <h3 align="middle"><%= link_to x.title, group_drills_path(x) %></h3>    
+        <% end %>
       </div>
      </div>
    </div>
