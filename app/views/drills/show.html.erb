@@ -16,12 +16,12 @@
   </div>
   <div align="center">
     <% if can?(:manage, @drill) %>
-      <%= link_to 'Edit', edit_drill_path(@drill), class: "btn btn-sm btn-default" %>
+      <%= link_to 'Edit', edit_drill_path(@drill), class: "btn btn-default" %>
       <%= link_to 'Delete', drill_path(@drill),
         method: :delete,
         remote: :true,
         data: { confirm: 'Are you sure?' },
-        class: "btn btn-sm btn-danger"
+        class: "btn btn-danger"
       %>
     <% end %>
     <br>
@@ -36,9 +36,14 @@
       </div>
     </div>
     <div align="center">
-      <%= link_to 'Previous Drill', drill_path("#{@drill.id - 1}"), class: 'btn btn-primary' %>
-      <%= submit_tag "Submit Answer Test", class:"btn btn-primary" %>
-      <%= link_to 'Next Drill', drill_path("#{@drill.id + 1}"), class: 'btn btn-primary' %>
+      <% if @drill.id > 1 %>
+        <%= link_to 'Previous Drill', drill_path("#{@drill.id - 1}"), class: 'btn btn-primary'%>
+      <% end %>
+      <%= submit_tag "Submit Answer", class:"btn btn-primary" %>
+      <% if @drill.id < Drill.last.id %>
+        <%= link_to 'Next Drill', drill_path("#{@drill.id + 1}"), class: 'btn btn-primary' %>
+      <% end %>
+      <hr>
     </div>
 
   <div class="answer-hint">
