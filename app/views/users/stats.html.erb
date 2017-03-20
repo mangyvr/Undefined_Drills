@@ -3,28 +3,39 @@
 <div class='statistics' align="middle">
   <h1>Statistics</h1>
 </div>
-
-<div class="container-fluid" align="middle">
-  <h2>Quick Stats</h2>
-  <p>Your total score: <%= @user.score %></p>
-  <%if (Time.current - @user.created_at) < 172801 %>
-  <p>Joined: <%= ((Time.current - @user.created_at)/3600).round(2) %> hours ago</p>
-  <% else %>
-  <p>Joined: <%= ((Time.current - @user.created_at)/3600/24).to_i %> days ago</p>
-  <% end %>
-  <p>Average attempts per question: <%= (@attempts/@completions).round(2) %></p>
-  <p>Total Badges......other stuff</p>
-
-  <h2>Recently Completed Drills</h2>
-   <% @drills.take(5).each do |z| %>
-  <p><%= link_to "#{z.title}", drill_path(z) %></p>
-  <% end %>
-
-  <h2>Overall Completion</h2>
-  <%= pie_chart({"Completed" => @completions, "Remaining" => (@totalgroups * @totaldrills)}) %>
-  <h2>How You Stack Up</h2>
-  <%= column_chart({"Your Total" => @user.score,
-    "Global Average" => (@scoretotal/@totalusers)}) %>
+<div class="well well-md well-dark">
+<div class="container-fluid well well-md" >
+  <div class="row">
+    <div class="col-md-6">
+      <h2 class="aligncenter">Quick Stats</h2>
+      <p class="aligncenter">Your total score: <%= @user.score %></p>
+      <%if (Time.current - @user.created_at) < 172801 %>
+      <p class="aligncenter">Joined: <%= ((Time.current - @user.created_at)/3600).round(2) %> hours ago</p>
+      <% else %>
+      <p class="aligncenter">Joined: <%= ((Time.current - @user.created_at)/3600/24).to_i %> days ago</p>
+      <% end %>
+      <p class="aligncenter">Average attempts per question: <%= (@attempts/@completions).round(2) %></p>
+      <p class="aligncenter">Total Badges......other stuff</p>
+  </div>
+  <div class="col-md-6">
+    <h2 class="aligncenter">Recently Completed Drills</h2>
+     <% @drills.take(5).each do |z| %>
+    <p><%= link_to "#{z.title}", drill_path(z) %></p>
+    <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+    <h2 class="aligncenter">Overall Completion</h2>
+    <%= pie_chart({"Completed" => @completions, "Remaining" => (@totalgroups * @totaldrills)}) %>
+  </div>
+  <div class="col-md-6">
+    <h2 class="aligncenter">How You Stack Up</h2>
+    <%= column_chart({"Your Total" => @user.score,
+      "Global Average" => (@scoretotal/@totalusers)}) %>
+  </div>
+  </div>
+</div>
 </div>
 <!--
 <div class="container-fluid" align="middle">
