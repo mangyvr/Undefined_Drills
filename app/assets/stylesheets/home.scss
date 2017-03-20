@@ -80,6 +80,42 @@ html,body{
   color: white;
 }
 
+span#typed {
+  letter-spacing: 4px;
+  font-size: 28px;
+  color: white;
+  position: relative;
+  text-shadow: none;
+}
+
+span#typed-cursor {
+  margin: auto;
+  font-size: 32px;
+}
+
+.typed-cursor{
+    opacity: 1;
+    font-size: 32px;
+    -webkit-animation: blink 0.7s infinite;
+    -moz-animation: blink 0.7s infinite;
+    animation: blink 0.7s infinite;
+}
+@keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
+}
+@-webkit-keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
+}
+@-moz-keyframes blink{
+    0% { opacity:1; }
+    50% { opacity:0; }
+    100% { opacity:1; }
+}
+
 /* Will's button */
 
 .btn-custom {

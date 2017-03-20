@@ -46,17 +46,6 @@
 
 
 
-
-
-  <div class="col-xs-8">
-    <div class="answer-hint">
-      <button class='btn btn-danger' id="get-hint">Get Hint - This will count as a failed attempt</button>
-
-      <strong id="hint" style="visibility:hidden;color:red;" >Hint: <%= @drill.answers[0].hint %></strong>
-    </div>
-  </div>
-
-
   <% if @answer.body != "" && alert %>
     <%= form_for [@drill, @answer] do |a| %>
       <%= a.hidden_field :body, value: @answer.body %>

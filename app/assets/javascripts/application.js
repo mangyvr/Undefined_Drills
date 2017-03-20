@@ -55,4 +55,16 @@ $(document).ready(function() {
     $('.titler').addClass('intro-title');
   });
   $('[data-toggle="tooltip"]').tooltip();
+
+  $('.btntoggler').on('mouseenter', function() {
+    $(this).parent().addClass('drills-inner-container2');
+    $(this).parent().removeClass('drills-inner-container');
+    $(this).prev().prev().children().css('color', 'white');
+
+  });
+  $('.btntoggler').on('mouseleave', function() {
+    $(this).parent().addClass('drills-inner-container');
+    $(this).parent().removeClass('drills-inner-container2');
+    $(this).prev().prev().children().css('color', '#051938');
+  });
 });
