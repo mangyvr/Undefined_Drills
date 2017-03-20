@@ -31,13 +31,13 @@ $(document).ready(function() {
   });
 
   $('.allDrills').on('click', function() {
-    $('.big-well').show();
-    $('.userDrills').hide();
+    $('.all-drills').show();
+    $('.my-drills').hide();
   });
 
   $('.myDrills').on('click', function() {
-    $('.big-well').hide();
-    $('.userDrills').show();
+    $('.all-drills').hide();
+    $('.my-drills').show();
   });
 
   var url = window.location;
