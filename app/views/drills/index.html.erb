@@ -38,11 +38,29 @@
 </ul>
 
 
-  <div class='well well-lg container well-container'>
+  <div class='well well-lg container well-container all-drills'>
   <% if @drills.length == 0 %>
     <h3 align="middle" style="color:white">No drills associated with this group yet...</h3>
   <% else %>
     <% @drills.each do |d| %>
+    <div class="col-md-4 well well-lg drills-outer-container">
+      <div class='drills-inner-container'>
+        <h4 class="othercolor">
+          <%= link_to d.title, drill_path(d), class:"changecolor" %>
+        </h4>
+        <hr class="hr2">
+          <%= link_to 'Attempt Drill', drill_path(d), class:"btn btn-universal btntoggler" %>
+
+      </div>
+    </div>
+    <% end %>
+  <% end %>
+  </div>
+  <div class='well well-lg container well-container my-drills'>
+  <% if @attempted_drills.length == 0 %>
+    <h3 align="middle" style="color:white">No attempted drills associated with this group yet...</h3>
+  <% else %>
+    <% @attempted_drills.each do |d| %>
     <div class="col-md-4 well well-lg drills-outer-container">
       <div class='drills-inner-container'>
         <h4 class="othercolor">
