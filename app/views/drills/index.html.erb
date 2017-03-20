@@ -15,9 +15,8 @@
   <li role="presentation">
     <%= link_to 'Delete', group_path(@group_id),
         method: :delete,
-        remote: true,
-        class:"presstyle",
-        data: { confirm: 'Deleting this group will also delete all drills and answers associated. Are you sure?'}
+        data: { confirm: 'Deleting this group will also delete all drills and answers associated. Are you sure?'},
+        class:"presstyle"
     %>
   </li>
 
