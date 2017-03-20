@@ -8,7 +8,7 @@ admin = User.first
 
 Group.create(title: 'Pokemon')
 drillrand = (rand(8)+3).ceil
-drillrand.times do
+2.times do
   location = Faker::Pokemon.location
   level = (rand(3)+1).ceil
   points = level * 150 + rand(5).ceil * 10
