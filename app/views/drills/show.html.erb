@@ -41,9 +41,6 @@
       <%= link_to 'Next Drill', drill_path("#{@drill.id + 1}"), class: 'btn btn-primary' %>
     </div>
 
-  <div align="center">
-    <%= submit_tag "Submit Answer", class:"btn btn-primary" %>
-  </div>
   <div class="answer-hint">
     <button class='btn btn-danger' id="get-hint">Get a Hint</button>
     <p>Note: getting a hint will count towards your score as a fialed attempt</p>
