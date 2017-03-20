@@ -121,7 +121,7 @@ class UsersController < ApplicationController
   end
 
   def authorize
-    if current_user.is_validated == false || current_user.valid_email == false || cannot?(:manage, @user)
+    if current_user.is_validated == false || current_user.valid_email == false
       redirect_to root_path, alert: 'Not authorized!'
     end
   end
