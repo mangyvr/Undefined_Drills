@@ -42,8 +42,6 @@ class UsersController < ApplicationController
 
 
 
-
-
   end
 
   def bookmarks
