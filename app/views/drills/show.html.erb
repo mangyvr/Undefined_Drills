@@ -43,6 +43,7 @@
       <% if @drill.id < Drill.last.id %>
         <%= link_to 'Next Drill', drill_path("#{@drill.id + 1}"), class: 'btn btn-primary' %>
       <% end %>
+      <hr>
     </div>
 
   <div class="answer-hint">
