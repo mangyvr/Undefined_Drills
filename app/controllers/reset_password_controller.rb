@@ -1,6 +1,6 @@
 class ResetPasswordController < ApplicationController
 
-  before_action :authorize, only: [:new, :create, :edit, :update]
+  # before_action :authorize, only: [:create, :edit, :update]
 
   def new
   end
