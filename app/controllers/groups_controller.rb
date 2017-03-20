@@ -72,7 +72,7 @@ class GroupsController < ApplicationController
   private
 
   def find_user
-    @user = User.find current_user
+    @user = User.find current_user.id
   end
 
   def get_group_id

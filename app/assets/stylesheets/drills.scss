@@ -79,12 +79,23 @@ h4 {
 .back {
   position: fixed;
   top: 70px;
- right: 90px;
+  right: 11vw;
   z-index: 5000;
 }
 
+
 .hr2 {
   border-color: $color3
+
+// font awesome //
+
+.fa-check-square-o {
+  color: $color3;
+}
+
+.fa-times-circle-o {
+  color: $color8;
+
 }
 
 

@@ -22,6 +22,17 @@ class UserAnswersController < ApplicationController
         @user.save
       end
       user_drill_status.save
+      p current_user
+      p "current_user_completed_percentage is: "
+      p current_user.completed_percentage(@drill.group)
+      if current_user.completed_percentage(@drill.group) == 1.to_f
+        ugp = UserGroupPermission.new
+        p "ugp is: "
+        p ugp
+        ugp.user = current_user
+        ugp.group = @drill.group
+        ugp.save
+      end
     end
     respond_to do |format|
       format.html {redirect_to drill_path(@drill, body: user_answer), correct == true ? {notice: "You answered correctly."} : {alert: "Sorry, that's incorrect. Please try again."}}
