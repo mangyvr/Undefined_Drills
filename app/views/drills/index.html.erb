@@ -5,11 +5,11 @@
 <% end %>
 <br>
 <ul class="nav nav-tabs">
-  <li role="presentation"><a href="#" class='myDrills presstyle'>My Drills</a></li>
-  <li role="presentation"><a href="#" class='allDrills presstyle'>All Drills</a></li>
+  <li role="presentation"><a href="#" class='myDrills btn-universal'>My Drills</a></li>
+  <li role="presentation"><a href="#" class='allDrills btn-universal'>All Drills</a></li>
     <% #if can?(:manage, @group) %>
   <li role="presentation">
-    <%= link_to 'Edit', edit_group_path(@group_id), class:"presstyle" %>
+    <%= link_to 'Edit', edit_group_path(@group_id), class:"btn-universal" %>
   </li>
   <li role="presentation">
     <%= link_to 'Delete', group_path(@group_id),
@@ -107,7 +107,7 @@
     <%#if can?(:manage, @group)%>
     <div class="row">
       <% if can?(:manage, @group) %>
-      <div class="col-sm-12 col-md-12">
+      <div class="col-sm-12 col-md-8">
         <p>
           <%= link_to 'Delete',group_path(@group), class:"btn btn-danger",
                                 method: :delete,
