@@ -24,7 +24,7 @@
           <img src="https://unsplash.it/400/400/?image=<%=randnum%>" alt="">
         </div>
           <%if x.bookmarked_by?(current_user, x) %>
-          <h3 align="middle" style='background-color: #18bc9c;'><%= link_to x.title, group_drills_path(x) %></h3>
+          <h3 align="middle"><%= link_to x.title, group_drills_path(x) %></h3>
           <% else %>
           <h3 align="middle"><%= link_to x.title, group_drills_path(x) %></h3>
           <% end %>
@@ -54,7 +54,7 @@
         <%if x.bookmarked_by?(current_user, x) %>
           <h3 align="middle" style='background-color: #18bc9c;'><%= link_to x.title, group_drills_path(x) %></h3>
         <% else %>
-          <h3 align="middle"><%= link_to x.title, group_drills_path(x) %></h3>    
+          <h3 align="middle"><%= link_to x.title, group_drills_path(x) %></h3>
         <% end %>
       </div>
      </div>
