@@ -56,7 +56,7 @@ class Admin::DashboardController < Admin::BaseController
   end
 
   def validate_user
-    if @user.update(is_admin: true)
+    if @user.update(is_validated: true)
       flash[:alert] = 'User Validated!'
       redirect_to admin_dashboard_index_path
     end
@@ -64,7 +64,7 @@ class Admin::DashboardController < Admin::BaseController
 
   def activate_user
     if @user.update(is_admin: true)
-      flash[:alert] = 'User Activated!'
+      flash[:alert] = 'User Made Admin!'
       redirect_to admin_dashboard_index_path
     end
   end

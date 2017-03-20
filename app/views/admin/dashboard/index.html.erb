@@ -1,9 +1,12 @@
-<h1>Admin Dashboard</h1>
+
+<h1 align="center">Admin Dashboard</h1>
 <hr>
+
 <div class="row">
   <div class="col-md-12">
 
-    <h2>Counts Summary</h2>
+    <h2 align="center">Counts Summary</h2>
+    <hr>
     <table class="table table-condensed">
       <thead>
         <tr>
@@ -20,9 +23,12 @@
           </tr>
       </tbody>
     </table>
+    <br>
+
+
+    <h2 align="center">Users Summary</h2>
     <hr>
 
-    <h2>Users Summary</h2>
     <table class="table table-hover">
       <thead>
         <tr>
@@ -49,32 +55,34 @@
     </table>
     <hr>
 
-    <h2>Groups/Drills/Answers Summary</h2>
+    <h2 align="center">Groups/Drills/Answers Summary</h2>
     <% @lists[:groups].each do |group| %>
-      <h3>Group: <%= group.title %><%= button_to "Delete Group", admin_delete_group_path(group.id), method: :delete, class: "btn btn-danger" %></h3>
+      <h3 align="center">Group: <%= group.title %> <hr> <%= button_to "Delete Group", admin_delete_group_path(group.id), method: :delete, class: "btn btn-danger" %></h3>
+
       <% @lists[:drills].where(group_id: group.id).each do |drill| %>
         <table class="table table-hover">
+
           <thead>
             <%= form_tag admin_change_drill_metrics_path(drill), method: :patch do %>
-              <th><%= drill.title %></th>
-              <th>Level: <%= number_field_tag :level, :level, in: 1..3, value: drill.level %></th>
-              <th>Points: <%= number_field_tag :points, :points, in: 0..500, value: drill.points %></th>
-              <th><%= submit_tag "Change Drill Level/Score"%></th>
+              <th style="width:30%"><%= drill.title %></th>
+              <th class="aligncenter">Level: <%= number_field_tag :level, :level, in: 1..3, value: drill.level %></th>
+              <th class="aligncenter">Points: <%= number_field_tag :points, :points, in: 0..500, value: drill.points %></th>
+              <th class="aligncenter"><%= submit_tag "Change Drill Level/Score", class:"btn btn-default"%></th>
             <% end %>
             <th><%= button_to "Delete Drill", admin_delete_drill_path(drill.id), method: :delete, class: 'btn btn-danger'%></th>
           </thead>
           <tbody>
             <tr>
-              <th>Answer Body</th>
-              <th>Approved?</th>
-              <th>Answer Author</th>
+              <th class="aligncenter">Answer Body</th>
+              <th class="aligncenter">Approved?</th>
+              <th class="aligncenter">Answer Author</th>
             </tr>
             <% @lists[:answers].where(drill_id: drill.id).each do |answer| %>
               <tr>
-                <td><%= answer.body %></td>
-                <td><%= answer.approved ? "True" : (button_to "Approve Answer", admin_approve_answer_path(answer.id), method: :patch, class: 'btn btn-success') %></td>
-                <td><%= answer.user ? answer.user.full_name : "none" %></td>
-                <td><%= button_to "Delete Answer", admin_delete_answer_path(answer.id), method: :delete, class: 'btn btn-danger' %></td>
+                <td class="aligncenter"><%= answer.body %></td>
+                <td class="aligncenter"><%= answer.approved ? "True" : (button_to "Approve Answer", admin_approve_answer_path(answer.id), method: :patch, class: 'btn btn-success') %></td>
+                <td class="aligncenter"><%= answer.user ? answer.user.full_name : "none" %></td>
+                <td align="center"><%= button_to "Delete Answer", admin_delete_answer_path(answer.id), method: :delete, class: 'btn btn-danger' %></td>
               </tr>
             <% end %>
           </tbody>
@@ -119,29 +127,3 @@
 
   </div>
 </div>
-
-<!--
- step 1: create a users index to dispay all users
- Step 2: create a link for each user to render an show id page for each user
- Step 3: Be able to validate each user & and make user admin user
-
- class User < ApplicationRecord {
-                  :id => :integer,
-          :first_name => :string,
-           :last_name => :string,
-               :email => :string,
-            :is_admin => :boolean,
-     :password_digest => :string,
-        :is_validated => :boolean,
-               :score => :integer,
-         :token_field => :string,
-          :created_at => :datetime,
-          :updated_at => :datetime,
-                 :uid => :string,
-            :provider => :string,
-         :oauth_token => :string,
-        :oauth_secret => :string,
-      :oauth_raw_data => :text
- }
-
--->

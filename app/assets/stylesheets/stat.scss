@@ -1,0 +1,10 @@
+@import 'variables';
+
+.container-fluid {
+  margin-top: 10px;
+  @include border-radius(5px);
+}
+
+.statistics{
+  padding: 20px
+}

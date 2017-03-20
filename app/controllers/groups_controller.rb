@@ -1,8 +1,8 @@
 class GroupsController < ApplicationController
   before_action :authenticate_user!
   before_action :get_group_id, except: [:index, :new, :create]
-  before_action :get_bookmarks, only: [:index]
   before_action :authorize, only: [:edit, :update, :destroy]
+  before_action :find_user, only: [:index]
 
 
   # before_action :get_bookmarks, only: [:index]
@@ -10,6 +10,9 @@ class GroupsController < ApplicationController
 
   def index
     @groups = Group.order(created_at: :desc)
+    drillz = UserDrill.where(completed: true).where(user_id: @user.id)
+    drillz =
+    @drills = Drill.where(:id => drillz).all
     # @user_groups = Group.where???
     # render json: @groups
   end
@@ -69,8 +72,8 @@ class GroupsController < ApplicationController
 
   private
 
-  def get_bookmarks
-    # @usergroups = UserGroups.find_by_user_id session[:user_id]
+  def find_user
+    @user = User.find current_user
   end
 
   def get_group_id
