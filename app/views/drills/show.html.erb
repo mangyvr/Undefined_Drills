@@ -37,7 +37,16 @@
     </div>
 
     <div align="center">
+      <% if @drill.id > 1 %>
+        <%= link_to 'Previous Drill', drill_path("#{@drill.id - 1}"), class: 'btn btn-primary'%>
+      <% end %>
+
       <%= submit_tag "Submit Answer", class:"btn btn-primary" %>
+
+      <% if @drill.id < Drill.last.id %>
+        <%= link_to 'Next Drill', drill_path("#{@drill.id + 1}"), class: 'btn btn-primary' %>
+      <% end %>
+
     </div>
 
     <% end %>
@@ -55,20 +64,7 @@
       <strong id="hint" style="visibility:hidden;color:red;" >Hint: <%= @drill.answers[0].hint %></strong>
     </div>
   </div>
-<div class="col-xs-4">
 
-    <div align="center">
-      <% if @drill.id > 1 %>
-        <%= link_to 'Previous Drill', drill_path("#{@drill.id - 1}"), class: 'btn btn-primary'%>
-      <% end %>
-
-
-
-      <% if @drill.id < Drill.last.id %>
-        <%= link_to 'Next Drill', drill_path("#{@drill.id + 1}"), class: 'btn btn-primary' %>
-      <% end %>
-    </div>
-</div>
 
 
 
