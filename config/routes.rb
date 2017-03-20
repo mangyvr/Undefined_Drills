@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   resources :users do
     get :stats, on: :member
   end
+  resources :users do
+    get :bookmarks, on: :member
+  end
 
   # Reset password must be independent of users -- no associated user yet
   resources :reset_password, only: [:new, :create, :edit, :update]
@@ -39,6 +42,7 @@ Rails.application.routes.draw do
 
   root to: "home#index"
   resources :groups, shallow: true do
+    resources :user_groups, only: [:create, :destroy]
     resources :drills, shallow: true do
       resources :answers
       resources :user_answers, only: [:create]

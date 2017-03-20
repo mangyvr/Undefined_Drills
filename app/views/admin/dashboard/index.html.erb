@@ -40,7 +40,6 @@
             <td><%= user.first_name %></td>
             <td><%= user.last_name %></td>
             <td><%= user.email %></td>
-
             <td><%= user.is_admin ? 'True' : (button_to 'Activate admin', admin_activate_user_path(user.id), method: :patch ,class: 'btn btn-success') %></td>
             <td><%= user.is_validated ? 'True': (button_to 'Validate User', admin_validate_user_path(user.id), method: :patch, class: 'btn btn-warning') %></td>
             <td><%= user.is_admin ? 'Cannot Delete Admin' : (button_to "Delete", admin_delete_user_path(user.id), method: :delete, class: 'btn btn-danger') %></td>
@@ -106,10 +105,10 @@
             <td><%= user.first_name %></td>
             <td><%= user.last_name %></td>
             <td><%= user.email %></td>
-
             <td><%= user.is_admin ? 'True' : (button_to 'Activate admin', admin_activate_user_path(user.id), method: :patch ,class: 'btn btn-success') %></td>
             <td><%= user.is_validated ? 'True': (button_to 'Validate User', admin_validate_user_path(user.id), method: :patch, class: 'btn btn-warning') %></td>
             <td><%= user.is_admin ? 'Cannot Delete Admin' : (button_to "Delete", admin_delete_user_path(user.id), method: :delete, class: 'btn btn-danger') %></td>
+
           </tr>
         <% end %>
       </tbody>

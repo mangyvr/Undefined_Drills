@@ -4,15 +4,15 @@ class DrillsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-
+    @group = Group.find params[:group_id]
     # Show drills for this group only
     # render json:params
     @drills = Drill.order(created_at: :desc).where(group_id: params[:group_id])
     @group_id = params[:group_id]
-    attempted = UserDrill.where(user: current_user, completed: false).pluck(:drill_id)
+    attempted = UserDrill.where(user: current_user, completed: false).pluck(:drill_id, :attempts)
     completed = UserDrill.where(user: current_user, completed: true).pluck(:drill_id)
-    @attempted_drills = Drill.find attempted
-    @completed_drills = Drill.find completed
+    @completed_drills = Drill.find(completed)
+    @attempted_drills = UserDrill.where(user: current_user, completed: false)
   end
 
   def new

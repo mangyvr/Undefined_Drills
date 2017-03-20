@@ -3,3 +3,11 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "bootstrap-social";
+
+.alert {
+  z-index: 100
+}
+
+.notice {
+  z-index: 100
+}

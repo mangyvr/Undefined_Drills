@@ -1,6 +1,7 @@
 class GroupsController < ApplicationController
   before_action :get_group_id, except: [:index, :new, :create]
   before_action :get_bookmarks, only: [:index]
+  before_action :authorize, only: [:edit, :update, :destroy]
 
   before_action :authenticate_user!
 
@@ -49,7 +50,7 @@ class GroupsController < ApplicationController
     # ***Uncomment once admin is defined***
     group_params = params.require(:group).permit(:title)
     if @group.update(group_params)
-      redirect_to groups_path(@group), notice: "Group Updated Successfully"
+      redirect_to group_drills_path(@group), notice: "Group Updated Successfully"
     else
       render group_edit_path(@group), notice: "Group NOT Updated Successfully"
     end
@@ -74,6 +75,12 @@ class GroupsController < ApplicationController
 
   def get_group_id
     @group = Group.find params[:id]
+  end
+
+  def authorize
+    if cannot?(:manage, @group)
+      redirect_to group_drills_path(@group), alert: 'Not authorized!'
+    end
   end
 
 

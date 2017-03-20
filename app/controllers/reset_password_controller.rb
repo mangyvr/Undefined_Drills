@@ -15,7 +15,7 @@ class ResetPasswordController < ApplicationController
       @user.reset_sent_at = Time.zone.now
 
       if @user.save
-        ResetPasswordMailer.send_reset_password_link(@user, @user.gen_reset_link(request.base_url, token)).deliver_now
+        ResetPasswordMailer.send_reset_password_link(@user, @user.gen_reset_link(request.base_url, token)).deliver_later
 
         redirect_to root_path, notice: "Password reset email sent."
       else
