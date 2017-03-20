@@ -4,42 +4,58 @@
   </div>
 <% end %>
 
-
 <ul class="nav nav-tabs">
   <li role="presentation"><a href="#" class='myDrills presstyle'>My Drills</a></li>
   <li role="presentation"><a href="#" class='allDrills presstyle'>All Drills</a></li>
     <% #if can?(:manage, @group) %>
-  <li role="presentation"> <%= link_to 'Edit', edit_group_path(@group_id), class:"presstyle" %></li>
-  <li role="presentation"> <%= link_to 'Delete', group_path(@group_id),
-                              method: :delete, class:"presstyle",
-                              data: { confirm: 'Deleting this group will also delete all drills and answers associated. Are you sure?'} %> </li>
-      <% if @group.bookmarked_by?(current_user, @group) %>
-  <li role="presentation"> <%= link_to "Remove Bookmark", user_group_path(@group.bookmark_for(current_user)), method: :delete, class:"presstyle" %> </li>
-      <% else %>
-  <li role="presentation"> <%= link_to "Bookmark this Group", group_user_groups_path(@group), method: :post, class:"presstyle" %> </li>
-      <% end %>
-    <% #end %>
+  <li role="presentation">
+    <%= link_to 'Edit', edit_group_path(@group_id), class:"presstyle" %>
+  </li>
+  <li role="presentation">
+    <%= link_to 'Delete', group_path(@group_id),
+        method: :delete,
+        remote: true,
+        class:"presstyle",
+        data: { confirm: 'Deleting this group will also delete all drills and answers associated. Are you sure?'}
+    %>
+  </li>
+
+  <% if @group.bookmarked_by?(current_user, @group) %>
+    <li role="presentation">
+      <%= link_to "Remove Bookmark", user_group_path(@group.bookmark_for(current_user)),
+        method: :delete,
+        class:"presstyle"
+      %>
+    </li>
+  <% else %>
+    <li role="presentation">
+      <%= link_to "Bookmark this Group", group_user_groups_path(@group),
+        method: :post,
+        class:"presstyle"
+      %>
+    </li>
+  <% end %>
 </ul>
 
 <div>
   <div class='well well-lg container well-container'>
   <% if @drills.length == 0 %>
-    <h3 align="middle">No drills associated with this group yet...</h3>
+    <h3 align="middle" style="color:white">No drills associated with this group yet...</h3>
   <% else %>
-
-  <% @drills.each do |d| %>
-  <div class="col-md-4 well well-lg drills-outer-container">
-    <div class='drills-inner-container'>
-      <h4 class="othercolor">
-        <%= link_to d.title, drill_path(d) %>
-      </h4>
-      <hr>
-        <%= link_to 'Attempt Drill', drill_path(d), class:"btn btn-primary" %>
+    <% @drills.each do |d| %>
+    <div class="col-md-4 well well-lg drills-outer-container">
+      <div class='drills-inner-container'>
+        <h4 class="othercolor">
+          <%= link_to d.title, drill_path(d) %>
+        </h4>
+        <hr>
+          <%= link_to 'Attempt Drill', drill_path(d), class:"btn btn-primary" %>
+      </div>
     </div>
-  </div>
+    <% end %>
   <% end %>
-  <% end %>
   </div>
+</div>
 
 
 <div class='userDrills'>
@@ -78,8 +94,9 @@
   <div class="col-sm-12 col-md-12" align="left">
       <p><%= link_to 'Delete',group_path(@group), class:"btn btn-danger",
                             method: :delete,
+                            remote: true,
                             data: { confirm: 'Deleting this group will also delete all drills and answers associated. Are you sure?'} %>
-      <%= link_to 'Edit', edit_group_path(@group), class:"btn btn-default" %> </p>
+      <%= link_to 'Edit', edit_group_path(@group), class:"btn btn-default" %></p>
   </div>
   <% end %>
 </div>

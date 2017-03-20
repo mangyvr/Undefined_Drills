@@ -1,9 +1,12 @@
 class DrillsController < ApplicationController
   before_action :authenticate_user!
   before_action :find_drill, only: [:show, :edit, :update, :destroy]
+<<<<<<< HEAD
   before_action :new_drill, only: [:new]
   before_action :new_drill_create, only: [:create]
   before_action :authorize, except: [:index, :show]
+=======
+>>>>>>> 54da7a55c9e757d17b547bfe7168402eff9db99b
 
   def index
     @group = Group.find params[:group_id]
@@ -44,11 +47,11 @@ class DrillsController < ApplicationController
   end
 
   def update
-  if @drill.update drill_params
-    redirect_to drill_path(@drill), notice: 'Drill Updated'
-  else
-    render :edit
-  end
+    if @drill.update drill_params
+      redirect_to drill_path(@drill), notice: 'Drill Updated'
+    else
+      render :edit
+    end
   end
 
   def destroy
@@ -82,10 +85,6 @@ class DrillsController < ApplicationController
     if cannot? :manage, Drill
       redirect_to groups_path, alert: "You are not authorized."
     end
-    #
-    # if UserGroupPermission.where(group_id: @drill.group.id, user_id: current_user.id).present? || current_user.is_admin
-    # else
-    # end
   end
 
 end

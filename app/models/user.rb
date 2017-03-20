@@ -14,6 +14,7 @@ class User < ApplicationRecord
 
   has_secure_password
   before_validation :downcase_email
+  before_create :set_initial_score
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
 
@@ -88,6 +89,10 @@ class User < ApplicationRecord
   # Generate email validation link
   def gen_email_validation_link(url, token, user)
    "#{url}/users/#{user.id}/validate_email/#{token}/edit?email=#{self.email}"
+  end
+
+  def set_initial_score
+   self.score = 0
   end
 
   def completed_percentage(group)

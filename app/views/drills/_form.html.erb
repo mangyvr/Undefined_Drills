@@ -1,4 +1,4 @@
-<%= simple_form_for [@group, @drill] do |d| %>
+<%= simple_form_for [@group, @drill], remote: true do |d| %>
   <%= d.input :title %>
   <%= d.input :description %>
   <%= d.input :level %>

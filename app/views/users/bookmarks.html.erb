@@ -1,7 +1,11 @@
 
 <div class="container-fluid" align="middle">
 <h1>Your Bookmarks</h1>
+<hr>
+
+
 <%  @groups.each do |x|%>
-  <p> <%= link_to "#{x.title}", group_path(x) %></p>
-  <% end %>
+  <h3> <%= link_to "#{x.title}", group_drills_path(x) %></h3>
+<% end %>
+
 </div>
