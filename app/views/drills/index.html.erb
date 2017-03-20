@@ -56,6 +56,8 @@
     <% end %>
   <% end %>
   </div>
+
+  
   <div class='well well-lg container well-container my-drills'>
   <% if @attempted_drills.length == 0 %>
     <h3 align="middle" style="color:white">No attempted drills associated with this group yet...</h3>
@@ -74,51 +76,3 @@
     <% end %>
   <% end %>
   </div>
-
-
-
-  <div class="well well-lg container well-container">
-  <div class='userDrills drills-inner-container'>
-    <div class="row">
-      <div class="col-md-12" style="text-align:center">
-        <h2>Completed</h2>
-      </div> <!-- col-md-12 -->
-    </div> <!-- row -->
-    <div class="row" style="text-align:center">
-      <div class="col-md-12">
-        <ul style="list-style-type: none;">
-          <% @completed_drills.each do |completed| %>
-            <li><b><%= completed.title %></b><br>
-             <i class="fa fa-check-square-o" aria-hidden="true"> <%= completed.description %></i>
-            </li>
-          <% end %>
-        </ul>
-      </div> <!-- col-md-12 -->
-    </div> <!-- row -->
-
-      <div class="row" style="text-align:center">
-        <div class="col-md-12">
-          <h2>Attempted</h2>
-        </div> <!-- col-md-12 -->
-      </div> <!-- row -->
-
-      <div class="row" style="text-align:center">
-        <div class="col-md-12">
-          <ul style="list-style-type: none;">
-          <% if @attempted_drills.length == 0 %>
-            <li>There are no attempted drills for this user</li>
-          <% end %>
-          <% @attempted_drills.each do |attempted| %>
-            <li>
-              <b><%= attempted.drill.title %></b>
-              <br>
-              <i class="fa fa-times-circle-o" aria-hidden="true"> <%= attempted.drill.description%></i>
-              <br>
-              Attempts: <%= attempted.attempts %>
-            </li>
-        <% end %>
-        </ul>
-      </div> <!-- col-md-12 -->
-    </div> <!-- row -->
-</div>
-<br>

@@ -8,7 +8,7 @@ class Answer < ApplicationRecord
   validates :body, presence: true
 
   def generate_hint
-    self.hint = self.body.gsub(/[^aeiou]/i, "-")
+    self.hint = self.body.gsub(/[aeiou]/i, "-")
   end
 
 end
