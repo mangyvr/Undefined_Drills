@@ -15,8 +15,9 @@
   <li role="presentation">
     <%= link_to 'Delete', group_path(@group_id),
         method: :delete,
-        data: { confirm: 'Deleting this group will also delete all drills and answers associated. Are you sure?'},
-        class:"presstyle"
+        remote: true,
+        class:"presstyle",
+        data: { confirm: 'Deleting this group will also delete all drills and answers associated. Are you sure?'}
     %>
   </li>
 
@@ -104,15 +105,19 @@
     </div> <!-- row -->
 </div>
 <br>
-<!-- <div class="row">
+<div class="row">
   <% if can?(:manage, @group) %>
   <div class="col-sm-12 col-md-12">
     <p>
-      <%# link_to 'Delete', group_path(@group),
+      <%= link_to 'Delete', group_path(@group),
       method: :delete,
       data: { confirm: 'Deleting this group will also delete all drills and answers associated. Are you sure?'}, class:"btn btn-danger"%>
-      <%# link_to 'Edit', edit_group_path(@group), class:"btn btn-default" %>
+      <%= link_to 'Edit', edit_group_path(@group), class:"btn btn-default" %>
     </p>
-  </div>
+  </div>  <!-- col -->
   <% end %>
-</div> -->
+</div> <!-- row -->
+    <%#if can?(:manage, @group)%>
+    <%#end %>
+ <!-- container -->
+
