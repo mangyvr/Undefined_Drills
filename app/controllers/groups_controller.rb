@@ -1,6 +1,7 @@
 class GroupsController < ApplicationController
   before_action :get_group_id, except: [:index, :new, :create]
   before_action :get_bookmarks, only: [:index]
+  before_action :authorize, only: [:edit, :update, :destroy]
 
   before_action :authenticate_user!
 
@@ -74,6 +75,12 @@ class GroupsController < ApplicationController
 
   def get_group_id
     @group = Group.find params[:id]
+  end
+
+  def authorize
+    if cannot?(:manage, @group)
+      redirect_to group_drills_path(@group), alert: 'Not authorized!'
+    end
   end
 
 

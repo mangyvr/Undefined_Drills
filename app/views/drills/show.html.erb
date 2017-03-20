@@ -1,5 +1,6 @@
 
 <h1 style="text-align: center">Drill</h1>
+<div class="back"><a href="javascript:history.back()"><i class="fa fa-arrow-left fa-2x" aria-hidden="true"></i></a></div>
 <div class="col-sm-12">
     <h3 align="center">
         <%= @drill.title %>
@@ -35,7 +36,10 @@
   <% if @answer.body != "" && alert %>
     <%= form_for [@drill, @answer] do |a| %>
       <%= a.hidden_field :body, value: @answer.body %>
-      <%= a.submit "Disagree with our evaluation? Submit your answer for review" %>
+      <br>
+      <div align="center">
+      <%= a.submit "Disagree with our evaluation? Submit your answer for review", class:"btn btn-secondary"%>
+      </div>
     <% end %>
   <% end %>
 

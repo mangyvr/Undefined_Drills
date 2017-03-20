@@ -12,9 +12,9 @@
   <body>
     <%= render 'layouts/navbar' %>
     <% if notice %>
-      <div class='alert alert-success'><%= notice %></div>
+      <div class='alert alert-success floating_alert'><%= notice %></div>
     <% elsif alert %>
-      <div class='alert alert-danger'><%= alert %></div>
+      <div class='alert alert-danger floating_alert'><%= alert %></div>
     <% end %>
     <div class='container'>
       <%= yield %>

@@ -1,9 +1,9 @@
 <h1 class='drills-animation' align="center"><%= @group.title %></h1>
 <% if can?(:manage, @drills) %>
-<div align='center'><%= link_to 'New', new_group_drill_path(@group_id), class: 'btn btn-primary'%>
+  <div align='center'><%= link_to 'New', new_group_drill_path(@group_id), class: 'btn btn-primary'%>
   </div>
-  <% end %>
-  <hr>
+<% end %>
+
 
 <ul class="nav nav-tabs">
   <li role="presentation"><a href="#" class='myDrills presstyle'>My Drills</a></li>
@@ -43,7 +43,34 @@
 
 
 <div class='userDrills'>
+  <div>
+    <h2>Completed</h2>
+    <ul>
+      <% @completed_drills.each do |completed| %>
+        <li><b><%= completed.title %></b><br>
+         <%= completed.description %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
 
+  <div>
+    <h2>Attempts</h2>
+    <% if @attempted_drills.length == 0 %>
+      <p>There are no attempted drills for this user</p>
+    <% end %>
+    <ul>
+    <% @attempted_drills.each do |attempted| %>
+      <li>
+        <b><%= attempted.drill.title %></b>
+        <br>
+        <%= attempted.drill.description%>
+        <br>
+        Attempts: <%= attempted.attempts %>
+      </li>
+    <% end %>
+    </ul>
+  </div>
 </div>
 <%#if can?(:manage, @group)%>
 <div class="row">
