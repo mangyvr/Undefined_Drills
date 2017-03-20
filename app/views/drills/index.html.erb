@@ -1,5 +1,5 @@
 <h1 class='drills-animation' align="center"><%= @group.title %></h1>
-<% if can?(:manage, @drills) %>
+<% if can?(:manage, @drills) || UserGroupPermission.where(group_id: @group_id, user_id: current_user.id).present? %>
   <div align='center'><%= link_to 'New', new_group_drill_path(@group_id), class: 'btn btn-primary'%>
   </div>
 <% end %>
