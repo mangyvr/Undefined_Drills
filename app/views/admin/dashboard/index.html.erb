@@ -1,9 +1,12 @@
-<h1>Admin Dashboard</h1>
-  <br>
+
+<h1 align="center">Admin Dashboard</h1>
+<hr>
 
 <div class="row">
-  <div class="col-md-8">
+  <div class="col-md-12">
 
+    <h2 align="center">Counts Summary</h2>
+    <hr>
     <table class="table table-condensed">
       <thead>
         <tr>
@@ -14,13 +17,17 @@
       </thead>
       <tbody>
           <tr>
-            <td><%= @drill_count %></td>
-            <td><%= @answer_count %></td>
-            <td><%= @user_count %></td>
+            <td><%= @counts[:drill_count] %></td>
+            <td><%= @counts[:answer_count] %></td>
+            <td><%= @counts[:user_count] %></td>
           </tr>
       </tbody>
     </table>
+    <br>
 
+
+    <h2 align="center">Users Summary</h2>
+    <hr>
 
     <table class="table table-hover">
       <thead>
@@ -34,45 +41,89 @@
         </tr>
       </thead>
       <tbody>
-        <% @users.each do |user| %>
+        <% @lists[:users].each do |user| %>
           <tr>
             <td><%= user.first_name %></td>
             <td><%= user.last_name %></td>
             <td><%= user.email %></td>
-            <!-- Create button that links to  -->
-            <td><%= button_to 'Activate admin', admin_activate_user_path(user.id), method: :patch ,class: 'btn btn-success' %></td>
-            <td><%= button_to 'Validate user', admin_validate_user_path(user.id), method: :patch, class: 'btn btn-success' %></td>
-            <td><%= link_to "Delete", user_path(user), method: :delete, class: 'btn btn-danger' %></td>
+            <td><%= user.is_admin ? 'True' : (button_to 'Activate admin', admin_activate_user_path(user.id), method: :patch ,class: 'btn btn-success') %></td>
+            <td><%= user.is_validated ? 'True': (button_to 'Validate User', admin_validate_user_path(user.id), method: :patch, class: 'btn btn-warning') %></td>
+            <td><%= user.is_admin ? 'Cannot Delete Admin' : (button_to "Delete", admin_delete_user_path(user.id), method: :delete, class: 'btn btn-danger') %></td>
           </tr>
         <% end %>
       </tbody>
     </table>
+    <hr>
+
+    <h2 align="center">Groups/Drills/Answers Summary</h2>
+    <% @lists[:groups].each do |group| %>
+      <h3 align="center">Group: <%= group.title %> <hr> <%= button_to "Delete Group", admin_delete_group_path(group.id), method: :delete, class: "btn btn-danger" %></h3>
+
+      <% @lists[:drills].where(group_id: group.id).each do |drill| %>
+        <table class="table table-hover">
+
+          <thead>
+            <%= form_tag admin_change_drill_metrics_path(drill), method: :patch do %>
+              <th style="width:30%"><%= drill.title %></th>
+              <th class="aligncenter">Level: <%= number_field_tag :level, :level, in: 1..3, value: drill.level %></th>
+              <th class="aligncenter">Points: <%= number_field_tag :points, :points, in: 0..500, value: drill.points %></th>
+              <th class="aligncenter"><%= submit_tag "Change Drill Level/Score", class:"btn btn-default"%></th>
+            <% end %>
+            <th><%= button_to "Delete Drill", admin_delete_drill_path(drill.id), method: :delete, class: 'btn btn-danger'%></th>
+          </thead>
+          <tbody>
+            <tr>
+              <th class="aligncenter">Answer Body</th>
+              <th class="aligncenter">Approved?</th>
+              <th class="aligncenter">Answer Author</th>
+            </tr>
+            <% @lists[:answers].where(drill_id: drill.id).each do |answer| %>
+              <tr>
+                <td class="aligncenter"><%= answer.body %></td>
+                <td class="aligncenter"><%= answer.approved ? "True" : (button_to "Approve Answer", admin_approve_answer_path(answer.id), method: :patch, class: 'btn btn-success') %></td>
+                <td class="aligncenter"><%= answer.user ? answer.user.full_name : "none" %></td>
+                <td align="center"><%= button_to "Delete Answer", admin_delete_answer_path(answer.id), method: :delete, class: 'btn btn-danger' %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% end %>
+    <% end %>
+
+    <%# <p>Drill:  drill.title </p> %>
+    <%# @lists[:answers].where(drill_id: drill.id).each do |answer| %>
+    <%# <p style="color:silver">Answer: answer.body </p> %>
+    <%# end %>
+
+    <!-- <h2>Drills/Answers Summary</h2>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email</th>
+          <th>is_admin?</th>
+          <th>is_validated?</th>
+          <th>Delete User</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @lists[:users].each do |user| %>
+          <tr>
+            <td><%= user.first_name %></td>
+            <td><%= user.last_name %></td>
+            <td><%= user.email %></td>
+            <td><%= user.is_admin ? 'True' : (button_to 'Activate admin', admin_activate_user_path(user.id), method: :patch ,class: 'btn btn-success') %></td>
+            <td><%= user.is_validated ? 'True': (button_to 'Validate User', admin_validate_user_path(user.id), method: :patch, class: 'btn btn-warning') %></td>
+            <td><%= user.is_admin ? 'Cannot Delete Admin' : (button_to "Delete", admin_delete_user_path(user.id), method: :delete, class: 'btn btn-danger') %></td>
+
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <hr> -->
+
+
 
   </div>
 </div>
-
-<!--
- step 1: create a users index to dispay all users
- Step 2: create a link for each user to render an show id page for each user
- Step 3: Be able to validate each user & and make user admin user
-
- class User < ApplicationRecord {
-                  :id => :integer,
-          :first_name => :string,
-           :last_name => :string,
-               :email => :string,
-            :is_admin => :boolean,
-     :password_digest => :string,
-        :is_validated => :boolean,
-               :score => :integer,
-         :token_field => :string,
-          :created_at => :datetime,
-          :updated_at => :datetime,
-                 :uid => :string,
-            :provider => :string,
-         :oauth_token => :string,
-        :oauth_secret => :string,
-      :oauth_raw_data => :text
- }
-
--->

@@ -1,46 +1,55 @@
+<%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
 
+<div class='statistics' align="middle">
+  <h1>Statistics</h1>
+  <hr>
+</div>
+<div class="well well-md well-dark">
+<div class="container-fluid well well-md" >
+  <div class="row">
+    <div class="col-md-6">
+      <h2 class="aligncenter">Quick Stats</h2>
+      <p class="aligncenter">Your total score: <%= @user.score %></p>
+      <%if (Time.current - @user.created_at) < 172801 %>
+      <p class="aligncenter">Joined: <%= ((Time.current - @user.created_at)/3600).round(2) %> hours ago</p>
+      <% else %>
+      <p class="aligncenter">Joined: <%= ((Time.current - @user.created_at)/3600/24).to_i %> days ago</p>
+      <% end %>
+      <p class="aligncenter">Average attempts per question: <%= (@attempts/@completions).round(2) %></p>
+      <p class="aligncenter">Total Badges......other stuff</p>
+  </div>
+  <div class="col-md-6">
+    <h2 class="aligncenter">Recently Completed Drills</h2>
+     <% @drills.take(5).each do |z| %>
+    <p><%= link_to "#{z.title}", drill_path(z) %></p>
+    <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+    <h2 class="aligncenter">Overall Completion</h2>
+    <%= pie_chart({"Completed" => @completions, "Remaining" => (@totalgroups * @totaldrills)}) %>
+  </div>
+  <div class="col-md-6">
+    <h2 class="aligncenter">How You Stack Up</h2>
+    <%= column_chart({"Your Total" => @user.score,
+      "Global Average" => (@scoretotal/@totalusers)}) %>
+  </div>
+  </div>
+</div>
+</div>
+<!--
 <div class="container-fluid" align="middle">
-<p>Your bookmarked groups:</p>
-<%  @groups.each do |x|%>
-  <p> <%= link_to "#{x.title}", group_path(x) %> </p>
+  <h1>Recently Completed Drills</h1>
+   <% @drills.take(5).each do |z| %>
+  <p><%= link_to "#{z.title}", drill_path(z) %></p>
   <% end %>
 </div>
 
 <div class="container-fluid" align="middle">
-<p>Your most played group: </p>
-</div>
-
-<div class="container-fluid" align="middle">
-<%if (Time.current - @user.created_at) < 172801 %>
-<p>Joined: <%= ((Time.current - @user.created_at)/3600).to_i %> hours ago</p>
-<% else %>
-<p>Joined: <%= ((Time.current - @user.created_at)/3600/24).to_i %> days ago</p>
-<% end %>
-</div>
-
-<div class="container-fluid" align="middle">
-<p>Your most played drill: </p>
-</div>
-
-<div class="container-fluid" align="middle">
-<p>Your overall completion: </p>
-</div>
-
-<div class="container-fluid" align="middle">
-<p>How you stack up:</p>
-<p>The average player has <%= (@total/@totalusers) %> points.</p>
-<p>Your total is <%= @user.score %></p>.
-<p>Your are <%=  %></p>
-
-
-<%= (@total/@totalusers) %>
-<%= @myscore %>
-<%= @totalusers %>
-</div>
-
-<div class="container-fluid" align="middle">
-<p>Your last played drill: </p>
-</div>
-
-<hr>
-<div class="container-fluid" align="middle"><%= link_to 'Edit Your Profile', edit_user_path(current_user), class: 'btn btn-primary' %></div>
+  <h1>Overall Completion</h1>
+  <%= pie_chart({"Completed" => @completions, "Remaining" => (@totalgroups * @totaldrills)}) %>
+  <h1>How You Stack Up</h1>
+  <%= column_chart({"Your Total" => @user.score,
+    "Global Average" => (@scoretotal/@totalusers)}) %>
+</div> -->

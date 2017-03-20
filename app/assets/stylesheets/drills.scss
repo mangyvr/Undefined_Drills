@@ -33,7 +33,8 @@
 
 .drills-inner-container{
   background-color: white;
-  padding:10px
+  padding:10px;
+  height: 30vh;
 }
 
 .well-container {
@@ -47,8 +48,7 @@ h4 {
 }
 
 
-
-.big-well {
+.big-well, .well-dark {
   background-color: $color4;
 }
 
@@ -73,6 +73,14 @@ h4 {
     border: 1px solid black;
     height: 500px;
 }
+
+.back {
+  position: fixed;
+  top: 90px;
+  left: 90px;
+  z-index: 5000;
+}
+
 
 
 

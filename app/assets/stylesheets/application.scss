@@ -39,6 +39,7 @@ h4 {
 
  p, a {
   font-family: 'Roboto', sans-serif;
+  color: $color6;
  }
 
 .btn-universal {
@@ -53,4 +54,25 @@ h4 {
     color: #fff;
     text-decoration: none;
   }
+}
+
+
+.score {
+  position: fixed;
+  bottom: 40px;
+  right: 90px;
+  z-index: 5000;
+  text-shadow: -2px 2px transparentize(gray,0.5);
+  transition: all .5s ease;
+}
+
+.score a {
+  color: transparentize($color3, 0.2);
+}
+.score:hover {
+  text-shadow: none;
+}
+
+.aligncenter {
+  text-align: center;
 }

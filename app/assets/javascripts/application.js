@@ -20,11 +20,13 @@ $(document).ready(function() {
     $('a').mouseenter(function() {
     $(".main_logo").addClass("fa-spin");
     $(".main_logo").css("color", "#18bc9c");
+    $(".navbar").css("background-color", "black");
     // $(".main_logo").removeClass("leave");
   });
   $('a').mouseleave(function() {
     $(".main_logo").removeClass("fa-spin");
     $(".main_logo").css("color", "gray");
+    $(".navbar").css("background-color", "#383838");
     // $(".main_logo").addClass("leave");
   });
 
@@ -52,4 +54,5 @@ $(document).ready(function() {
     $('.titler').removeClass('intro-title-hover');
     $('.titler').addClass('intro-title');
   });
+  $('[data-toggle="tooltip"]').tooltip();
 });

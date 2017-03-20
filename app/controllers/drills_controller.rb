@@ -1,6 +1,8 @@
 class DrillsController < ApplicationController
   before_action :find_drill, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
+  before_action :find_drill, only: [:edit, :update, :destroy]
+  before_action :authorize, except: [:index, :show]
 
   def index
     @group = Group.find params[:group_id]
@@ -23,14 +25,12 @@ class DrillsController < ApplicationController
     # render json:params
     @drill  = Drill.new(drill_params)
     @drill.group_id = params[:group_id]
-    respond_to do |format|
-      if @drill.save
-        # flash[:notice] = 'Drill created successfully'
-        format.html { redirect_to drill_path(@drill), 'Drill created successfully' }
-      else
-        # flash.now[:alert] = 'Please fix errors below'
-        format.html { render :new }
-      end
+    if @drill.save
+      flash[:notice] = 'Drill created successfully'
+      redirect_to drill_path(@drill)
+    else
+      flash.now[:alert] = 'Please fix errors below'
+      render :new
     end
   end
 
@@ -53,9 +53,7 @@ class DrillsController < ApplicationController
 
   def destroy
     @drill.destroy
-    respond_to do |format|
-      format.html { redirect_to group_drills_path(@drill.group_id), notice: 'Drill Deleted' }
-    end
+    redirect_to group_drills_path(@drill.group_id), notice: 'Drill Deleted'
   end
 
   private
@@ -67,4 +65,11 @@ class DrillsController < ApplicationController
   def find_drill
     @drill = Drill.find params[:id]
   end
+
+  def authorize
+    if cannot?(:manage, @drill)
+      redirect_to drill_path(@drill), alert: "You are not authorized for that action!"
+    end
+  end
+
 end

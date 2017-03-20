@@ -11,10 +11,23 @@
     <link href="https://fonts.googleapis.com/css?family=Cabin|Lato|Roboto" rel="stylesheet">  </head>
   <body>
     <%= render 'layouts/navbar' %>
+<<<<<<< HEAD
     <div class='alert alert-success'<%= ' style="display: none"'.html_safe unless notice %>><%= notice if notice %></div>
     <div class='alert alert-danger'<%= ' style="display: none"'.html_safe unless alert %>><%= alert if alert %></div>
+=======
+    <% if notice %>
+      <div class='alert alert-success floating_alert'><%= notice %></div>
+    <% elsif alert %>
+      <div class='alert alert-danger floating_alert'><%= alert %></div>
+    <% end %>
+>>>>>>> 939e7c933dbc49ec279a808fed6e31b0bd3af1d2
     <div class='container'>
       <%= yield %>
+      <% if current_user.present? %>
+      <div class="score">
+        <div data-toggle="tooltip" title="My Score <%= current_user.score %>"><%= link_to '<i class="fa fa-pie-chart fa-5x" aria-hidden="true"></i>'.html_safe, stats_user_path(current_user)%></div>
+      </div>
+      <% end %>
     </div>
   </body>
 </html>
