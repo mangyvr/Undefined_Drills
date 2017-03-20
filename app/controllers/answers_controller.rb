@@ -23,7 +23,8 @@ class AnswersController < ApplicationController
     answer_params[:user] = current_user
     answer_params[:drill] = @drill
     @answer = Answer.create(answer_params)
-    redirect_to drill_path(@drill, body: @answer.body), @answer.approved ? {notice: "The answer has been successfully created"} : {notice: "Your answer has been submitted for review!"}
+    redirect_to drill_path(@drill, body: @answer.body), @answer.approved ?
+    {notice: "The answer has been successfully created"} : {notice: "Your answer has been submitted for review!"}
   end
 
   def edit

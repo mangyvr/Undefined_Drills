@@ -1,6 +1,5 @@
 class DrillsController < ApplicationController
   before_action :find_drill, only: [:show, :edit, :update, :destroy]
-
   before_action :authenticate_user!
 
   def index
@@ -24,12 +23,14 @@ class DrillsController < ApplicationController
     # render json:params
     @drill  = Drill.new(drill_params)
     @drill.group_id = params[:group_id]
-    if @drill.save
-      flash[:notice] = 'Drill created successfully'
-      redirect_to drill_path(@drill)
-    else
-      flash.now[:alert] = 'Please fix errors below'
-      render :new
+    respond_to do |format|
+      if @drill.save
+        # flash[:notice] = 'Drill created successfully'
+        format.html { redirect_to drill_path(@drill), 'Drill created successfully' }
+      else
+        # flash.now[:alert] = 'Please fix errors below'
+        format.html { render :new }
+      end
     end
   end
 
@@ -43,16 +44,18 @@ class DrillsController < ApplicationController
   end
 
   def update
-  if @drill.update drill_params
-    redirect_to drill_path(@drill), notice: 'Drill Updated'
-  else
-    render :edit
-  end
+    if @drill.update drill_params
+      redirect_to drill_path(@drill), notice: 'Drill Updated'
+    else
+      render :edit
+    end
   end
 
   def destroy
     @drill.destroy
-    redirect_to group_drills_path(@drill.group_id), notice: 'Drill Deleted'
+    respond_to do |format|
+      format.html { redirect_to group_drills_path(@drill.group_id), notice: 'Drill Deleted' }
+    end
   end
 
   private
@@ -64,8 +67,4 @@ class DrillsController < ApplicationController
   def find_drill
     @drill = Drill.find params[:id]
   end
-
-
-
-
 end
