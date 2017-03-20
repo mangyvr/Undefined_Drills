@@ -62,9 +62,9 @@ class GroupsController < ApplicationController
     # render plain: "Destroying Groups is Admin Only"
     # ***Uncomment once admin is defined***
     if @group.destroy
-      redirect_to groups_path, notice: "Group Successfully Destroyed"
+      redirect_to root_path, notice: "Group Successfully Destroyed"
     else
-      redirect_to groups_path(@group), alert: "Group NOT Destroyed Successfully"
+      redirect_to group_path(@group), alert: "Group NOT Destroyed Successfully"
     end
   end
 
