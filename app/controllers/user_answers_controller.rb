@@ -8,15 +8,15 @@ class UserAnswersController < ApplicationController
     user_answer = params[:user_answer]
     correct = false
     correct_answers.each do |answer|
-      if answer.body.downcase == user_answer.downcase &&
+      if answer.body.downcase == user_answer.downcase
         correct = true
       end
       p answer.body.downcase + ' - ' + params[:user_answer].downcase
     end
 
-    if user_drill_status.completed === false
+    if user_drill_status.completed == false
       user_drill_status.attempts += 1
-      if (correct == true && user_drill_status.completed === false)
+      if (correct == true && user_drill_status.completed == false)
         user_drill_status.completed = true
         @user.score = @user.score + @drill.points
         @user.save
@@ -34,7 +34,7 @@ class UserAnswersController < ApplicationController
         ugp.save
       end
     end
-    redirect_to drill_path(@drill, body: user_answer), correct == true ? {notice: "You answered correctly."} : {alert: "Sorry, that's incorrect. Please try again."}}
+    redirect_to drill_path(@drill, body: user_answer), correct == true ? {notice: "You answered correctly."} : {alert: "Sorry, that's incorrect. Please try again."}
 
   end
 
