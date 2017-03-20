@@ -30,6 +30,7 @@ class DrillsController < ApplicationController
 
     if @drill.save
       flash[:notice] = 'Drill created successfully'
+      answer = Answer.create(body: 'Default', drill: @drill, user: current_user, approved: current_user.is_admin)
       redirect_to drill_path(@drill)
     else
       flash.now[:alert] = 'Please fix errors below'

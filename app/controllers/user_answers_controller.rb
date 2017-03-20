@@ -34,16 +34,21 @@ class UserAnswersController < ApplicationController
         ugp.save
       end
     end
-    respond_to do |format|
-      format.html {redirect_to drill_path(@drill, body: user_answer), correct == true ? {notice: "You answered correctly."} : {alert: "Sorry, that's incorrect. Please try again."}}
-      format.js {
-        if correct == true
-          render :success
-        else
-          render :failure
-        end
-      }
-    end
+
+    redirect_to drill_path(@drill, body: user_answer), correct == true ? {notice: "You answered correctly."} : {alert: "Sorry, that's incorrect. Please try again."}}
+
+
+    # respond_to do |format|
+    #   format.html {redirect_to drill_path(@drill, body: user_answer), correct == true ? {notice: "You answered correctly."} : {alert: "Sorry, that's incorrect. Please try again."}}
+    #   format.js {
+    #     if correct == true
+    #       render :success
+    #     else
+    #       render :failure
+    #     end
+    #   }
+    # end
+
   end
 
   private
