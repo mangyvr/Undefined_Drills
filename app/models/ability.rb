@@ -9,6 +9,8 @@ class Ability
 
     if user.is_admin?
       can :manage, :all
+      cannot :manage, User, is_admin: true
+      can :manage, User, id: user.id
     else
       cannot :manage, User
       can :manage, User, id: user.id
