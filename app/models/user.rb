@@ -9,7 +9,8 @@ class User < ApplicationRecord
   has_many :attempteddrills, through: :user_drills, source: :drill
   has_many :user_groups, dependent: :destroy
   has_many :bookmarkedgroups, through: :user_groups, source: :group
-  has_many :answers, dependent: :nullify
+  has_many :answers, dependent: :destroy
+  has_many :user_group_permission, dependent: :destroy
   has_many :permittedgroups, through: :user_group_permission, source: :group
 
   has_secure_password
