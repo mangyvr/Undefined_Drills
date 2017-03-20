@@ -1,12 +1,10 @@
 class DrillsController < ApplicationController
   before_action :authenticate_user!
   before_action :find_drill, only: [:show, :edit, :update, :destroy]
-<<<<<<< HEAD
+
   before_action :new_drill, only: [:new]
   before_action :new_drill_create, only: [:create]
   before_action :authorize, except: [:index, :show]
-=======
->>>>>>> 54da7a55c9e757d17b547bfe7168402eff9db99b
 
   def index
     @group = Group.find params[:group_id]
