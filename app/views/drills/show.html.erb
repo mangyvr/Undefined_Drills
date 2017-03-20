@@ -1,28 +1,20 @@
 <h1 style="text-align: center">Drill</h1>
 <div class="back"><a href="javascript:history.back()"><i class="fa fa-arrow-circle-left fa-4x" aria-hidden="true"></i></a></div>
 <div class="col-sm-12">
-  <h3 align="center">
-    <%= @drill.title %>
-  </h3>
-  <h4 align="center">
-    <%= @drill.description %>
-  </h4>
-  <hr>
-  <div class="col-xs-6" align="right">
-    <h4>Drill Level <%= @drill.level %></h4>
-  </div>
-  <div class="col-xs-6">
-    <h4>Drill Points <%= @drill.points %></h4>
-  </div>
-  <div align="center">
-    <% if can?(:manage, @drill) %>
-      <%= link_to 'Edit', edit_drill_path(@drill), class: "btn btn-default" %>
-      <%= link_to 'Delete', drill_path(@drill),
-        method: :delete,
-        remote: :true,
-        data: { confirm: 'Are you sure?' },
-        class: "btn btn-danger"
-      %>
+    <h3 align="center">
+        <%= @drill.title %>
+    </h3>
+    <h4 align="center">
+        <%= @drill.description %>
+    </h4>
+    <hr>
+    <div class="col-xs-6" align="right"><h4>Drill Level <%= @drill.level %></h4></div>
+    <div class="col-xs-6"><h4>Drill Points <%= @drill.points %></h4></div>
+    <div align="center">
+    <% if can?(:manage, @drills) || UserGroupPermission.where(group_id: @drill.group.id, user_id: current_user.id).present? %>
+      <%= link_to 'Edit', edit_drill_path(@drill), class: "btn btn-sm btn-default" %>
+      <%= link_to 'Delete', drill_path(@drill), method: :delete,
+      data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger"  %>
     <% end %>
     <br>
   </div>
@@ -35,23 +27,33 @@
       <%= text_area_tag :user_answer, @answer.body, class:"form-control" %>
       </div>
     </div>
+  </div>
+<div class="col-xs-4 pull-right">
     <div align="center">
       <% if @drill.id > 1 %>
-        <%= link_to 'Previous Drill', drill_path("#{@drill.id - 1}"), class: 'btn btn-primary'%>
+        <%= link_to 'Previous Drill <i class="fa fa-arrow-circle-o-left" aria-hidden="true"></i>'.html_safe, drill_path("#{@drill.id - 1}"), class: 'btn btn-primary'%>
       <% end %>
       <%= submit_tag "Submit Answer", class:"btn btn-primary" %>
       <% if @drill.id < Drill.last.id %>
-        <%= link_to 'Next Drill', drill_path("#{@drill.id + 1}"), class: 'btn btn-primary' %>
+        <%= link_to 'Next Drill <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>'.html_safe, drill_path("#{@drill.id + 1}"), class: 'btn btn-primary' %>
       <% end %>
     </div>
+    <% end %>
+    </div>
+<br>
 
-  <div class="answer-hint">
-    <button class='btn btn-danger' id="get-hint">Get a Hint</button>
-    <p>Note: getting a hint will count towards your score as a fialed attempt</p>
-    <strong id="hint" ><%= @answer.hint %></strong>
+
+
+
+
+  <div class="col-xs-8">
+    <div class="answer-hint">
+      <button class='btn btn-danger' id="get-hint">Get Hint - This will count as a failed attempt</button>
+
+      <strong id="hint" style="visibility:hidden;color:red;" >Hint: <%= @drill.answers[0].hint %></strong>
+    </div>
   </div>
 
-  <% end %>
 
   <% if @answer.body != "" && alert %>
     <%= form_for [@drill, @answer] do |a| %>
@@ -62,9 +64,24 @@
       </div>
     <% end %>
   <% end %>
-  <hr>
-  <h2>Correct Answers - Remove this from final version!!!!</h2>
-  <% @drill.answers.each do |answer| %>
-    <p><%= answer.body %></p>
-  <% end %>
+
+<div class="container col-xs-12">
+
+<h2>Correct Answers - Remove this from final version!!!!</h2>
+<% @drill.answers.each do |answer| %>
+  <p><%= answer.body %></p>
+<% end %>
 </div>
+
+<script>
+  $(document).ready(function() {
+    $('#get-hint').on('click', function (event) {
+      const {currentTarget} = event;
+      event.preventDefault();
+      console.log('Button Clicked');
+      console.log($('#hint')[0].style)
+      $('#hint')[0].style.visibility = 'visible';
+      $(currentTarget)[0].style.display = 'none';
+    });
+  })
+</script>

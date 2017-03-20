@@ -1,13 +1,15 @@
 @import 'variables';
 
+
+.navbar {
+  transition: all 2s ease;
+}
+
 .main_logo {
   transition: all .5s ease;
   color:black;
 }
 
-.navbar {
-  transition: all 2s ease;
-}
 
 .navbar-default .navbar-toggle {
     border-color: $color3;

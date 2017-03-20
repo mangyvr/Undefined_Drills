@@ -1,6 +1,12 @@
 class DrillsController < ApplicationController
   before_action :authenticate_user!
   before_action :find_drill, only: [:show, :edit, :update, :destroy]
+<<<<<<< HEAD
+  before_action :new_drill, only: [:new]
+  before_action :new_drill_create, only: [:create]
+  before_action :authorize, except: [:index, :show]
+=======
+>>>>>>> 54da7a55c9e757d17b547bfe7168402eff9db99b
 
   def index
     @group = Group.find params[:group_id]
@@ -16,13 +22,13 @@ class DrillsController < ApplicationController
 
   def new
     @group = Group.find (params[:group_id])
-    @drill = Drill.new
+    # @drill = Drill.new
   end
 
   def create
     # render json:params
-    @drill  = Drill.new(drill_params)
-    @drill.group_id = params[:group_id]
+    @group = Group.find (params[:group_id])
+
     if @drill.save
       flash[:notice] = 'Drill created successfully'
       redirect_to drill_path(@drill)
@@ -33,7 +39,6 @@ class DrillsController < ApplicationController
   end
 
   def show
-    @drill = Drill.find params[:id]
     user_answer = params[:body] || ""
     @answer = Answer.new(user: current_user, drill: @drill, body: user_answer, approved: false)
   end
@@ -57,16 +62,28 @@ class DrillsController < ApplicationController
   private
 
   def drill_params
-    params.require(:drill).permit([:title, :description, :group_id])
+    params.require(:drill).permit([:title, :description, :group_id, :level, :points])
   end
 
   def find_drill
     @drill = Drill.find params[:id]
   end
 
+  def new_drill
+    @drill = Drill.new
+    @drill.group_id = params[:group_id]
+  end
+
+  def new_drill_create
+    @drill = Drill.new(drill_params)
+    @drill.group_id = params[:group_id]
+  end
+
   def authorize
-    if cannot?(:manage, @drill)
-      redirect_to drill_path(@drill), alert: "You are not authorized for that action!"
+    return if UserGroupPermission.where(group_id: @drill.group.id, user_id: current_user.id).present? || current_user.is_admin
+
+    if cannot? :manage, Drill
+      redirect_to groups_path, alert: "You are not authorized."
     end
   end
 

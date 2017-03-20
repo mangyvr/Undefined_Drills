@@ -10,12 +10,24 @@
   <% next %>
   <% end %>
   <div class="well well-sm">
-    <h4><%= counter %>: <%= x.first_name%>: <%= x.score %></h4>
-    <div class="progress">
-      <div class="progress-bar" role="progressbar" aria-valuenow="<%= x.score %>" aria-valuemin="0" aria-valuemax="<%= max %>" style="width:<%=  (x.score / max * 100).round %>%;">
-        <%= x.score %>
+
+    <% if x.id == current_user.id %>
+      <h4 style='color: #18bc9c'><%= counter %>: <%= x.first_name%>: <%= x.score %></h4>
+      <div class="progress">
+        <div class="progress-bar" role="progressbar" aria-valuenow="<%= x.score %>" aria-valuemin="0" aria-valuemax="<%= max %>" style="width:<%=  (x.score / max * 100).round %>%;">
+          <%= x.score %>
+        </div>
       </div>
-    </div>
+    <% else %>
+      <h4><%= counter %>: <%= x.first_name%>: <%= x.score %></h4>
+      <div class="progress">
+        <div class="progress-bar" role="progressbar" aria-valuenow="<%= x.score %>" aria-valuemin="0" aria-valuemax="<%= max %>" style="width:<%=  (x.score / max * 100).round %>%;">
+          <%= x.score %>
+        </div>
+      </div>
+    <% end %>
+
+
   </div>
   <% counter = counter + 1  %>
 <% end %>
