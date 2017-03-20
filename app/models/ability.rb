@@ -15,10 +15,12 @@ class Ability
       cannot :manage, User
       can :manage, User, id: user.id
       cannot :manage, Group
-      cannot :manage, Drill do |drl|
-        # drl.user == user || drl.post.user == user
-        UserGroupPermission.where(group_id: drl.group.id, user_id: user.id).count > 0
-      end
+      # can :manage, Drill do |drill|
+      #   byebug
+      #   UserGroupPermission.where(group_id: drill.group.id, user_id: user.id).present?
+      # end
+      # cannot :manage, Drill
+      cannot :manage, Drill
       cannot :manage, Answer
     end
 
