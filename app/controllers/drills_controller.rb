@@ -42,6 +42,12 @@ class DrillsController < ApplicationController
   end
 
   def show
+    @random_drill = ''
+    loop do
+      @random_drill = Drill.where(group_id: @drill.group.id).sample
+      break if @random_drill != @drill
+    end
+    p @random_drill
     user_answer = params[:body] || ""
     @answer = Answer.new(user: current_user, drill: @drill, body: user_answer, approved: false)
   end

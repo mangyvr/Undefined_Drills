@@ -1,7 +1,7 @@
 class AnswersController < ApplicationController
   before_action :authenticate_user!
   before_action :get_answer_id, except: [:new, :create, :index]
-  before_action :authorize
+  # before_action :authorize
 
   def index
     render plain: "Is this required?"
