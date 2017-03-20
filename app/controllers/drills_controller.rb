@@ -6,6 +6,7 @@ class DrillsController < ApplicationController
   before_action :new_drill_create, only: [:create]
   before_action :authorize, except: [:index, :show]
 
+
   def index
     @group = Group.find params[:group_id]
     # Show drills for this group only
@@ -27,9 +28,9 @@ class DrillsController < ApplicationController
     # render json:params
     @group = Group.find (params[:group_id])
 
-    if @drill.save
+
+    if @drill.save && Drill.last.answers.create(user: current_user, drill_id: @drill.id, approved: true, body: params[:answer_body] ? params[:answer_body] : 'default')
       flash[:notice] = 'Drill created successfully'
-      answer = Answer.create(body: 'Default', drill: @drill, user: current_user, approved: current_user.is_admin)
       redirect_to drill_path(@drill)
     else
       flash.now[:alert] = 'Please fix errors below'

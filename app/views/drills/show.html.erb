@@ -1,6 +1,6 @@
 <h1 style="text-align: center">Drill</h1>
 
-<div class="back"><a href="javascript:history.back()"><i class="fa fa-arrow-circle-left fa-4x" aria-hidden="true" style='font-size: 27px'>Back</i></a></div>
+<div class="back" data-toggle="tooltip" title="Back" data-placement="right"><a href="javascript:history.back()"><i class="fa fa-arrow-circle-left fa-3x" aria-hidden="true"></i></a></div>
 
 <div class="col-sm-12">
     <h3 align="center">
@@ -14,15 +14,15 @@
     <div class="col-xs-6"><h4>Drill Points <%= @drill.points %></h4></div>
     <div align="center">
     <% if can?(:manage, @drills) || UserGroupPermission.where(group_id: @drill.group.id, user_id: current_user.id).present? %>
-      <%= link_to 'Edit', edit_drill_path(@drill), class: "btn btn-sm btn-default" %>
+      <%= link_to 'Edit', edit_drill_path(@drill), class: "btn btn-default" %>
       <%= link_to 'Delete', drill_path(@drill), method: :delete,
-      data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger"  %>
+      data: { confirm: 'Are you sure?' }, class: "btn btn-danger"  %>
     <% end %>
     <br>
   </div>
   <hr>
 
-  <%= form_tag drill_user_answers_path(@drill), method: 'post', remote: true do %>
+  <%= form_tag drill_user_answers_path(@drill), method: 'post' do %>
     <div class="form-group" align="center">
       <div class="input-group">
       <%= label_tag :user_answer, "Your answer:", class:"input-group-addon" %>
@@ -44,6 +44,14 @@
     </div>
 <br>
 
+
+  <div class="col-xs-8">
+    <div class="answer-hint">
+      <button class='btn btn-danger' id="get-hint">Get Hint - This will count as a failed attempt</button>
+
+      <strong id="hint" style="visibility:hidden;color:red;" >Hint: <%= @drill.answers[0].hint %></strong>
+    </div>
+  </div>
 
 
   <% if @answer.body != "" && alert %>

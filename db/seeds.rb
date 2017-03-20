@@ -6,7 +6,7 @@ User.first.update(is_admin: true, score: 1)
 
 users = User.all
 
-5.times do
+6.times do
   Group.create(title: Faker::Pokemon.name)
 end
 

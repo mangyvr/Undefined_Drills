@@ -1,15 +1,16 @@
 <h1 class='drills-animation' align="center"><%= @group.title %></h1>
+<h1 align="center"><i class="fa fa-code-fork" aria-hidden="true"></i></h1>
 <br>
 <% if can?(:manage, @drills) || UserGroupPermission.where(group_id: @group_id, user_id: current_user.id).present? %>
   <div align='center'><%= link_to 'New', new_group_drill_path(@group_id), class: 'btn-universal'%></div>
 <% end %>
 <br>
 <ul class="nav nav-tabs">
-  <li role="presentation"><a href="#" class='myDrills btn-universal'>My Drills</a></li>
-  <li role="presentation"><a href="#" class='allDrills btn-universal'>All Drills</a></li>
+  <li role="presentation"><a href="#" class='myDrills presstyle'>My Drills</a></li>
+  <li role="presentation"><a href="#" class='allDrills presstyle'>All Drills</a></li>
     <% #if can?(:manage, @group) %>
   <li role="presentation">
-    <%= link_to 'Edit', edit_group_path(@group_id), class:"btn-universal" %>
+    <%= link_to 'Edit', edit_group_path(@group_id), class:"presstyle" %>
   </li>
   <li role="presentation">
     <%= link_to 'Delete', group_path(@group_id),
@@ -37,7 +38,7 @@
   <% end %>
 </ul>
 
-<div>
+
   <div class='well well-lg container well-container'>
   <% if @drills.length == 0 %>
     <h3 align="middle" style="color:white">No drills associated with this group yet...</h3>
@@ -56,19 +57,19 @@
     <% end %>
   <% end %>
   </div>
-</div>
 
-<div class="container">
-  <div class='userDrills'>
+
+
+  <div class="well well-lg container well-container">
+  <div class='userDrills drills-inner-container'>
     <div class="row">
-      <div class="col-md-12 col-md-push-1">
+      <div class="col-md-12" style="text-align:center">
         <h2>Completed</h2>
       </div> <!-- col-md-12 -->
     </div> <!-- row -->
-
-    <div class="row">
+    <div class="row" style="text-align:center">
       <div class="col-md-12">
-        <ul>
+        <ul style="list-style-type: none;">
           <% @completed_drills.each do |completed| %>
             <li><b><%= completed.title %></b><br>
              <i class="fa fa-check-square-o" aria-hidden="true"> <%= completed.description %></i>
@@ -78,16 +79,15 @@
       </div> <!-- col-md-12 -->
     </div> <!-- row -->
 
-
-      <div class="row">
-        <div class="col-md-12 col-md-push-1">
+      <div class="row" style="text-align:center">
+        <div class="col-md-12">
           <h2>Attempted</h2>
         </div> <!-- col-md-12 -->
       </div> <!-- row -->
 
-      <div class="row">
+      <div class="row" style="text-align:center">
         <div class="col-md-12">
-          <ul>
+          <ul style="list-style-type: none;">
           <% if @attempted_drills.length == 0 %>
             <li>There are no attempted drills for this user</li>
           <% end %>
@@ -103,20 +103,21 @@
         </ul>
       </div> <!-- col-md-12 -->
     </div> <!-- row -->
-
+</div>
+<br>
+<div class="row">
+  <% if can?(:manage, @group) %>
+  <div class="col-sm-12 col-md-12">
+    <p>
+      <%= link_to 'Delete', group_path(@group),
+      method: :delete,
+      data: { confirm: 'Deleting this group will also delete all drills and answers associated. Are you sure?'}, class:"btn btn-danger"%>
+      <%= link_to 'Edit', edit_group_path(@group), class:"btn btn-default" %>
+    </p>
+  </div>  <!-- col -->
+  <% end %>
+</div> <!-- row -->
     <%#if can?(:manage, @group)%>
-    <div class="row">
-      <% if can?(:manage, @group) %>
-      <div class="col-sm-12 col-md-8">
-        <p>
-          <%= link_to 'Delete',group_path(@group), class:"btn btn-danger",
-                                method: :delete,
-                                remote: true,
-                                data: { confirm: 'Deleting this group will also delete all drills and answers associated. Are you sure?'} %>
-          <%= link_to 'Edit', edit_group_path(@group), class:"btn btn-default" %>
-        </p>
-      </div>  <!-- col -->
-      <% end %>
-    </div> <!-- row -->
     <%#end %>
-  </div> <!-- container -->
+ <!-- container -->
+
