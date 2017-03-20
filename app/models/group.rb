@@ -3,6 +3,7 @@ class Group < ApplicationRecord
   has_many :drills, dependent: :destroy
   has_many :user_groups, dependent: :destroy
   has_many :bookmarkers, through: :user_groups, source: :user
+  has_many :permittedusers, through: :user_group_permission, source: :user
 
   # VALIDATIONS
   validates :title, presence: true, uniqueness: true
