@@ -8,16 +8,6 @@ html,body{
     height: 100%;
 }
 
-#cover {
-    background: #222 url('http://unsplash.it/1920/2880?image=618') center center no-repeat;
-    background-size: cover;
-    color: white;
-    height: 100%;
-    text-align: center;
-    display: flex;
-    align-items: center;
-}
-
 #cover-caption {
     width: 100%;
     background-color: transparentize($color4, 0.2);
@@ -64,6 +54,8 @@ html,body{
   background: rgba(0,0,0,0.5);
   -webkit-transition: opacity 2s ease;
   transition: opacity 2s ease;
+  background:  url(https://media.giphy.com/media/PKgkx1bIE03Ic/giphy.gif) no-repeat center center fixed;
+  background-size: cover;
 }
 
 .header h1 {
@@ -72,7 +64,7 @@ html,body{
 }
 /* intro paragraph */
 #p-intro {
-  
+
   color:white;
   letter-spacing: 4px;
   font-size: 22px;
