@@ -1,9 +1,9 @@
 class GroupsController < ApplicationController
+  before_action :authenticate_user!
   before_action :get_group_id, except: [:index, :new, :create]
   before_action :authorize, only: [:edit, :update, :destroy]
   before_action :find_user, only: [:index]
 
-  before_action :authenticate_user!
 
   # before_action :get_bookmarks, only: [:index]
 
