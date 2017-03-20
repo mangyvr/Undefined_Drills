@@ -1,5 +1,5 @@
-<h1>Admin Dashboard</h1>
-<hr>
+<h1 id="border-bottom">Admin Dashboard</h1>
+
 <div class="row">
   <div class="col-md-12">
 
@@ -22,7 +22,7 @@
     </table>
     <hr>
 
-    <h2>Users Summary</h2>
+    <h2 id="border-bottom">Users Summary</h2>
     <table class="table table-hover">
       <thead>
         <tr>
@@ -49,9 +49,11 @@
     </table>
     <hr>
 
-    <h2>Groups/Drills/Answers Summary</h2>
+    <h2 id="border-bottom">Groups/Drills/Answers Summary</h2>
     <% @lists[:groups].each do |group| %>
-      <h3>Group: <%= group.title %><%= button_to "Delete Group", admin_delete_group_path(group.id), method: :delete, class: "btn btn-danger" %></h3>
+      <h3 id="border-bottom">Group: <%= group.title %></h3
+      <%= button_to "Delete Group", admin_delete_group_path(group.id), method: :delete, class: "btn btn-danger" %>
+       <br><br>
       <% @lists[:drills].where(group_id: group.id).each do |drill| %>
         <table class="table table-hover">
           <thead>
@@ -119,29 +121,3 @@
 
   </div>
 </div>
-
-<!--
- step 1: create a users index to dispay all users
- Step 2: create a link for each user to render an show id page for each user
- Step 3: Be able to validate each user & and make user admin user
-
- class User < ApplicationRecord {
-                  :id => :integer,
-          :first_name => :string,
-           :last_name => :string,
-               :email => :string,
-            :is_admin => :boolean,
-     :password_digest => :string,
-        :is_validated => :boolean,
-               :score => :integer,
-         :token_field => :string,
-          :created_at => :datetime,
-          :updated_at => :datetime,
-                 :uid => :string,
-            :provider => :string,
-         :oauth_token => :string,
-        :oauth_secret => :string,
-      :oauth_raw_data => :text
- }
-
--->
