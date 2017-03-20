@@ -59,7 +59,16 @@ h4 {
 
 .score {
   position: fixed;
-  bottom: 90px;
+  bottom: 40px;
   right: 90px;
   z-index: 5000;
+  text-shadow: -2px 2px transparentize(gray,0.5);
+  transition: all .5s ease;
+}
+
+.score a {
+  color: transparentize($color3, 0.2);
+}
+.score:hover {
+  text-shadow: none;
 }
