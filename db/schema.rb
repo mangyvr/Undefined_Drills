@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170320013947) do
+ActiveRecord::Schema.define(version: 20170320042150) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,10 +61,11 @@ ActiveRecord::Schema.define(version: 20170320013947) do
   create_table "user_drills", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "drill_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.boolean  "completed"
-    t.integer  "attempts"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.boolean  "completed",  default: false
+    t.integer  "attempts",   default: 0
+    t.boolean  "got_hint",   default: false
     t.index ["drill_id"], name: "index_user_drills_on_drill_id", using: :btree
     t.index ["user_id"], name: "index_user_drills_on_user_id", using: :btree
   end
@@ -94,7 +95,7 @@ ActiveRecord::Schema.define(version: 20170320013947) do
     t.boolean  "is_admin",                 default: false
     t.string   "password_digest"
     t.boolean  "is_validated",             default: false
-    t.integer  "score"
+    t.integer  "score",                    default: 0
     t.string   "password_reset_token"
     t.datetime "created_at",                               null: false
     t.datetime "updated_at",                               null: false
