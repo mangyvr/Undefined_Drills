@@ -10,9 +10,13 @@
   <% end %>
 <br>
 
+<%counter = 3 %>
+<%index = 1 %>
 <div class="container-fluid well well-lg">
   <% @groups.each do |x| %>
   <% randnum = Random.rand(1..100) %>
+<% case counter - index %>
+<% when 2 %>
   <div class="row">
     <div class="col-sm-12 col-md-4">
       <div class="group">
@@ -22,6 +26,8 @@
         <h3 align="middle"><%= link_to x.title, group_drills_path(x) %></h3>
       </div>
     </div>
+<% index += 1 %>
+<% when 1 %>
     <div class="col-sm-12 col-md-4">
       <div class="group">
         <div class="image_wrapper">
@@ -30,7 +36,8 @@
         <h3 align="middle"><%= link_to x.title, group_drills_path(x) %></h3>
       </div>
     </div>
-
+<% index += 1%>
+<% when 0 %>
     <div class="col-sm-12 col-md-4">
       <div class="group">
         <div class="image_wrapper">
@@ -40,7 +47,7 @@
       </div>
      </div>
    </div>
-
-      <% end %>
-    <%#end %>
+ <% counter += 2 %>
+ <% end %>
+<% end %>
 </div>
