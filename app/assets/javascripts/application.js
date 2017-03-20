@@ -25,7 +25,7 @@ $(document).ready(function() {
   });
   $('a').mouseleave(function() {
     $(".main_logo").removeClass("fa-spin");
-    $(".main_logo").css("color", "gray");
+    $(".main_logo").css("color", "white");
     $(".navbar").css("background-color", "#383838");
     // $(".main_logo").addClass("leave");
   });

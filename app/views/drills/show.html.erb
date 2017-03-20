@@ -1,34 +1,46 @@
-
 <h1 style="text-align: center">Drill</h1>
 <div class="back"><a href="javascript:history.back()"><i class="fa fa-arrow-circle-left fa-4x" aria-hidden="true"></i></a></div>
 <div class="col-sm-12">
-    <h3 align="center">
-        <%= @drill.title %>
-    </h3>
-    <h4 align="center">
-        <%= @drill.description %>
-    </h4>
-    <hr>
-    <div class="col-xs-6" align="right"><h4>Drill Level <%= @drill.level %></h4></div>
-    <div class="col-xs-6"><h4>Drill Points <%= @drill.points %></h4></div>
-    <div align="center">
+  <h3 align="center">
+    <%= @drill.title %>
+  </h3>
+  <h4 align="center">
+    <%= @drill.description %>
+  </h4>
+  <hr>
+  <div class="col-xs-6" align="right">
+    <h4>Drill Level <%= @drill.level %></h4>
+  </div>
+  <div class="col-xs-6">
+    <h4>Drill Points <%= @drill.points %></h4>
+  </div>
+  <div align="center">
     <% if can?(:manage, @drill) %>
       <%= link_to 'Edit', edit_drill_path(@drill), class: "btn btn-sm btn-default" %>
-      <%= link_to 'Delete', drill_path(@drill), method: :delete,
-      data: { confirm: 'Are you sure?' }, class: "btn btn-sm btn-danger"  %>
+      <%= link_to 'Delete', drill_path(@drill),
+        method: :delete,
+        remote: :true,
+        data: { confirm: 'Are you sure?' },
+        class: "btn btn-sm btn-danger"
+      %>
     <% end %>
     <br>
-    </div>
-
-<hr>
-
-<%= form_tag drill_user_answers_path(@drill), method: 'post' do %>
-  <div class="form-group" align="center">
-    <div class="input-group">
-    <%= label_tag :user_answer, "Your answer:", class:"input-group-addon" %>
-    <%= text_area_tag :user_answer, @answer.body, class:"form-control" %>
-    </div>
   </div>
+  <hr>
+
+  <%= form_tag drill_user_answers_path(@drill), method: 'post', remote: true do %>
+    <div class="form-group" align="center">
+      <div class="input-group">
+      <%= label_tag :user_answer, "Your answer:", class:"input-group-addon" %>
+      <%= text_area_tag :user_answer, @answer.body, class:"form-control" %>
+      </div>
+    </div>
+    <div align="center">
+      <%= link_to 'Previous Drill', drill_path("#{@drill.id - 1}"), class: 'btn btn-primary' %>
+      <%= submit_tag "Submit Answer Test", class:"btn btn-primary" %>
+      <%= link_to 'Next Drill', drill_path("#{@drill.id + 1}"), class: 'btn btn-primary' %>
+    </div>
+
   <div align="center">
     <%= submit_tag "Submit Answer", class:"btn btn-primary" %>
   </div>
@@ -37,19 +49,21 @@
     <p>Note: getting a hint will count towards your score as a fialed attempt</p>
     <strong id="hint" ><%= @answer.hint %></strong>
   </div>
+
   <% end %>
+
   <% if @answer.body != "" && alert %>
     <%= form_for [@drill, @answer] do |a| %>
       <%= a.hidden_field :body, value: @answer.body %>
       <br>
       <div align="center">
-      <%= a.submit "Disagree with our evaluation? Submit your answer for review", class:"btn btn-secondary"%>
+        <%= a.submit "Disagree with our evaluation? Submit your answer for review", class:"btn btn-secondary"%>
       </div>
     <% end %>
   <% end %>
-
-<hr>
-<h2>Correct Answers - Remove this from final version!!!!</h2>
-<% @drill.answers.each do |answer| %>
-  <p><%= answer.body %></p>
-<% end %>
+  <hr>
+  <h2>Correct Answers - Remove this from final version!!!!</h2>
+  <% @drill.answers.each do |answer| %>
+    <p><%= answer.body %></p>
+  <% end %>
+</div>
