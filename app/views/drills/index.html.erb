@@ -8,19 +8,18 @@
 <ul class="nav nav-tabs">
   <li role="presentation"><a href="#" class='myDrills presstyle'>My Drills</a></li>
   <li role="presentation"><a href="#" class='allDrills presstyle'>All Drills</a></li>
-    <% #if can?(:manage, @group) %>
+    <% if can?(:manage, @group) %>
   <li role="presentation">
     <%= link_to 'Edit', edit_group_path(@group_id), class:"presstyle" %>
   </li>
   <li role="presentation">
     <%= link_to 'Delete', group_path(@group_id),
         method: :delete,
-        remote: true,
         class:"presstyle",
         data: { confirm: 'Deleting this group will also delete all drills and answers associated. Are you sure?'}
     %>
   </li>
-
+  <% end %>
   <% if @group.bookmarked_by?(current_user, @group) %>
     <li role="presentation">
       <%= link_to "Remove Bookmark", user_group_path(@group.bookmark_for(current_user)),
@@ -105,19 +104,3 @@
     </div> <!-- row -->
 </div>
 <br>
-<div class="row">
-  <% if can?(:manage, @group) %>
-  <div class="col-sm-12 col-md-12">
-    <p>
-      <%= link_to 'Delete', group_path(@group),
-      method: :delete,
-      data: { confirm: 'Deleting this group will also delete all drills and answers associated. Are you sure?'}, class:"btn btn-danger"%>
-      <%= link_to 'Edit', edit_group_path(@group), class:"btn btn-default" %>
-    </p>
-  </div>  <!-- col -->
-  <% end %>
-</div> <!-- row -->
-    <%#if can?(:manage, @group)%>
-    <%#end %>
- <!-- container -->
-
