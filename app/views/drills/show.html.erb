@@ -35,13 +35,28 @@
       <%= text_area_tag :user_answer, @answer.body, class:"form-control" %>
       </div>
     </div>
-  </div>
 
-  <div align="center">
-    <%= submit_tag "Submit Answer", class:"btn btn-primary" %>
-  </div>
+    <div align="center">
+      <%= submit_tag "Submit Answer", class:"btn btn-primary" %>
+    </div>
 
-  <% end %>
+    <% end %>
+</div>
+<br>
+
+
+
+
+
+  <div class="col-xs-8">
+    <div class="answer-hint">
+      <button class='btn btn-danger' id="get-hint">Get Hint - This will count as a failed attempt</button>
+
+      <strong id="hint" style="visibility:hidden;color:red;" >Hint: <%= @drill.answers[0].hint %></strong>
+    </div>
+  </div>
+<div class="col-xs-4">
+
     <div align="center">
       <% if @drill.id > 1 %>
         <%= link_to 'Previous Drill', drill_path("#{@drill.id - 1}"), class: 'btn btn-primary'%>
@@ -52,15 +67,10 @@
       <% if @drill.id < Drill.last.id %>
         <%= link_to 'Next Drill', drill_path("#{@drill.id + 1}"), class: 'btn btn-primary' %>
       <% end %>
-      <hr>
     </div>
+</div>
 
 
-  <div class="answer-hint">
-    <button class='btn btn-danger' id="get-hint">Get Hint - This will count as a failed attempt</button>
-
-    <strong id="hint" style="visibility:hidden;color:red;" >Hint: <%= @drill.answers[0].hint %></strong>
-  </div>
 
   <% if @answer.body != "" && alert %>
     <%= form_for [@drill, @answer] do |a| %>
@@ -72,12 +82,13 @@
     <% end %>
   <% end %>
 
+<div class="container col-xs-12">
 
-<hr>
 <h2>Correct Answers - Remove this from final version!!!!</h2>
 <% @drill.answers.each do |answer| %>
   <p><%= answer.body %></p>
 <% end %>
+</div>
 
 <script>
   $(document).ready(function() {
