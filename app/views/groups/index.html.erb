@@ -1,7 +1,7 @@
 
 <div class="row">
   <br><br>
-  <h1 align="middle">Groups</h1>
+  <h1 align="middle">Learning Paths</h1>
 </div>
  <br>
 <% if can?(:manage, @groups) %>
@@ -14,7 +14,7 @@
 <%index = 1 %>
 <div class="container-fluid well well-lg">
   <% @groups.each do |x| %>
-  <% randnum = Random.rand(1000..1030) %>
+  <% randnum = Random.rand(959..1000) %>
 <% case counter - index %>
 <% when 2 %>
   <div class="row">
