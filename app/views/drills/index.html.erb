@@ -46,10 +46,10 @@
     <div class="col-md-4 well well-lg drills-outer-container">
       <div class='drills-inner-container'>
         <h4 class="othercolor">
-          <%= link_to d.title, drill_path(d) %>
+          <%= link_to d.title, drill_path(d), class:"changecolor" %>
         </h4>
         <hr class="hr2">
-          <%= link_to 'Attempt Drill', drill_path(d), class:"btn btn-universal" %>
+          <%= link_to 'Attempt Drill', drill_path(d), class:"btn btn-universal btntoggler" %>
 
       </div>
     </div>
