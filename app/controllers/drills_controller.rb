@@ -1,7 +1,7 @@
 class DrillsController < ApplicationController
   before_action :authenticate_user!
   before_action :find_drill, only: [:show, :edit, :update, :destroy]
-  before_action :authorize
+  before_action :authorize, except: [:index, :show]
 
   def index
     @group = Group.find params[:group_id]
@@ -34,7 +34,6 @@ class DrillsController < ApplicationController
   end
 
   def show
-    @drill = Drill.find params[:id]
     user_answer = params[:body] || ""
     @answer = Answer.new(user: current_user, drill: @drill, body: user_answer, approved: false)
   end
@@ -67,7 +66,7 @@ class DrillsController < ApplicationController
 
   def authorize
     if cannot?(:manage, @drill)
-      redirect_to root_path, alert: 'Not authorized!'
+      redirect_to drill_path(@drill), alert: "You are not authorized for that action!"
     end
   end
 

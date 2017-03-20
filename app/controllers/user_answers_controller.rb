@@ -1,4 +1,5 @@
 class UserAnswersController < ApplicationController
+  before_action :find_user
 
   def create
     @drill = Drill.find params[:drill_id]
@@ -7,17 +8,18 @@ class UserAnswersController < ApplicationController
     user_answer = params[:user_answer]
     correct = false
     correct_answers.each do |answer|
-      if answer.body.downcase == user_answer.downcase
+      if answer.body.downcase == user_answer.downcase &&
         correct = true
       end
       p answer.body.downcase + ' - ' + params[:user_answer].downcase
     end
 
-    if user_drill_status.completed == false
+    if user_drill_status.completed === false
       user_drill_status.attempts += 1
-      if correct == true
+      if (correct == true && user_drill_status.completed === false)
         user_drill_status.completed = true
-
+        @user.score = @user.score + @drill.points
+        @user.save
       end
       user_drill_status.save
       p current_user
@@ -35,4 +37,11 @@ class UserAnswersController < ApplicationController
     redirect_to drill_path(@drill, body: user_answer), correct == true ? {notice: "You answered correctly."} : {alert: "Sorry, that's incorrect.  Please try again."}
 
   end
+
+  private
+
+  def find_user
+    @user = User.find current_user
+  end
+
 end
