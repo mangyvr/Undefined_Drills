@@ -1,9 +1,9 @@
 <h1 class='drills-animation' align="center"><%= @group.title %></h1>
-
+<br>
 <% if can?(:manage, @drills) || UserGroupPermission.where(group_id: @group_id, user_id: current_user.id).present? %>
   <div align='center'><%= link_to 'New', new_group_drill_path(@group_id), class: 'btn-universal'%></div>
 <% end %>
-
+<br>
 <ul class="nav nav-tabs">
   <li role="presentation"><a href="#" class='myDrills presstyle'>My Drills</a></li>
   <li role="presentation"><a href="#" class='allDrills presstyle'>All Drills</a></li>
@@ -46,10 +46,10 @@
     <div class="col-md-4 well well-lg drills-outer-container">
       <div class='drills-inner-container'>
         <h4 class="othercolor">
-          <%= link_to d.title, drill_path(d) %>
+          <%= link_to d.title, drill_path(d), class:"changecolor" %>
         </h4>
         <hr class="hr2">
-          <%= link_to 'Attempt Drill', drill_path(d), class:"btn btn-universal" %>
+          <%= link_to 'Attempt Drill', drill_path(d), class:"btn btn-universal btntoggler" %>
 
       </div>
     </div>
