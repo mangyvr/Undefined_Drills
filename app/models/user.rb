@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :user_groups, dependent: :destroy
   has_many :bookmarkedgroups, through: :user_groups, source: :group
   has_many :answers, dependent: :nullify
+  has_many :permittedgroups, through: :user_group_permission, source: :group
 
   has_secure_password
   before_validation :downcase_email
@@ -70,25 +71,38 @@ class User < ApplicationRecord
   end
 
   # For password reset
-   def self.new_token
-     SecureRandom.urlsafe_base64
-   end
+  def self.new_token
+   SecureRandom.urlsafe_base64
+  end
 
-   # Generates password reset link with unencrypted token before it is digest-ed
-   def gen_reset_link(url, token)
-     "#{url}/reset_password/#{token}/edit?email=#{self.email}"
-   end
+  # Generates password reset link with unencrypted token before it is digest-ed
+  def gen_reset_link(url, token)
+   "#{url}/reset_password/#{token}/edit?email=#{self.email}"
+  end
 
-   # Use bcrypt to convert unhashed token into digest
-   def self.hash_token(token)
-     BCrypt::Password.create(token)
-   end
+  # Use bcrypt to convert unhashed token into digest
+  def self.hash_token(token)
+   BCrypt::Password.create(token)
+  end
 
+  # Generate email validation link
+  def gen_email_validation_link(url, token, user)
+   "#{url}/users/#{user.id}/validate_email/#{token}/edit?email=#{self.email}"
+  end
 
-   # Generate email validation link
-   def gen_email_validation_link(url, token, user)
-     "#{url}/users/#{user.id}/validate_email/#{token}/edit?email=#{self.email}"
-   end
+  def completed_percentage(group)
+    # UserDrill.where(group_id: group.id, user_id: self.id, completed: true).count / Group.find(id: group.id).drills.count
+    group_count = 0
 
+    Drill.find(UserDrill.where(user: self, completed: true).pluck(:drill_id)).each do |drl_id|
+      if Drill.find(drl_id).group == group
+        group_count += 1
+      end
+      p group_count
+
+    end
+
+    group_count.to_f / Group.find(group.id).drills.count.to_f
+  end
 
 end
