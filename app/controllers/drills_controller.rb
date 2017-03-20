@@ -6,6 +6,7 @@ class DrillsController < ApplicationController
   before_action :new_drill_create, only: [:create]
   before_action :authorize, except: [:index, :show]
 
+
   def index
     @group = Group.find params[:group_id]
     # Show drills for this group only
