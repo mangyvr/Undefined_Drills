@@ -3,6 +3,7 @@ class ResetPasswordController < ApplicationController
   # before_action :authorize, only: [:create, :edit, :update]
 
   def new
+    
   end
 
   def create
