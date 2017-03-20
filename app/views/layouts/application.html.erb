@@ -20,7 +20,7 @@
       <%= yield %>
       <% if current_user.present? %>
       <div class="score">
-        <span>Score - <%= current_user.score %></span><%= link_to '<i class="fa fa-plus-circle fa-5x" aria-hidden="true">'.html_safe, stats_user_path(current_user) %></i>
+        <div data-toggle="tooltip" title="My Score <%= current_user.score %>"><%= link_to '<i class="fa fa-pie-chart fa-5x" aria-hidden="true"></i>'.html_safe, stats_user_path(current_user)%></div>
       </div>
       <% end %>
     </div>
