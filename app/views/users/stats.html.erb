@@ -16,11 +16,14 @@
       <p class="aligncenter">Joined: <%= ((Time.current - @user.created_at)/3600/24).to_i %> days ago</p>
       <% end %>
       <p class="aligncenter">Average attempts per question: <%= (@attempts/@completions).round(2) %></p>
-      <p class="aligncenter">Total Badges......other stuff</p>
+      <p class="aligncenter">Bronze Badges: <%= @bronzedrills.size %></p>
+      <p class="aligncenter">Silver Badges: <%= @silverdrills.size %></p>
+      <p class="aligncenter">Gold Badges: <%= @golddrills.size %></p>
+      <p class="aligncenter">Total Badges: <%= @completeddrills.size %></p>
   </div>
   <div class="col-md-6">
     <h2 class="aligncenter">Recently Completed Drills</h2>
-     <% @drills.take(5).each do |z| %>
+     <% @completeddrills.take(5).each do |z| %>
     <p><%= link_to "#{z.title}", drill_path(z) %></p>
     <% end %>
     </div>
@@ -41,7 +44,7 @@
 <!--
 <div class="container-fluid" align="middle">
   <h1>Recently Completed Drills</h1>
-   <% @drills.take(5).each do |z| %>
+   <% @completeddrills.take(5).each do |z| %>
   <p><%= link_to "#{z.title}", drill_path(z) %></p>
   <% end %>
 </div>

@@ -30,9 +30,20 @@ class UsersController < ApplicationController
     #query total drills
     drillrecords = Drill.all
     @totaldrills = drillrecords.size
-    #get last 5 completed drills
+    #get completed drills
     drillz = UserDrill.where(completed: true).where(user_id: @user.id)
-    @drills = Drill.where(:id => drillz).all
+    @completeddrills = Drill.where(:id => drillz).all
+    #get completed drills by level
+    @bronzedrills = @completeddrills.where(:level => 1).all
+    @silverdrills = @completeddrills.where(:level => 2).all
+    @golddrills = @completeddrills.where(:level => 3).all
+    #get completed groups
+
+
+
+
+
+
   end
 
   def bookmarks
