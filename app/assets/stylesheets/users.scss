@@ -2,6 +2,12 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+@import'variables';
 .progress-bar{
-  background-color: #18bc9c
+  background-color: $color3;
+}
+
+.progress {
+  border: thin solid $color4;
+  border-radius: 3px
 }
