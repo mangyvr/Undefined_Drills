@@ -3,35 +3,8 @@
   <%= d.input :description %>
   <%= d.input :level %>
   <%= d.input :points %>
-  <%= label_tag "Answer Body", :answer_body %>
-  <%= text_field_tag :answer_body %>
+  <p id='ans' style='font-weight: bold; font-size:15px'>* Answers</p>
+  <%= text_field_tag :answer_body%>
+  <br><br>
   <%= d.submit class: 'btn btn-primary'%>
 <% end %>
-
-<!-- <%= form_tag group_drills_path(@group), method: 'post' do %>
-  <div class="form-group" align="center">
-    <div class="input-group">
-    <%= label_tag :title, "Title:", class:"input-group-addon" %>
-    <%= text_area_tag :title, @drill.title, class:"form-control" %>
-    </div>
-
-    <div class="input-group">
-    <%= label_tag :description, "Description:", class:"input-group-addon" %>
-    <%= text_area_tag :description, @drill.description, class:"form-control" %>
-    </div>
-
-    <div class="input-group">
-    <%= label_tag :level, "Level:", class:"input-group-addon" %>
-    <%= text_area_tag :level, @drill.level, class:"form-control" %>
-    </div>
-
-    <div class="input-group">
-    <%= label_tag :points, "Points:", class:"input-group-addon" %>
-    <%= text_area_tag :points, @drill.points, class:"form-control" %>
-    </div>
-
-
-    <%= submit_tag "Submit Answer", class:"btn btn-primary" %>
-
-  </div>
-<% end %> -->

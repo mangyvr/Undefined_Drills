@@ -27,7 +27,7 @@ class DrillsController < ApplicationController
   def create
     # render json:params
     @group = Group.find (params[:group_id])
-
+    
 
     if @drill.save && Drill.last.answers.create(user: current_user, drill_id: @drill.id, approved: true, body: params[:answer_body] ? params[:answer_body] : 'default')
       flash[:notice] = 'Drill created successfully'
