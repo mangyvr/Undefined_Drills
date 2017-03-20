@@ -13,10 +13,13 @@ class DrillsController < ApplicationController
     # render json:params
     @drills = Drill.order(created_at: :desc).where(group_id: params[:group_id])
     @group_id = params[:group_id]
-    attempted = UserDrill.where(user: current_user, completed: false).pluck(:drill_id, :attempts)
-    completed = UserDrill.where(user: current_user, completed: true).pluck(:drill_id)
-    @completed_drills = Drill.find(completed)
-    @attempted_drills = UserDrill.where(user: current_user, completed: false)
+    # attempted = UserDrill.where(user: current_user, completed: false).pluck(:drill_id, :attempts)
+    # attdrill = UserDrill.where(user: current_user, completed: false).pluck(:drill_id)
+    # completed = UserDrill.where(user: current_user, completed: true)
+    # @completed_drills = completed.where(group_id: @group_id)
+    # @attempted_drills = UserDrill.find(attdrill)
+    @attempted_drills = current_user.attempteddrills.where(group_id: params[:group_id])
+    # render json: @completed_drills
   end
 
   def new
@@ -27,7 +30,7 @@ class DrillsController < ApplicationController
   def create
     # render json:params
     @group = Group.find (params[:group_id])
-    
+
 
     if @drill.save && Drill.last.answers.create(user: current_user, drill_id: @drill.id, approved: true, body: params[:answer_body] ? params[:answer_body] : 'default')
       flash[:notice] = 'Drill created successfully'
