@@ -2,7 +2,7 @@
   User.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: 'a', score: 0, valid_email: true, is_validated: true)
 end
 
-User.first.update(is_admin: true)
+User.first.update(is_admin: true, score: 1)
 
 users = User.all
 
