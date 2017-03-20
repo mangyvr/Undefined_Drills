@@ -11,7 +11,7 @@
   <% end %>
   <div class="well well-sm">
 
-    <% if x.full_name == current_user.full_name %>
+    <% if x.id == current_user.id %>
       <h4 style='color: #18bc9c'><%= counter %>: <%= x.first_name%>: <%= x.score %></h4>
       <div class="progress">
         <div class="progress-bar" role="progressbar" aria-valuenow="<%= x.score %>" aria-valuemin="0" aria-valuemax="<%= max %>" style="width:<%=  (x.score / max * 100).round %>%;">
