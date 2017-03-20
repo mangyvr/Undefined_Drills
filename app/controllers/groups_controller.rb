@@ -11,7 +11,6 @@ class GroupsController < ApplicationController
   def index
     @groups = Group.order(created_at: :desc)
     drillz = UserDrill.where(completed: true).where(user_id: @user.id)
-    drillz =
     @drills = Drill.where(:id => drillz).all
     # @user_groups = Group.where???
     # render json: @groups
