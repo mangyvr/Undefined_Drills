@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby "~> 2.3.0"
+ruby "2.3.3"
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
   "https://github.com/#{repo_name}.git"
@@ -55,9 +55,9 @@ gem 'bootstrap-social-rails'
 # gem 'capistrano-rails', group: :development
 gem 'rspec-rails'
 
+gem 'factory_girl_rails'
 group :development, :test do
   # gem 'rspec-rails'
-  gem 'factory_girl_rails'
 
   gem 'rails-controller-testing'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
